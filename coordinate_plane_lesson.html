@@ -1,0 +1,4016 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Координатная плоскость — 6 класс</title>
+    
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #718096;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            padding: 15px 25px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #4a5568;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: #4a5568;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .lesson-section {
+            display: none;
+            background: rgba(255,255,255,0.98);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .lesson-section.active {
+            display: block;
+        }
+
+        /* Анимация пульсации для точек */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Эффект свечения */
+        .glow-effect {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(90, 103, 216, 0.5)); }
+            to { filter: drop-shadow(0 0 15px rgba(90, 103, 216, 0.8)); }
+        }
+
+        /* Конфетти */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            top: -10px;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                top: 110vh;
+                transform: rotate(720deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KaTeX styling */
+        .katex {
+            font-size: 1.1em !important;
+        }
+        
+        .katex-display {
+            margin: 15px 0 !important;
+        }
+        
+        .definition-box .katex,
+        .example-box .katex,
+        .tip-box .katex {
+            font-size: 1.15em !important;
+        }
+        
+        .katex-error {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .lesson-section h2 {
+            color: #4a5568;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .lesson-section h3 {
+            color: #5a67d8;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #5a67d8;
+        }
+
+        .definition-box h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .definition-box p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #ed8936;
+        }
+
+        .example-box h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #38b2ac;
+        }
+
+        .tip-box h4 {
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: white;
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+
+        .interactive-area {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: #5a67d8;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4c51bf;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .btn-warning {
+            background: #ed8936;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #dd6b20;
+        }
+
+        .task-list {
+            list-style: none;
+            counter-reset: task-counter;
+        }
+
+        .task-list li {
+            counter-increment: task-counter;
+            padding: 15px;
+            margin: 10px 0;
+            background: #edf2f7;
+            border-radius: 10px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .task-list li::before {
+            content: counter(task-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #5a67d8;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .answer-input {
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 150px;
+            margin: 5px;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #5a67d8;
+        }
+
+        .result-message {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .result-correct {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .result-wrong {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        th {
+            background: #5a67d8;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .quarters-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .quarter-cell {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .q1 { background: #c6f6d5; color: #22543d; }
+        .q2 { background: #bee3f8; color: #2a4365; }
+        .q3 { background: #fed7d7; color: #742a2a; }
+        .q4 { background: #feebc8; color: #7b341e; }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 60px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: "Шаг " counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 15px;
+            background: #5a67d8;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            height: 30px;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .coord-plane-small {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .lesson-section { padding: 20px; }
+            .nav-tab { padding: 10px 15px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Координатная плоскость</h1>
+            <p>Интерактивный урок математики для 6 класса</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('intro')">🎯 Введение</button>
+            <button class="nav-tab" onclick="showSection('history')">📜 История</button>
+            <button class="nav-tab" onclick="showSection('coords')">📍 Координаты</button>
+            <button class="nav-tab" onclick="showSection('quarters')">🔲 Четверти</button>
+            <button class="nav-tab" onclick="showSection('practice')">✏️ Практика</button>
+            <button class="nav-tab" onclick="showSection('graphs')">📈 Графики</button>
+            <button class="nav-tab" onclick="showSection('game')">🎮 Игра</button>
+            <button class="nav-tab" onclick="showSection('test')">📝 Тест</button>
+            <button class="nav-tab" onclick="showSection('quiz')">🧠 Викторина</button>
+            <button class="nav-tab" onclick="showSection('draw')">🎨 Рисование</button>
+            <button class="nav-tab" onclick="showSection('move')">🚀 Движение точки</button>
+            <button class="nav-tab" onclick="showSection('symmetry')">🪞 Симметрия</button>
+            <button class="nav-tab" onclick="showSection('builder')">🏗️ Конструктор</button>
+            <button class="nav-tab" onclick="showSection('problems')">📚 Задачник</button>
+            <button class="nav-tab" onclick="showSection('block1')">1️⃣ Координатный луч</button>
+            <button class="nav-tab" onclick="showSection('block2')">2️⃣ Координатная прямая</button>
+            <button class="nav-tab" onclick="showSection('block3')">3️⃣ Коорд. плоскость</button>
+            <button class="nav-tab" onclick="showSection('block4')">4️⃣ Графики процессов</button>
+            <button class="nav-tab" onclick="showSection('block5')">5️⃣ Пропорциональность</button>
+            <button class="nav-tab" onclick="showSection('block6')">6️⃣ Итоговый тест</button>
+            <button class="nav-tab" onclick="showSection('challenge')">🏆 Соревнование</button>
+        </div>
+
+        <!-- ВВЕДЕНИЕ -->
+        <section id="intro" class="lesson-section active">
+            <h2>🎯 Введение. Зачем нужны координаты?</h2>
+            
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                Представьте, что вы играете в морской бой. Как вы сообщаете противнику, куда стрелять? 
+                Правильно — называете букву столбца и номер строки, например: <strong>«Б4»</strong>!
+            </p>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                А как найти место в кинотеатре? Нужно знать <strong>ряд</strong> и <strong>номер места</strong>.
+                А как определить положение города на карте? Нужны <strong>широта и долгота</strong>!
+            </p>
+
+            <div class="tip-box">
+                <h4>💡 Вывод</h4>
+                <p>В жизни мы часто используем <strong>две величины</strong>, чтобы точно указать положение объекта. 
+                В математике для этого служит <strong>координатная плоскость</strong>.</p>
+            </div>
+
+            <h3>Что мы изучим на этом уроке:</h3>
+            <ul style="font-size: 1.1em; line-height: 2; margin: 20px 0;">
+                <li>📌 Что такое координатная плоскость</li>
+                <li>📌 Как устроены оси координат (Ox и Oy)</li>
+                <li>📌 Что такое абсцисса и ордината</li>
+                <li>📌 Как определить координаты точки</li>
+                <li>📌 Как построить точку по координатам</li>
+                <li>📌 Что такое координатные четверти</li>
+                <li>📌 Как строить графики</li>
+            </ul>
+
+            <canvas id="introCanvas" width="600" height="400"></canvas>
+            <p style="text-align: center; color: #718096;">На рисунке: координатная плоскость с отмеченными точками A(2, 3), B(-3, 1), C(4, -2)</p>
+        </section>
+
+        <!-- ИСТОРИЯ -->
+        <section id="history" class="lesson-section">
+            <h2>📜 История координатной системы</h2>
+
+            <div class="definition-box">
+                <h4>👨‍🔬 Рене Декарт (1596–1650)</h4>
+                <p>Французский математик и философ, который ввёл систему координат на плоскости. 
+                Его труд «Геометрия» был опубликован в <strong>1637 году</strong>. 
+                Поэтому координатную плоскость часто называют <strong>декартовой</strong>.</p>
+            </div>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin: 20px 0;">
+                По легенде, Декарт придумал свою систему, наблюдая за мухой, ползающей по потолку. 
+                Он понял, что положение мухи можно описать двумя числами — расстоянием от двух стен!
+            </p>
+
+            <div class="example-box">
+                <h4>🌍 Где ещё используются координаты?</h4>
+                <ul style="font-size: 1.1em; line-height: 2;">
+                    <li><strong>GPS-навигаторы</strong> — широта и долгота</li>
+                    <li><strong>Шахматы</strong> — буква и номер (например, e4)</li>
+                    <li><strong>Морской бой</strong> — буква и цифра</li>
+                    <li><strong>Кинотеатр</strong> — ряд и место</li>
+                    <li><strong>Экран компьютера</strong> — пиксели (x, y)</li>
+                    <li><strong>Астрономия</strong> — положение звёзд и планет</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- КООРДИНАТЫ -->
+        <section id="coords" class="lesson-section">
+            <h2>📍 Координатная плоскость: устройство</h2>
+
+            <h3>Основные элементы</h3>
+            
+            <div class="definition-box">
+                <h4>📐 Прямоугольная (декартова) система координат</h4>
+                <p>Это <strong>две взаимно перпендикулярные прямые</strong> на плоскости, 
+                каждая из которых имеет начало отсчёта, единичный отрезок и положительное направление.</p>
+            </div>
+
+            <canvas id="planeCanvas" width="600" height="500"></canvas>
+
+            <h3>Оси координат</h3>
+            
+            <table>
+                <tr>
+                    <th>Ось</th>
+                    <th>Название</th>
+                    <th>Направление</th>
+                </tr>
+                <tr>
+                    <td><strong>Ox</strong></td>
+                    <td>Ось абсцисс</td>
+                    <td>→ горизонтальная (вправо — положительное, \(x > 0\))</td>
+                </tr>
+                <tr>
+                    <td><strong>Oy</strong></td>
+                    <td>Ось ординат</td>
+                    <td>→ вертикальная (вверх — положительное, \(y > 0\))</td>
+                </tr>
+            </table>
+
+            <div class="definition-box">
+                <h4>📍 Начало координат</h4>
+                <p>Точка пересечения осей обозначается буквой <strong>O</strong> и имеет координаты \(O(0, 0)\).</p>
+            </div>
+
+            <h3>Как записываются координаты точки</h3>
+
+            <div class="definition-box">
+                <h4>📝 Запись: \(A(x, y)\)</h4>
+                <p><strong>Абсцисса</strong> — первое число (координата по оси Ox)</p>
+                <p><strong>Ордината</strong> — второе число (координата по оси Oy)</p>
+                <p>Пример: \(A(4, 3)\) читается «точка A с абсциссой 4 и ординатой 3»</p>
+            </div>
+
+            <h3>Алгоритм построения точки</h3>
+
+            <ol class="step-list">
+                <li>На оси абсцисс (Ox) отметить абсциссу точки и провести перпендикуляр</li>
+                <li>На оси ординат (Oy) отметить ординату точки и провести перпендикуляр</li>
+                <li>Точка пересечения перпендикуляров — это искомая точка</li>
+            </ol>
+
+            <h3>Алгоритм определения координат точки</h3>
+
+            <ol class="step-list">
+                <li>Провести перпендикуляр из точки к оси Ox — получаем абсциссу</li>
+                <li>Провести перпендикуляр из точки к оси Oy — получаем ординату</li>
+                <li>Записать: (абсцисса, ордината)</li>
+            </ol>
+
+            <div class="tip-box">
+                <h4>💡 Запомни!</h4>
+                <p>• Если абсцисса точки равна \(0\), точка лежит на оси <strong>Oy</strong>: \((0, y)\)</p>
+                <p>• Если ордината точки равна \(0\), точка лежит на оси <strong>Ox</strong>: \((x, 0)\)</p>
+                <p>• Начало координат: \(O(0, 0)\)</p>
+            </div>
+        </section>
+
+        <!-- ЧЕТВЕРТИ -->
+        <section id="quarters" class="lesson-section">
+            <h2>🔲 Координатные четверти</h2>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                Оси координат делят плоскость на <strong>4 части</strong>, которые называются 
+                <strong>координатными четвертями</strong> (или квадрантами). Они нумеруются 
+                римскими цифрами <strong>против часовой стрелки</strong>, начиная с правого верхнего угла.
+            </p>
+
+            <canvas id="quartersCanvas" width="500" height="500"></canvas>
+
+            <h3>Правила знаков</h3>
+
+            <table>
+                <tr>
+                    <th>Четверть</th>
+                    <th>Абсцисса \((x)\)</th>
+                    <th>Ордината \((y)\)</th>
+                </tr>
+                <tr>
+                    <td><strong>I</strong></td>
+                    <td style="color: green; font-weight: bold;">\(x > 0\)</td>
+                    <td style="color: green; font-weight: bold;">\(y > 0\)</td>
+                </tr>
+                <tr>
+                    <td><strong>II</strong></td>
+                    <td style="color: red; font-weight: bold;">\(x < 0\)</td>
+                    <td style="color: green; font-weight: bold;">\(y > 0\)</td>
+                </tr>
+                <tr>
+                    <td><strong>III</strong></td>
+                    <td style="color: red; font-weight: bold;">\(x < 0\)</td>
+                    <td style="color: red; font-weight: bold;">\(y < 0\)</td>
+                </tr>
+                <tr>
+                    <td><strong>IV</strong></td>
+                    <td style="color: green; font-weight: bold;">\(x > 0\)</td>
+                    <td style="color: red; font-weight: bold;">\(y < 0\)</td>
+                </tr>
+            </table>
+
+            <div class="example-box">
+                <h4>📝 Примеры</h4>
+                <p>\(A(3, 5)\) — I четверть (оба числа положительные)</p>
+                <p>\(B(-2, 4)\) — II четверть (x отрицательный, y положительный)</p>
+                <p>\(C(-3, -1)\) — III четверть (оба числа отрицательные)</p>
+                <p>\(D(5, -2)\) — IV четверть (x положительный, y отрицательный)</p>
+            </div>
+
+            <h3>Проверь себя: определи четверть</h3>
+            <div class="interactive-area">
+                <p>Укажите четверть для каждой точки:</p>
+                <div id="quarterTasks"></div>
+                <button class="btn btn-primary" onclick="checkQuarters()">Проверить</button>
+                <button class="btn btn-warning" onclick="generateQuarterTasks()">Новые задания</button>
+                <div id="quarterResult"></div>
+            </div>
+        </section>
+
+        <!-- ПРАКТИКА -->
+        <section id="practice" class="lesson-section">
+            <h2>✏️ Практика: строим и определяем координаты</h2>
+
+            <h3>Интерактивная координатная плоскость</h3>
+            <p>Кликните на плоскость, чтобы поставить точку. Координаты отобразятся автоматически!</p>
+            
+            <canvas id="interactiveCanvas" width="600" height="600" onclick="handleCanvasClick(event)"></canvas>
+            
+            <div class="interactive-area">
+                <p>Последняя точка: <strong id="lastPoint">—</strong></p>
+                <button class="btn btn-warning" onclick="clearInteractiveCanvas()">Очистить</button>
+            </div>
+
+            <h3>Задание 1: Постройте точки</h3>
+            <p>Отметьте на координатной плоскости точки с координатами:</p>
+            
+            <div class="interactive-area">
+                <canvas id="task1Canvas" width="400" height="400" onclick="handleTask1Click(event)"></canvas>
+                <div id="task1Points" style="margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateTask1Points()">Новые точки</button>
+                <button class="btn btn-success" onclick="checkTask1Points()">Проверить</button>
+                <div id="task1Result"></div>
+            </div>
+
+            <h3>Задание 2: Определите координаты</h3>
+            <p>Определите координаты точек, отмеченных на рисунке:</p>
+            
+            <div class="interactive-area">
+                <canvas id="task2Canvas" width="400" height="400"></canvas>
+                <div id="task2Inputs" style="margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateTask2Points()">Новые точки</button>
+                <button class="btn btn-success" onclick="checkTask2Points()">Проверить</button>
+                <div id="task2Result"></div>
+            </div>
+
+            <h3>Задание 3: Соедини точки — получи фигуру!</h3>
+            <p>Отметьте точки и соедините их по порядку. Какая фигура получится?</p>
+            
+            <div class="interactive-area">
+                <canvas id="task3Canvas" width="400" height="400"></canvas>
+                <div id="task3Buttons" style="margin: 10px 0;">
+                    <button class="btn btn-primary" onclick="loadFigure('square')">Квадрат</button>
+                    <button class="btn btn-primary" onclick="loadFigure('triangle')">Треугольник</button>
+                    <button class="btn btn-primary" onclick="loadFigure('house')">Домик</button>
+                    <button class="btn btn-primary" onclick="loadFigure('star')">Звезда</button>
+                    <button class="btn btn-warning" onclick="clearTask3()">Очистить</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ГРАФИКИ -->
+        <section id="graphs" class="lesson-section">
+            <h2>📈 Графики</h2>
+
+            <h3>Что такое график?</h3>
+
+            <div class="definition-box">
+                <h4>📊 График</h4>
+                <p>Это <strong>линия</strong>, соединяющая точки на координатной плоскости, 
+                каждая из которых соответствует паре значений двух связанных величин.</p>
+            </div>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin: 20px 0;">
+                По горизонтальной оси (Ox) обычно откладывается <strong>время</strong>, 
+                а по вертикальной оси (Oy) — <strong>зависящая величина</strong> 
+                (температура, расстояние, скорость и т.д.).
+            </p>
+
+            <h3>Пример 1: График изменения температуры</h3>
+            <div class="example-box">
+                <p>Представьте, что мы измеряли температуру воздуха каждый час:</p>
+                <table>
+                    <tr><th>Время (ч)</th><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td><td>21</td></tr>
+                    <tr><th>Температура (°C)</th><td>-2</td><td>3</td><td>8</td><td>10</td><td>5</td><td>0</td></tr>
+                </table>
+            </div>
+            <canvas id="tempGraphCanvas" width="600" height="400"></canvas>
+
+            <h3>Пример 2: Прямая пропорциональная зависимость</h3>
+            <div class="definition-box">
+                <h4>📈 Прямая пропорциональность: \(y = kx\)</h4>
+                <p>График — <strong>прямая линия, проходящая через начало координат \((0, 0)\)</strong></p>
+                <p>Пример: пешеход идёт со скоростью 5 км/ч. Формула пути:</p>
+                <p style="text-align: center; font-size: 1.3em; margin: 15px 0;">
+                    \[S = v \cdot t = 5t\]
+                </p>
+            </div>
+            <canvas id="proportionalCanvas" width="600" height="400"></canvas>
+
+            <h3>Пример 3: Обратная пропорциональная зависимость</h3>
+            <div class="definition-box">
+                <h4>📉 Обратная пропорциональность: \(y = \dfrac{k}{x}\)</h4>
+                <p>График — <strong>гипербола</strong> (плавная кривая)</p>
+                <p>Пример: путь 12 км. Время зависит от скорости:</p>
+                <p style="text-align: center; font-size: 1.3em; margin: 15px 0;">
+                    \[t = \dfrac{S}{v} = \dfrac{12}{v}\]
+                </p>
+            </div>
+            <canvas id="inverseCanvas" width="600" height="400"></canvas>
+        </section>
+
+        <!-- ИГРА -->
+        <section id="game" class="lesson-section">
+            <h2>🎮 Игра «Найди сокровище!»</h2>
+            
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                На острове спрятано сокровище! Вам даны координаты клада. 
+                Кликайте на карту, чтобы найти сундук. Чем ближе вы к цели, тем теплее подсказка!
+            </p>
+
+            <div class="interactive-area">
+                <canvas id="gameCanvas" width="600" height="600" onclick="handleGameClick(event)"></canvas>
+                <p id="gameHint" style="font-size: 1.2em; font-weight: 600; margin: 10px 0;"></p>
+                <p>Попыток: <strong id="gameAttempts">0</strong></p>
+                <button class="btn btn-primary" onclick="startGame()">Новая игра</button>
+            </div>
+        </section>
+
+        <!-- ТЕСТ -->
+        <section id="test" class="lesson-section">
+            <h2>📝 Тест для самопроверки</h2>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="testProgress">0%</div>
+            </div>
+
+            <div id="testContainer"></div>
+            
+            <div class="interactive-area" style="text-align: center;">
+                <button class="btn btn-success" onclick="checkTest()">Проверить все ответы</button>
+                <button class="btn btn-warning" onclick="generateTest()">Новый тест</button>
+                <div id="testResult" style="margin-top: 20px; font-size: 1.2em; font-weight: 600;"></div>
+            </div>
+        </section>
+
+        <!-- ВИКТОРИНА -->
+        <section id="quiz" class="lesson-section">
+            <h2>🧠 Блиц-викторина «Верю — не верю»</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Быстро отвечайте «Верю» ✅ или «Не верю» ❌. У вас 10 секунд на каждый вопрос!</p>
+            
+            <div class="interactive-area">
+                <div id="quizTimer" style="font-size: 2em; text-align: center; margin: 10px 0;"></div>
+                <div id="quizQuestion" style="font-size: 1.3em; font-weight: 600; text-align: center; margin: 20px 0;"></div>
+                <div style="text-align: center;">
+                    <button class="btn btn-success" onclick="answerQuiz(true)" style="font-size: 1.2em; padding: 15px 40px;">✅ Верю</button>
+                    <button class="btn btn-warning" onclick="answerQuiz(false)" style="font-size: 1.2em; padding: 15px 40px;">❌ Не верю</button>
+                </div>
+                <div id="quizFeedback" style="margin: 20px 0;"></div>
+                <p style="text-align: center;">Вопрос: <strong id="quizCurrent">0</strong> / <strong id="quizTotal">0</strong></p>
+                <p style="text-align: center;">Счёт: <strong id="quizScore">0</strong></p>
+                <button class="btn btn-primary" onclick="startQuiz()">Начать викторину</button>
+            </div>
+        </section>
+
+        <!-- РИСОВАНИЕ -->
+        <section id="draw" class="lesson-section">
+            <h2>🎨 Свободное рисование на координатной плоскости</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Рисуйте что угодно! Координаты курсора отображаются в реальном времени.</p>
+            
+            <div class="interactive-area">
+                <canvas id="drawCanvas" width="700" height="600" style="cursor: crosshair;"></canvas>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0;">
+                    <span>Цвет: <input type="color" id="drawColor" value="#e53e3e"></span>
+                    <span>Толщина: <input type="range" id="drawWidth" min="1" max="20" value="3" oninput="document.getElementById('widthValue').textContent=this.value"> <span id="widthValue">3</span>px</span>
+                    <button class="btn btn-primary" onclick="setDrawMode('line')">📏 Линия</button>
+                    <button class="btn btn-primary" onclick="setDrawMode('circle')">⭕ Окружность</button>
+                    <button class="btn btn-primary" onclick="setDrawMode('rect')">⬜ Прямоугольник</button>
+                    <button class="btn btn-primary" onclick="setDrawMode('free')">✏️ Свободное</button>
+                    <button class="btn btn-warning" onclick="clearDrawCanvas()">🗑️ Очистить</button>
+                </div>
+                <p style="text-align: center;">Координаты курсора: <strong id="drawCursor">(0, 0)</strong></p>
+                <p style="text-align: center;">Режим: <strong id="drawMode">Свободное рисование</strong></p>
+            </div>
+        </section>
+
+        <!-- ДВИЖЕНИЕ ТОЧКИ -->
+        <section id="move" class="lesson-section">
+            <h2>🚀 Движение точки по координатной плоскости</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Управляйте точкой стрелками клавиатуры или кнопками. Наблюдайте, как меняются координаты!</p>
+            
+            <div class="interactive-area">
+                <canvas id="moveCanvas" width="600" height="600" tabindex="0"></canvas>
+                <div style="text-align: center; margin: 10px 0;">
+                    <div style="font-size: 1.5em; margin: 10px 0;">
+                        Позиция: <span id="movePosition">(0, 0)</span>
+                    </div>
+                    <div style="font-size: 1.2em;">
+                        Пройденный путь: <strong id="moveDistance">0</strong> единиц
+                    </div>
+                    <div style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="font-size: 1.2em; margin: 0;">📐 Формула расстояния между точками:</p>
+                        <p style="font-size: 1.4em; margin: 10px 0; text-align: center;">
+                            \[d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\]
+                        </p>
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <button class="btn btn-primary" onclick="movePoint(0, 1)">⬆️ Вверх</button><br>
+                        <button class="btn btn-primary" onclick="movePoint(-1, 0)">⬅️ Влево</button>
+                        <button class="btn btn-primary" onclick="movePoint(0, -1)">⬇️ Вниз</button>
+                        <button class="btn btn-primary" onclick="movePoint(1, 0)">➡️ Вправо</button>
+                    </div>
+                    <button class="btn btn-warning" onclick="resetMove()">🔄 Сбросить</button>
+                    <button class="btn btn-success" onclick="toggleTrail()">✨ След: <span id="trailStatus">ВКЛ</span></button>
+                </div>
+                <div class="tip-box">
+                    <h4>💡 Попробуйте!</h4>
+                    <p>• Нажимайте стрелки на клавиатуре для перемещения</p>
+                    <p>• Включите/выключите след, чтобы видеть траекторию</p>
+                    <p>• Попробуйте вернуться в начало координат (0, 0)!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- СИММЕТРИЯ -->
+        <section id="symmetry" class="lesson-section">
+            <h2>🪞 Симметрия относительно осей</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Постройте фигуру и посмотрите, как она отражается относительно осей Ox и Oy!
+            </p>
+            
+            <div class="interactive-area">
+                <canvas id="symmetryCanvas" width="700" height="600" onclick="handleSymmetryClick(event)"></canvas>
+                <div style="text-align: center; margin: 10px 0;">
+                    <button class="btn btn-primary" onclick="toggleSymmetryX()">↔️ Симметрия относительно Ox</button>
+                    <button class="btn btn-primary" onclick="toggleSymmetryY()">↕️ Симметрия относительно Oy</button>
+                    <button class="btn btn-primary" onclick="toggleSymmetryO()">🔄 Симметрия относительно O</button>
+                    <button class="btn btn-warning" onclick="clearSymmetry()">🗑️ Очистить</button>
+                </div>
+                <div id="symmetryLegend" style="margin: 10px 0;">
+                    <p>Точек в оригинале: <strong id="symPoints">0</strong></p>
+                </div>
+                <div class="definition-box">
+                    <h4>📐 Правила симметрии</h4>
+                    <p>• Относительно <strong>Ox</strong>: точка \((x, y) \to (x, -y)\)</p>
+                    <p>• Относительно <strong>Oy</strong>: точка \((x, y) \to (-x, y)\)</p>
+                    <p>• Относительно <strong>O</strong>: точка \((x, y) \to (-x, -y)\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНСТРУКТОР -->
+        <section id="builder" class="lesson-section">
+            <h2>🏗️ Конструктор фигур</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Создавайте фигуры из точек, сохраняйте их координаты и делитесь с друзьями!</p>
+            
+            <div class="interactive-area">
+                <canvas id="builderCanvas" width="600" height="600" onclick="handleBuilderClick(event)"></canvas>
+                <div style="text-align: center; margin: 10px 0;">
+                    <button class="btn btn-primary" onclick="connectBuilderPoints()">🔗 Соединить точки</button>
+                    <button class="btn btn-warning" onclick="undoBuilderPoint()">↩️ Отменить</button>
+                    <button class="btn btn-warning" onclick="clearBuilder()">🗑️ Очистить</button>
+                    <button class="btn btn-success" onclick="exportBuilderCoords()">💾 Сохранить координаты</button>
+                </div>
+                <div id="builderCoords" style="background: #edf2f7; padding: 15px; border-radius: 10px; margin: 10px 0; font-family: monospace;">
+                    Координаты: пока нет точек
+                </div>
+                <div style="margin: 10px 0;">
+                    <h4>Загрузить шаблон:</h4>
+                    <button class="btn btn-primary" onclick="loadBuilderTemplate('pentagon')">Пятиугольник</button>
+                    <button class="btn btn-primary" onclick="loadBuilderTemplate('hexagon')">Шестиугольник</button>
+                    <button class="btn btn-primary" onclick="loadBuilderTemplate('arrow')">Стрелка</button>
+                    <button class="btn btn-primary" onclick="loadBuilderTemplate('heart')">Сердце</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЗАДАЧНИК -->
+        <section id="problems" class="lesson-section">
+            <h2>📚 Задачник с проверкой</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Задачи разного уровня сложности. Решайте и проверяйте ответы!</p>
+            
+            <div class="interactive-area">
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-primary" onclick="generateProblem('easy')">🟢 Лёгкая</button>
+                    <button class="btn btn-warning" onclick="generateProblem('medium')">🟡 Средняя</button>
+                    <button class="btn btn-warning" onclick="generateProblem('hard')">🔴 Сложная</button>
+                </div>
+                
+                <div id="problemCanvasContainer" style="text-align: center;">
+                    <canvas id="problemCanvas" width="500" height="400"></canvas>
+                </div>
+                
+                <div id="problemText" style="font-size: 1.2em; font-weight: 600; margin: 20px 0;"></div>
+                <div id="problemInput"></div>
+                <button class="btn btn-success" onclick="checkProblem()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateProblem(currentProblemDifficulty)">Новая задача</button>
+                <div id="problemResult" style="margin: 10px 0;"></div>
+            </div>
+            
+            <div class="tip-box">
+                <h4>📊 Статистика</h4>
+                <p>Решено правильно: <strong id="problemsCorrect">0</strong></p>
+                <p>Всего попыток: <strong id="problemsTotal">0</strong></p>
+            </div>
+        </section>
+
+        <!-- БЛОК 1: КООРДИНАТНЫЙ ЛУЧ -->
+        <section id="block1" class="lesson-section">
+            <h2>1️⃣ Координатный луч (§3, стр. 20-23)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Научись отмечать десятичные дроби на координатном луче и определять координаты точек!</p>
+            
+            <!-- Задание 1.1: Отметить точку на луче -->
+            <h3>Задание 1: Отметь точку на координатном луче</h3>
+            <div class="interactive-area">
+                <canvas id="ray1Canvas" width="700" height="200" onclick="handleRay1Click(event)"></canvas>
+                <p id="ray1Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <button class="btn btn-primary" onclick="generateRay1Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkRay1Task()">Проверить</button>
+                <div id="ray1Result"></div>
+            </div>
+            
+            <!-- Задание 1.2: Определить координату -->
+            <h3>Задание 2: Определи координату точки на луче</h3>
+            <div class="interactive-area">
+                <canvas id="ray2Canvas" width="700" height="200"></canvas>
+                <div id="ray2Input" style="margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateRay2Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkRay2Task()">Проверить</button>
+                <div id="ray2Result"></div>
+            </div>
+            
+            <!-- Задание 1.3: Расположить точки в порядке возрастания -->
+            <h3>Задание 3: Расположи точки в порядке возрастания</h3>
+            <div class="interactive-area">
+                <div id="ray3Points" style="font-size: 1.1em; margin: 10px 0;"></div>
+                <p>Введи координаты в порядке возрастания (через запятую):</p>
+                <input type="text" class="answer-input" id="ray3Answer" style="width: 300px;" placeholder="Например: 0.3, 1.2, 2.5">
+                <button class="btn btn-success" onclick="checkRay3Task()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateRay3Task()">Новое задание</button>
+                <div id="ray3Result"></div>
+            </div>
+            
+            <!-- Задание 1.4: Между какими числами -->
+            <h3>Задание 4: Между какими соседними натуральными числами?</h3>
+            <div class="interactive-area">
+                <p id="ray4Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <div>
+                    Число <span id="ray4Number"></span> находится между 
+                    <input type="number" class="answer-input" id="ray4Left" style="width: 80px;"> и 
+                    <input type="number" class="answer-input" id="ray4Right" style="width: 80px;">
+                </div>
+                <button class="btn btn-success" onclick="checkRay4Task()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateRay4Task()">Новое задание</button>
+                <div id="ray4Result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h4>📐 Правила</h4>
+                <p>• Выбери единичный отрезок (например, 10 клеток)</p>
+                <p>• Раздели его на 10 равных частей</p>
+                <p>• Отметь нужное число частей</p>
+                <p>• Запись: \(A(0,3)\) — точка A имеет координату 0,3</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 2: КООРДИНАТНАЯ ПРЯМАЯ -->
+        <section id="block2" class="lesson-section">
+            <h2>2️⃣ Координатная прямая (§1-2, стр. 180-189)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Изучи положительные и отрицательные числа, модуль и противоположные числа!</p>
+            
+            <!-- Задание 2.1: Отметить точку на прямой -->
+            <h3>Задание 1: Отметь точку на координатной прямой</h3>
+            <div class="interactive-area">
+                <canvas id="line1Canvas" width="700" height="200" onclick="handleLine1Click(event)"></canvas>
+                <p id="line1Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <button class="btn btn-primary" onclick="generateLine1Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkLine1Task()">Проверить</button>
+                <div id="line1Result"></div>
+            </div>
+            
+            <!-- Задание 2.2: Модуль числа -->
+            <h3>Задание 2: Найди модуль числа</h3>
+            <div class="interactive-area">
+                <p id="modulTask" style="font-size: 1.3em; font-weight: 600; text-align: center;"></p>
+                <div id="modulAnswers"></div>
+                <button class="btn btn-success" onclick="checkModulTask()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateModulTask()">Новое задание</button>
+                <div id="modulResult"></div>
+            </div>
+            
+            <!-- Задание 2.3: Противоположные числа -->
+            <h3>Задание 3: Запиши противоположное число</h3>
+            <div class="interactive-area">
+                <p id="oppositeTask" style="font-size: 1.3em; font-weight: 600; text-align: center;"></p>
+                <div>
+                    Число: <span id="oppositeNumber"></span> → 
+                    <input type="text" class="answer-input" id="oppositeAnswer" style="width: 120px;">
+                </div>
+                <button class="btn btn-success" onclick="checkOppositeTask()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateOppositeTask()">Новое задание</button>
+                <div id="oppositeResult"></div>
+            </div>
+            
+            <!-- Задание 2.4: Целые числа между -->
+            <h3>Задание 4: Какие целые числа между?</h3>
+            <div class="interactive-area">
+                <p id="betweenTask" style="font-size: 1.2em; font-weight: 600;"></p>
+                <div id="betweenAnswers"></div>
+                <button class="btn btn-success" onclick="checkBetweenTask()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateBetweenTask()">Новое задание</button>
+                <div id="betweenResult"></div>
+            </div>
+
+            <div class="definition-box">
+                <h4>📐 Определения</h4>
+                <p><strong>Координатная прямая</strong> — прямая с началом отсчёта, единичным отрезком и положительным направлением</p>
+                <p><strong>Модуль числа</strong> — расстояние от начала отсчёта до точки: \(|-4,6| = 4,6\), \(|7| = 7\), \(|0| = 0\)</p>
+                <p><strong>Противоположные числа</strong> — числа с равными модулями, но разными знаками: \(6\) и \(-6\)</p>
+                <p><strong>Целые числа (Z)</strong> — натуральные, им противоположные и нуль: \(\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}\)</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 3: КООРДИНАТНАЯ ПЛОСКОСТЬ -->
+        <section id="block3" class="lesson-section">
+            <h2>3️⃣ Прямоугольная система координат (§1, стр. 251-256)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Построй фигуры по координатам, найди пересечения с осями и определи четверти!</p>
+            
+            <!-- Задание 3.1: Определить координаты -->
+            <h3>Задание 1: Определи координаты точек</h3>
+            <div class="interactive-area">
+                <canvas id="bp1Canvas" width="500" height="500"></canvas>
+                <div id="bp1Inputs" style="margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateBP1Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkBP1Task()">Проверить</button>
+                <div id="bp1Result"></div>
+            </div>
+            
+            <!-- Задание 3.2: Построить фигуру -->
+            <h3>Задание 2: Построй фигуру по координатам</h3>
+            <div class="interactive-area">
+                <canvas id="bp2Canvas" width="500" height="500"></canvas>
+                <p id="bp2Task" style="font-size: 1.1em; font-weight: 600;"></p>
+                <div id="bp2Buttons" style="margin: 10px 0;">
+                    <button class="btn btn-primary" onclick="loadBP2Figure('triangle')">Треугольник</button>
+                    <button class="btn btn-primary" onclick="loadBP2Figure('rectangle')">Прямоугольник</button>
+                    <button class="btn btn-primary" onclick="loadBP2Figure('square')">Квадрат</button>
+                    <button class="btn btn-primary" onclick="loadBP2Figure('quad')">Четырёхугольник</button>
+                </div>
+                <p id="bp2Question" style="font-size: 1.1em; font-weight: 600;"></p>
+                <div id="bp2Input"></div>
+                <button class="btn btn-success" onclick="checkBP2Task()">Проверить</button>
+                <div id="bp2Result"></div>
+            </div>
+            
+            <!-- Задание 3.3: Определить четверть -->
+            <h3>Задание 3: Быстрое определение четверти</h3>
+            <div class="interactive-area">
+                <div id="bp3Rapid" style="display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateBP3Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkBP3Task()">Проверить</button>
+                <div id="bp3Result"></div>
+            </div>
+            
+            <!-- Задание 3.4: Расположение точки -->
+            <h3>Задание 4: Где расположена точка?</h3>
+            <div class="interactive-area">
+                <p id="bp4Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <div id="bp4Options" style="margin: 10px 0;"></div>
+                <button class="btn btn-success" onclick="checkBP4Task()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateBP4Task()">Новое задание</button>
+                <div id="bp4Result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h4>📐 Правила</h4>
+                <p>• \(M(x; y)\) — абсцисса \(x\), ордината \(y\)</p>
+                <p>• Если \(x = 0\) — точка на оси Oy; если \(y = 0\) — на оси Ox</p>
+                <p>• I: \(x>0, y>0\); II: \(x<0, y>0\); III: \(x<0, y<0\); IV: \(x>0, y<0\)</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 4: ГРАФИКИ ПРОЦЕССОВ -->
+        <section id="block4" class="lesson-section">
+            <h2>4️⃣ Графики реальных процессов (§2, стр. 259-264)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Научись читать графики температуры, движения и скорости!</p>
+            
+            <!-- Задание 4.1: Чтение графика температуры -->
+            <h3>Задание 1: Прочитай график температуры</h3>
+            <div class="interactive-area">
+                <canvas id="graph1Canvas" width="700" height="400"></canvas>
+                <div id="graph1Questions"></div>
+                <button class="btn btn-primary" onclick="generateGraph1Task()">Новый график</button>
+                <button class="btn btn-success" onclick="checkGraph1Task()">Проверить</button>
+                <div id="graph1Result"></div>
+            </div>
+            
+            <!-- Задание 4.2: График движения -->
+            <h3>Задание 2: Прочитай график движения</h3>
+            <div class="interactive-area">
+                <canvas id="graph2Canvas" width="700" height="400"></canvas>
+                <div id="graph2Questions"></div>
+                <button class="btn btn-primary" onclick="generateGraph2Task()">Новый график</button>
+                <button class="btn btn-success" onclick="checkGraph2Task()">Проверить</button>
+                <div id="graph2Result"></div>
+            </div>
+            
+            <!-- Задание 4.3: Построить график по описанию -->
+            <h3>Задание 3: Построй график по описанию</h3>
+            <div class="interactive-area">
+                <p id="graph3Desc" style="font-size: 1.1em; font-weight: 600;"></p>
+                <canvas id="graph3Canvas" width="700" height="400" onclick="handleGraph3Click(event)"></canvas>
+                <button class="btn btn-primary" onclick="generateGraph3Task()">Новое описание</button>
+                <button class="btn btn-warning" onclick="clearGraph3()">Очистить</button>
+                <button class="btn btn-success" onclick="checkGraph3Task()">Проверить</button>
+                <div id="graph3Result"></div>
+            </div>
+
+            <div class="definition-box">
+                <h4>📊 Как читать график</h4>
+                <p>• По оси Ox — время (часы), по оси Oy — величина (температура, расстояние, скорость)</p>
+                <p>• Горизонтальный участок = остановка (величина не меняется)</p>
+                <p>• Наклонный участок = изменение величины</p>
+                <p>• Скорость: \(v = \dfrac{S}{t}\)</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 5: ПРОПОРЦИОНАЛЬНОСТЬ -->
+        <section id="block5" class="lesson-section">
+            <h2>5️⃣ Прямая и обратная пропорциональность (§3, стр. 268-272)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Построй графики \(y = kx\) и \(y = \dfrac{k}{x}\), определи коэффициент!</p>
+            
+            <!-- Задание 5.1: Прямая пропорциональность -->
+            <h3>Задание 1: Построй график \(y = kx\)</h3>
+            <div class="interactive-area">
+                <canvas id="prop1Canvas" width="600" height="500" onclick="handleProp1Click(event)"></canvas>
+                <p id="prop1Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <button class="btn btn-primary" onclick="generateProp1Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkProp1Task()">Проверить</button>
+                <div id="prop1Result"></div>
+            </div>
+            
+            <!-- Задание 5.2: Обратная пропорциональность -->
+            <h3>Задание 2: Построй график \(y = \dfrac{k}{x}\)</h3>
+            <div class="interactive-area">
+                <canvas id="prop2Canvas" width="600" height="500" onclick="handleProp2Click(event)"></canvas>
+                <p id="prop2Task" style="font-size: 1.2em; font-weight: 600;"></p>
+                <div id="prop2Table" style="margin: 10px 0;"></div>
+                <button class="btn btn-primary" onclick="generateProp2Task()">Новое задание</button>
+                <button class="btn btn-success" onclick="checkProp2Task()">Проверить</button>
+                <div id="prop2Result"></div>
+            </div>
+            
+            <!-- Задание 5.3: Проверить точку -->
+            <h3>Задание 3: Принадлежит ли точка графику?</h3>
+            <div class="interactive-area">
+                <p id="prop3Task" style="font-size: 1.3em; font-weight: 600; text-align: center;"></p>
+                <div style="text-align: center;">
+                    <button class="btn btn-success" onclick="checkProp3Answer(true)">✅ Да</button>
+                    <button class="btn btn-warning" onclick="checkProp3Answer(false)">❌ Нет</button>
+                </div>
+                <div id="prop3Result"></div>
+            </div>
+            
+            <!-- Задание 5.4: Найти коэффициент -->
+            <h3>Задание 4: Определи коэффициент пропорциональности</h3>
+            <div class="interactive-area">
+                <canvas id="prop4Canvas" width="500" height="400"></canvas>
+                <p id="prop4Task" style="font-size: 1.1em; font-weight: 600;"></p>
+                <div>
+                    \(k = \) <input type="number" class="answer-input" id="prop4Answer" style="width: 100px;">
+                </div>
+                <button class="btn btn-success" onclick="checkProp4Task()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateProp4Task()">Новое задание</button>
+                <div id="prop4Result"></div>
+            </div>
+
+            <div class="definition-box">
+                <h4>📐 Правила</h4>
+                <p><strong>Прямая пропорциональность:</strong> \(y = kx\), график — прямая через \((0, 0)\)</p>
+                <p><strong>Обратная пропорциональность:</strong> \(y = \dfrac{k}{x}\), график — гипербола</p>
+                <p>Построение прямой: точка \((1; k)\) и начало координат</p>
+                <p>Проверка точки: подставь координаты в формулу!</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 6: ИТОГОВЫЙ ТЕСТ -->
+        <section id="block6" class="lesson-section">
+            <h2>6️⃣ Итоговый тест (стр. 272-273) + Математика вокруг нас</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Проверь все знания! Тест из учебника + творческие задания.</p>
+            
+            <h3>Тест из учебника</h3>
+            <div class="interactive-area">
+                <div id="finalTestContainer"></div>
+                <button class="btn btn-success" onclick="checkFinalTest()">Проверить</button>
+                <button class="btn btn-primary" onclick="generateFinalTest()">Новый тест</button>
+                <div id="finalTestResult"></div>
+            </div>
+            
+            <h3>Рисунок по координатам</h3>
+            <div class="interactive-area">
+                <p>Отметь точки и соедини их — получится картинка!</p>
+                <canvas id="finalDrawCanvas" width="600" height="500"></canvas>
+                <button class="btn btn-primary" onclick="loadFinalFigure('fish')">🐟 Рыба</button>
+                <button class="btn btn-primary" onclick="loadFinalFigure('cat')">🐱 Кошка</button>
+                <button class="btn btn-primary" onclick="loadFinalFigure('bird')">🐦 Птица</button>
+                <button class="btn btn-warning" onclick="clearFinalDraw()">Очистить</button>
+            </div>
+
+            <div class="tip-box">
+                <h4>🎯 Обязательные умения</h4>
+                <p>1. Строить систему координат</p>
+                <p>2. Изображать точки по координатам; находить координаты точек</p>
+                <p>3. Изображать графики \(y = kx\)</p>
+                <p>4. Изображать графики \(y = \dfrac{k}{x}\)</p>
+                <p>5. Моделировать реальные процессы и читать графики</p>
+            </div>
+        </section>
+
+        <!-- СОРЕНОВАНИЕ -->
+        <section id="challenge" class="lesson-section">
+            <h2>🏆 Соревнование «Мастер координат»</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Решай задания из всех блоков, набирай очки и получай уровни!</p>
+            
+            <div class="interactive-area" style="text-align: center;">
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 20px 0;">
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 15px; min-width: 150px;">
+                        <div style="font-size: 2em;">⭐</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="challengeScore">0</div>
+                        <div>Очков</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white; padding: 20px; border-radius: 15px; min-width: 150px;">
+                        <div style="font-size: 2em;">🎖️</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="challengeLevel">Новичок</div>
+                        <div>Уровень</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 20px; border-radius: 15px; min-width: 150px;">
+                        <div style="font-size: 2em;">✅</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="challengeCorrect">0</div>
+                        <div>Правильно</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; padding: 20px; border-radius: 15px; min-width: 150px;">
+                        <div style="font-size: 2em;">🔥</div>
+                        <div style="font-size: 1.5em; font-weight: bold;" id="challengeStreak">0</div>
+                        <div>Серия</div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar" style="max-width: 500px; margin: 0 auto 20px;">
+                    <div class="progress-fill" id="challengeProgress" style="width: 0%;">0%</div>
+                </div>
+                
+                <p style="font-size: 1.1em; margin: 20px 0;">Следующий уровень: <strong id="challengeNext">200 очков</strong></p>
+                
+                <div id="challengeQuestion" style="font-size: 1.3em; font-weight: 600; margin: 20px 0;"></div>
+                <div id="challengeCanvas" style="text-align: center;"></div>
+                <div id="challengeInput" style="margin: 10px 0;"></div>
+                <div id="challengeOptions" style="margin: 10px 0;"></div>
+                
+                <div>
+                    <button class="btn btn-primary" onclick="generateChallengeQuestion()" style="font-size: 1.2em; padding: 15px 30px;">🎲 Новое задание</button>
+                </div>
+                <div id="challengeResult" style="margin: 10px 0;"></div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: #f7fafc; border-radius: 10px;">
+                    <h4>🏅 Уровни:</h4>
+                    <p>🌱 Новичок (0-199) → 📐 Ученик (200-499) → 📏 Знаток (500-999) → 🎯 Мастер (1000-1999) → 🏆 Эксперт (2000-3999) → 👑 Легенда (4000+)</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>📐 Координатная плоскость — Интерактивный урок для 6 класса</p>
+            <p>Создано на основе учебника «Математика 6 класс» (Герасимов)</p>
+        </footer>
+    </div>
+
+    <script>
+        // =================== НАВИГАЦИЯ ===================
+        function showSection(id) {
+            document.querySelectorAll('.lesson-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Инициализация канвасов при переключении
+            if (id === 'intro') drawIntroCanvas();
+            if (id === 'coords') drawPlaneCanvas();
+            if (id === 'quarters') { drawQuartersCanvas(); generateQuarterTasks(); }
+            if (id === 'practice') { drawInteractiveCanvas(); generateTask1Points(); generateTask2Points(); }
+            if (id === 'graphs') { drawTempGraph(); drawProportionalGraph(); drawInverseGraph(); }
+            if (id === 'game') startGame();
+            if (id === 'test') generateTest();
+        }
+
+        // =================== КООРДИНАТНАЯ ПЛОСКОСТЬ (общая функция) ===================
+        function drawGrid(ctx, w, h, options = {}) {
+            const { showLabels = true, showGrid = true, scale = 40, originX = w/2, originY = h/2 } = options;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // Сетка
+            if (showGrid) {
+                ctx.strokeStyle = '#e2e8f0';
+                ctx.lineWidth = 1;
+                for (let x = originX % scale; x < w; x += scale) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, h);
+                    ctx.stroke();
+                }
+                for (let y = originY % scale; y < h; y += scale) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(w, y);
+                    ctx.stroke();
+                }
+            }
+            
+            // Оси
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            
+            // Ось X
+            ctx.beginPath();
+            ctx.moveTo(0, originY);
+            ctx.lineTo(w, originY);
+            ctx.stroke();
+            
+            // Ось Y
+            ctx.beginPath();
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, h);
+            ctx.stroke();
+            
+            // Стрелки
+            ctx.fillStyle = '#2d3748';
+            // Стрелка X
+            ctx.beginPath();
+            ctx.moveTo(w - 10, originY - 8);
+            ctx.lineTo(w, originY);
+            ctx.lineTo(w - 10, originY + 8);
+            ctx.fill();
+            // Стрелка Y
+            ctx.beginPath();
+            ctx.moveTo(originX - 8, 10);
+            ctx.lineTo(originX, 0);
+            ctx.lineTo(originX + 8, 10);
+            ctx.fill();
+            
+            // Подписи
+            if (showLabels) {
+                ctx.font = '16px Segoe UI';
+                ctx.fillStyle = '#2d3748';
+                ctx.fillText('x', w - 20, originY + 25);
+                ctx.fillText('y', originX + 15, 20);
+                ctx.fillText('O', originX + 10, originY + 20);
+                
+                // Числа на осях
+                ctx.font = '12px Segoe UI';
+                ctx.fillStyle = '#718096';
+                ctx.textAlign = 'center';
+                for (let i = -Math.floor(originX/scale); i <= Math.floor((w-originX)/scale); i++) {
+                    if (i !== 0) {
+                        ctx.fillText(i, originX + i * scale, originY + 18);
+                    }
+                }
+                ctx.textAlign = 'right';
+                for (let i = -Math.floor(originY/scale); i <= Math.floor((h-originY)/scale); i++) {
+                    if (i !== 0) {
+                        ctx.fillText(-i, originX - 10, originY + i * scale + 5);
+                    }
+                }
+                ctx.textAlign = 'left';
+            }
+        }
+
+        function drawPoint(ctx, x, y, label, color = '#e53e3e', originX = 300, originY = 250, scale = 40) {
+            const px = originX + x * scale;
+            const py = originY - y * scale;
+            
+            // Точка
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(px, py, 6, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Подпись
+            ctx.font = 'bold 14px Segoe UI';
+            ctx.fillStyle = '#2d3748';
+            ctx.fillText(label + `(${x}, ${y})`, px + 10, py - 10);
+        }
+
+        // =================== ВВЕДЕНИЕ ===================
+        function drawIntroCanvas() {
+            const canvas = document.getElementById('introCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 300, originY: 200 });
+            
+            drawPoint(ctx, 2, 3, 'A', '#e53e3e', 300, 200, 50);
+            drawPoint(ctx, -3, 1, 'B', '#3182ce', 300, 200, 50);
+            drawPoint(ctx, 4, -2, 'C', '#38a169', 300, 200, 50);
+        }
+
+        // =================== КООРДИНАТЫ ===================
+        function drawPlaneCanvas() {
+            const canvas = document.getElementById('planeCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 300, originY: 250 });
+            
+            drawPoint(ctx, 3, 2, 'A', '#e53e3e', 300, 250, 50);
+            drawPoint(ctx, -2, 4, 'B', '#3182ce', 300, 250, 50);
+            drawPoint(ctx, -3, -1, 'C', '#38a169', 300, 250, 50);
+            drawPoint(ctx, 4, -3, 'D', '#d69e2e', 300, 250, 50);
+            drawPoint(ctx, 0, 3, 'E', '#805ad5', 300, 250, 50);
+            drawPoint(ctx, -2, 0, 'F', '#dd6b20', 300, 250, 50);
+        }
+
+        // =================== ЧЕТВЕРТИ ===================
+        function drawQuartersCanvas() {
+            const canvas = document.getElementById('quartersCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 250, originY: 250 });
+            
+            // Подсветка четвертей
+            ctx.font = 'bold 60px Segoe UI';
+            ctx.textAlign = 'center';
+            ctx.globalAlpha = 0.3;
+            
+            ctx.fillStyle = '#c6f6d5';
+            ctx.fillText('I', 375, 125);
+            ctx.fillStyle = '#bee3f8';
+            ctx.fillText('II', 125, 125);
+            ctx.fillStyle = '#fed7d7';
+            ctx.fillText('III', 125, 375);
+            ctx.fillStyle = '#feebc8';
+            ctx.fillText('IV', 375, 375);
+            
+            ctx.globalAlpha = 1;
+            
+            drawPoint(ctx, 3, 3, 'A', '#e53e3e', 250, 250, 50);
+            drawPoint(ctx, -3, 3, 'B', '#3182ce', 250, 250, 50);
+            drawPoint(ctx, -3, -3, 'C', '#38a169', 250, 250, 50);
+            drawPoint(ctx, 3, -3, 'D', '#d69e2e', 250, 250, 50);
+        }
+
+        // Задания на четверти
+        let quarterTasks = [];
+        function generateQuarterTasks() {
+            quarterTasks = [];
+            const container = document.getElementById('quarterTasks');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 5; i++) {
+                const x = Math.floor(Math.random() * 10) - 5;
+                const y = Math.floor(Math.random() * 10) - 5;
+                if (x === 0 || y === 0) { i--; continue; }
+                quarterTasks.push({ x, y });
+                
+                container.innerHTML += `
+                    <div style="margin: 10px 0;">
+                        Точка (${x}, ${y}): 
+                        <select class="answer-input" id="quarter${i}">
+                            <option value="">—</option>
+                            <option value="1">I четверть</option>
+                            <option value="2">II четверть</option>
+                            <option value="3">III четверть</option>
+                            <option value="4">IV четверть</option>
+                        </select>
+                    </div>
+                `;
+            }
+            document.getElementById('quarterResult').innerHTML = '';
+        }
+
+        function checkQuarters() {
+            let correct = 0;
+            quarterTasks.forEach((task, i) => {
+                const select = document.getElementById(`quarter${i}`);
+                let correctQ;
+                if (task.x > 0 && task.y > 0) correctQ = 1;
+                else if (task.x < 0 && task.y > 0) correctQ = 2;
+                else if (task.x < 0 && task.y < 0) correctQ = 3;
+                else correctQ = 4;
+                
+                if (parseInt(select.value) === correctQ) {
+                    correct++;
+                    select.style.borderColor = '#48bb78';
+                } else {
+                    select.style.borderColor = '#e53e3e';
+                }
+            });
+            
+            const result = document.getElementById('quarterResult');
+            result.innerHTML = `<div class="result-message ${correct === quarterTasks.length ? 'result-correct' : 'result-wrong'}">
+                Правильно: ${correct} из ${quarterTasks.length}
+            </div>`;
+        }
+
+        // =================== ПРАКТИКА ===================
+        let interactivePoints = [];
+        function drawInteractiveCanvas() {
+            const canvas = document.getElementById('interactiveCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 300 });
+            
+            interactivePoints.forEach(p => {
+                drawPoint(ctx, p.x, p.y, `(${p.x}, ${p.y})`, p.color, 300, 300, 40);
+            });
+        }
+
+        function handleCanvasClick(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const scale = 40;
+            const x = Math.round((mx - 300) / scale);
+            const y = Math.round((300 - my) / scale);
+            
+            const colors = ['#e53e3e', '#3182ce', '#38a169', '#d69e2e', '#805ad5', '#dd6b20'];
+            const color = colors[interactivePoints.length % colors.length];
+            
+            interactivePoints.push({ x, y, color });
+            drawInteractiveCanvas();
+            document.getElementById('lastPoint').textContent = `(${x}, ${y})`;
+        }
+
+        function clearInteractiveCanvas() {
+            interactivePoints = [];
+            drawInteractiveCanvas();
+            document.getElementById('lastPoint').textContent = '—';
+        }
+
+        // Задание 1: Построить точки
+        let task1TargetPoints = [];
+        let task1UserPoints = [];
+
+        function drawTask1Canvas() {
+            const canvas = document.getElementById('task1Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 200, originY: 200 });
+            
+            task1UserPoints.forEach(p => {
+                drawPoint(ctx, p.x, p.y, '', '#3182ce', 200, 200, 40);
+            });
+        }
+
+        function generateTask1Points() {
+            task1TargetPoints = [];
+            task1UserPoints = [];
+            const container = document.getElementById('task1Points');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 4; i++) {
+                const x = Math.floor(Math.random() * 8) - 4;
+                const y = Math.floor(Math.random() * 8) - 4;
+                task1TargetPoints.push({ x, y });
+                container.innerHTML += `<span style="margin: 5px; padding: 8px 12px; background: #edf2f7; border-radius: 5px; display: inline-block;">Точка \(${String.fromCharCode(65 + i)}(${x}, ${y})\)</span> `;
+            }
+            drawTask1Canvas();
+            document.getElementById('task1Result').innerHTML = '';
+        }
+
+        function handleTask1Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const scale = 40;
+            const x = Math.round((mx - 200) / scale);
+            const y = Math.round((200 - my) / scale);
+            
+            task1UserPoints.push({ x, y });
+            drawTask1Canvas();
+        }
+
+        function checkTask1Points() {
+            let correct = 0;
+            task1TargetPoints.forEach(target => {
+                const found = task1UserPoints.some(p => p.x === target.x && p.y === target.y);
+                if (found) correct++;
+            });
+            
+            const result = document.getElementById('task1Result');
+            result.innerHTML = `<div class="result-message ${correct === task1TargetPoints.length ? 'result-correct' : 'result-wrong'}">
+                Найдено: ${correct} из ${task1TargetPoints.length} точек
+            </div>`;
+        }
+
+        // Задание 2: Определить координаты
+        let task2Points = [];
+        function drawTask2Canvas() {
+            const canvas = document.getElementById('task2Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 200, originY: 200 });
+            
+            task2Points.forEach((p, i) => {
+                const px = 200 + p.x * 40;
+                const py = 200 - p.y * 40;
+                
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(px, py, 6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.font = 'bold 14px Segoe UI';
+                ctx.fillStyle = '#2d3748';
+                ctx.fillText(String.fromCharCode(65 + i), px + 10, py - 10);
+            });
+        }
+
+        function generateTask2Points() {
+            task2Points = [];
+            const container = document.getElementById('task2Inputs');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 4; i++) {
+                const x = Math.floor(Math.random() * 8) - 4;
+                const y = Math.floor(Math.random() * 8) - 4;
+                task2Points.push({ x, y });
+                
+                container.innerHTML += `
+                    <div style="margin: 10px 0;">
+                        Точка ${String.fromCharCode(65 + i)}: 
+                        x = <input type="number" class="answer-input" id="t2x${i}" style="width: 80px;">, 
+                        y = <input type="number" class="answer-input" id="t2y${i}" style="width: 80px;">
+                    </div>
+                `;
+            }
+            drawTask2Canvas();
+            document.getElementById('task2Result').innerHTML = '';
+        }
+
+        function checkTask2Points() {
+            let correct = 0;
+            task2Points.forEach((p, i) => {
+                const ux = parseInt(document.getElementById(`t2x${i}`).value);
+                const uy = parseInt(document.getElementById(`t2y${i}`).value);
+                
+                if (ux === p.x && uy === p.y) {
+                    correct++;
+                    document.getElementById(`t2x${i}`).style.borderColor = '#48bb78';
+                    document.getElementById(`t2y${i}`).style.borderColor = '#48bb78';
+                } else {
+                    document.getElementById(`t2x${i}`).style.borderColor = '#e53e3e';
+                    document.getElementById(`t2y${i}`).style.borderColor = '#e53e3e';
+                }
+            });
+            
+            const result = document.getElementById('task2Result');
+            result.innerHTML = `<div class="result-message ${correct === task2Points.length ? 'result-correct' : 'result-wrong'}">
+                Правильно: ${correct} из ${task2Points.length}
+            </div>`;
+        }
+
+        // Задание 3: Фигуры
+        function loadFigure(type) {
+            const canvas = document.getElementById('task3Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 200, originY: 200 });
+            
+            let points = [];
+            switch(type) {
+                case 'square':
+                    points = [{x:2,y:2},{x:2,y:-2},{x:-2,y:-2},{x:-2,y:2},{x:2,y:2}];
+                    break;
+                case 'triangle':
+                    points = [{x:0,y:3},{x:-3,y:-2},{x:3,y:-2},{x:0,y:3}];
+                    break;
+                case 'house':
+                    points = [{x:0,y:3},{x:-3,y:0},{x:-2,y:0},{x:-2,y:-3},{x:2,y:-3},{x:2,y:0},{x:3,y:0},{x:0,y:3}];
+                    break;
+                case 'star':
+                    points = [{x:0,y:3},{x:1,y:1},{x:3,y:1},{x:1.5,y:0},{x:2,y:-2},{x:0,y:-1},{x:-2,y:-2},{x:-1.5,y:0},{x:-3,y:1},{x:-1,y:1},{x:0,y:3}];
+                    break;
+            }
+            
+            // Рисуем фигуру
+            ctx.strokeStyle = '#5a67d8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(200 + points[0].x * 40, 200 - points[0].y * 40);
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(200 + points[i].x * 40, 200 - points[i].y * 40);
+            }
+            ctx.stroke();
+            
+            // Рисуем точки
+            points.forEach((p, i) => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(200 + p.x * 40, 200 - p.y * 40, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function clearTask3() {
+            const canvas = document.getElementById('task3Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 200, originY: 200 });
+        }
+
+        // =================== ГРАФИКИ ===================
+        function drawTempGraph() {
+            const canvas = document.getElementById('tempGraphCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Данные
+            const data = [{x:6,y:-2},{x:9,y:3},{x:12,y:8},{x:15,y:10},{x:18,y:5},{x:21,y:0}];
+            const scale = 20;
+            const originX = 80;
+            const originY = 300;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Оси
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(originX, 50);
+            ctx.lineTo(originX, canvas.height - 50);
+            ctx.lineTo(canvas.width - 30, canvas.height - 50);
+            ctx.stroke();
+            
+            // Подписи осей
+            ctx.font = '14px Segoe UI';
+            ctx.fillStyle = '#2d3748';
+            ctx.fillText('Время (ч)', canvas.width - 80, canvas.height - 30);
+            ctx.fillText('°C', 10, 60);
+            
+            // Числа на осях
+            ctx.font = '11px Segoe UI';
+            ctx.fillStyle = '#718096';
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 24; i += 3) {
+                ctx.fillText(i, originX + i * scale, canvas.height - 35);
+            }
+            ctx.textAlign = 'right';
+            for (let i = -5; i <= 12; i++) {
+                ctx.fillText(i + '°', originX - 10, canvas.height - 50 - i * scale);
+            }
+            ctx.textAlign = 'left';
+            
+            // График
+            ctx.strokeStyle = '#e53e3e';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            data.forEach((d, i) => {
+                const px = originX + d.x * scale;
+                const py = canvas.height - 50 - d.y * scale;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            });
+            ctx.stroke();
+            
+            // Точки
+            data.forEach(d => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(originX + d.x * scale, canvas.height - 50 - d.y * scale, 6, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function drawProportionalGraph() {
+            const canvas = document.getElementById('proportionalCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 100, originY: 350 });
+            
+            // y = 5x
+            ctx.strokeStyle = '#5a67d8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (let x = 0; x <= 12; x++) {
+                const y = 5 * x;
+                const px = 100 + x * 40;
+                const py = 350 - y * 40;
+                if (x === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+            
+            // Точки
+            for (let x = 0; x <= 8; x++) {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(100 + x * 40, 350 - 5 * x * 40, 6, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.font = 'bold 16px Segoe UI';
+            ctx.fillStyle = '#5a67d8';
+            ctx.fillText('S = 5t', 400, 100);
+        }
+
+        function drawInverseGraph() {
+            const canvas = document.getElementById('inverseCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 100, originY: 350 });
+            
+            // t = 12/v
+            ctx.strokeStyle = '#38a169';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            let first = true;
+            for (let v = 1; v <= 12; v += 0.5) {
+                const t = 12 / v;
+                const px = 100 + v * 40;
+                const py = 350 - t * 40;
+                if (first) { ctx.moveTo(px, py); first = false; }
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+            
+            // Точки из таблицы
+            const speeds = [1, 2, 3, 4, 6, 12];
+            speeds.forEach(v => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(100 + v * 40, 350 - (12/v) * 40, 6, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            ctx.font = 'bold 16px Segoe UI';
+            ctx.fillStyle = '#38a169';
+            ctx.fillText('t = 12/v', 400, 100);
+        }
+
+        // =================== ИГРА ===================
+        let gameTreasure = { x: 0, y: 0 };
+        let gameAttempts = 0;
+
+        function startGame() {
+            gameTreasure = {
+                x: Math.floor(Math.random() * 11) - 5,
+                y: Math.floor(Math.random() * 11) - 5
+            };
+            gameAttempts = 0;
+            document.getElementById('gameAttempts').textContent = 0;
+            document.getElementById('gameHint').textContent = '🏴‍☠️ Найдите сокровище! Кликайте на карту...';
+            
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 300, originY: 300 });
+            
+            // Рисуем остров
+            ctx.font = '40px Segoe UI';
+            ctx.textAlign = 'center';
+            ctx.fillText('🏝️', 300, 300);
+        }
+
+        function handleGameClick(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const scale = 50;
+            const x = Math.round((mx - 300) / scale);
+            const y = Math.round((300 - my) / scale);
+            
+            gameAttempts++;
+            document.getElementById('gameAttempts').textContent = gameAttempts;
+            
+            const dist = Math.abs(x - gameTreasure.x) + Math.abs(y - gameTreasure.y);
+            let hint = '';
+            
+            if (x === gameTreasure.x && y === gameTreasure.y) {
+                hint = `🎉 Сокровище найдено! Вы угадали за ${gameAttempts} попыток!`;
+                const ctx = canvas.getContext('2d');
+                const px = 300 + gameTreasure.x * scale;
+                const py = 300 - gameTreasure.y * scale;
+                ctx.font = '50px Segoe UI';
+                ctx.fillText('💎', px, py);
+            } else if (dist <= 2) {
+                hint = '🔥 ОЧЕНЬ горячо! Вы совсем рядом!';
+            } else if (dist <= 4) {
+                hint = '🌡️ Горячо! Продолжайте в том же духе!';
+            } else if (dist <= 6) {
+                hint = '😐 Тепло... Попробуйте ещё!';
+            } else {
+                hint = '❄️ Холодно... Вы далеко от цели.';
+            }
+            
+            document.getElementById('gameHint').textContent = hint;
+            
+            // Показать точку клика
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#e53e3e';
+            ctx.beginPath();
+            ctx.arc(300 + x * scale, 300 - y * scale, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // =================== ТЕСТ ===================
+        let testQuestions = [];
+
+        function generateTest() {
+            testQuestions = [
+                {
+                    q: 'Как называется горизонтальная ось координат?',
+                    options: ['Ось ординат', 'Ось абсцисс', 'Ось координат', 'Ось начала'],
+                    correct: 1
+                },
+                {
+                    q: 'Какие координаты имеет начало координат?',
+                    options: ['\((1, 1)\)', '\((0, 1)\)', '\((0, 0)\)', '\((1, 0)\)'],
+                    correct: 2
+                },
+                {
+                    q: 'В какой четверти находится точка \(A(-3, 5)\)?',
+                    options: ['I четверть', 'II четверть', 'III четверть', 'IV четверть'],
+                    correct: 1
+                },
+                {
+                    q: 'Что такое ордината точки?',
+                    options: ['Первое число в записи координат', 'Второе число в записи координат', 'Расстояние до оси Ox', 'Расстояние до оси Oy'],
+                    correct: 1
+                },
+                {
+                    q: 'Где лежит точка, если её абсцисса равна 0?',
+                    options: ['На оси Ox', 'На оси Oy', 'В начале координат', 'В I четверти'],
+                    correct: 1
+                },
+                {
+                    q: 'Какой вид имеет формула прямой пропорциональности?',
+                    options: ['\(y = x^2\)', '\(y = \frac{k}{x}\)', '\(y = kx\)', '\(y = x + k\)'],
+                    correct: 2
+                },
+                {
+                    q: 'Как выглядит график обратной пропорциональности?',
+                    options: ['Прямая линия', 'Окружность', 'Гипербола', 'Парабола'],
+                    correct: 2
+                },
+                {
+                    q: 'В какой четверти лежит точка \(B(4, -2)\)?',
+                    options: ['I четверть', 'II четверть', 'III четверть', 'IV четверть'],
+                    correct: 3
+                },
+                {
+                    q: 'Кто ввёл систему координат на плоскости?',
+                    options: ['Исаак Ньютон', 'Рене Декарт', 'Пифагор', 'Евклид'],
+                    correct: 1
+                },
+                {
+                    q: 'Через какую точку проходит график прямой пропорциональности \(y = kx\)?',
+                    options: ['\((1, 1)\)', '\((0, 1)\)', '\((0, 0)\)', '\((1, 0)\)'],
+                    correct: 2
+                }
+            ];
+            
+            const container = document.getElementById('testContainer');
+            container.innerHTML = '';
+            
+            testQuestions.forEach((q, i) => {
+                let optionsHtml = '';
+                q.options.forEach((opt, j) => {
+                    optionsHtml += `
+                        <label style="display: block; padding: 8px; margin: 5px 0; background: #edf2f7; border-radius: 5px; cursor: pointer;">
+                            <input type="radio" name="q${i}" value="${j}"> ${opt}
+                        </label>
+                    `;
+                });
+                
+                container.innerHTML += `
+                    <div style="padding: 20px; margin: 15px 0; background: #f7fafc; border-radius: 10px;">
+                        <p style="font-weight: 600; margin-bottom: 10px;">${i + 1}. ${q.q}</p>
+                        ${optionsHtml}
+                    </div>
+                `;
+            });
+            
+            document.getElementById('testResult').innerHTML = '';
+            document.getElementById('testProgress').style.width = '0%';
+            document.getElementById('testProgress').textContent = '0%';
+        }
+
+        function checkTest() {
+            let correct = 0;
+            
+            testQuestions.forEach((q, i) => {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                const parent = selected?.closest('div');
+                
+                if (selected) {
+                    if (parseInt(selected.value) === q.correct) {
+                        correct++;
+                        selected.closest('label').style.background = '#c6f6d5';
+                    } else {
+                        selected.closest('label').style.background = '#fed7d7';
+                        // Показать правильный ответ
+                        const labels = parent?.querySelectorAll('label');
+                        if (labels) labels[q.correct].style.background = '#c6f6d5';
+                    }
+                }
+            });
+            
+            const percent = Math.round((correct / testQuestions.length) * 100);
+            const progress = document.getElementById('testProgress');
+            progress.style.width = percent + '%';
+            progress.textContent = percent + '%';
+            
+            let grade = '';
+            if (percent >= 90) grade = '🏆 Отлично!';
+            else if (percent >= 70) grade = '👍 Хорошо!';
+            else if (percent >= 50) grade = '👌 Удовлетворительно';
+            else grade = '📚 Нужно повторить материал';
+            
+            document.getElementById('testResult').innerHTML = `
+                <div class="result-message ${percent >= 50 ? 'result-correct' : 'result-wrong'}">
+                    Правильных ответов: ${correct} из ${testQuestions.length} (${percent}%)<br>
+                    ${grade}
+                </div>
+            `;
+        }
+
+        // =================== БЛОК 1: КООРДИНАТНЫЙ ЛУЧ ===================
+        
+        // Задание 1.1: Отметить точку на луче
+        let ray1Target = 0;
+        let ray1UserX = -1;
+        
+        function generateRay1Task() {
+            ray1Target = (Math.floor(Math.random() * 30) + 1) / 10; // 0.1 to 3.0
+            document.getElementById('ray1Task').textContent = `Отметь на координатном луче точку с координатой ${ray1Target.toFixed(1)}`;
+            document.getElementById('ray1Result').innerHTML = '';
+            ray1UserX = -1;
+            drawRay1Canvas();
+        }
+        
+        function drawRay1Canvas() {
+            const canvas = document.getElementById('ray1Canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const originX = 50;
+            const y = 100;
+            const unitLen = 200; // 1.0 = 200px
+            
+            // Луч
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(originX, y);
+            ctx.lineTo(canvas.width - 20, y);
+            ctx.stroke();
+            
+            // Стрелка
+            ctx.fillStyle = '#2d3748';
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 20, y - 8);
+            ctx.lineTo(canvas.width - 10, y);
+            ctx.lineTo(canvas.width - 20, y + 8);
+            ctx.fill();
+            
+            // Деления
+            ctx.font = '12px Segoe UI';
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 3; i++) {
+                const x = originX + i * unitLen;
+                ctx.beginPath();
+                ctx.moveTo(x, y - 10);
+                ctx.lineTo(x, y + 10);
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillText(i, x, y + 25);
+                
+                // Мелкие деления
+                if (i < 3) {
+                    for (let j = 1; j <= 9; j++) {
+                        const mx = x + j * unitLen / 10;
+                        ctx.beginPath();
+                        ctx.moveTo(mx, y - 5);
+                        ctx.lineTo(mx, y + 5);
+                        ctx.strokeStyle = '#a0aec0';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Точка пользователя
+            if (ray1UserX >= 0) {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(ray1UserX, y, 7, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function handleRay1Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const originX = 50;
+            const unitLen = 200;
+            const val = Math.round(((mx - originX) / unitLen) * 10) / 10;
+            if (val >= 0 && val <= 3) {
+                ray1UserX = mx;
+                drawRay1Canvas();
+            }
+        }
+        
+        function checkRay1Task() {
+            if (ray1UserX < 0) {
+                document.getElementById('ray1Result').innerHTML = '<div class="result-message result-wrong">Сначала кликни на луч!</div>';
+                return;
+            }
+            const originX = 50;
+            const unitLen = 200;
+            const userVal = Math.round(((ray1UserX - originX) / unitLen) * 10) / 10;
+            const correct = Math.abs(userVal - ray1Target) < 0.05;
+            
+            document.getElementById('ray1Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Нужно: ${ray1Target.toFixed(1)}, у тебя: ${userVal.toFixed(1)}`}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+        
+        // Задание 1.2: Определить координату
+        let ray2Target = 0;
+        function generateRay2Task() {
+            ray2Target = (Math.floor(Math.random() * 30) + 1) / 10;
+            document.getElementById('ray2Result').innerHTML = '';
+            
+            const canvas = document.getElementById('ray2Canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const originX = 50;
+            const y = 100;
+            const unitLen = 200;
+            
+            // Луч
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(originX, y);
+            ctx.lineTo(canvas.width - 20, y);
+            ctx.stroke();
+            ctx.fillStyle = '#2d3748';
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 20, y - 8);
+            ctx.lineTo(canvas.width - 10, y);
+            ctx.lineTo(canvas.width - 20, y + 8);
+            ctx.fill();
+            
+            // Деления
+            ctx.font = '12px Segoe UI';
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 3; i++) {
+                const x = originX + i * unitLen;
+                ctx.beginPath();
+                ctx.moveTo(x, y - 10);
+                ctx.lineTo(x, y + 10);
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillText(i, x, y + 25);
+                if (i < 3) {
+                    for (let j = 1; j <= 9; j++) {
+                        const mx = x + j * unitLen / 10;
+                        ctx.beginPath();
+                        ctx.moveTo(mx, y - 5);
+                        ctx.lineTo(mx, y + 5);
+                        ctx.strokeStyle = '#a0aec0';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            // Точка
+            const px = originX + ray2Target * unitLen;
+            ctx.fillStyle = '#e53e3e';
+            ctx.beginPath();
+            ctx.arc(px, y, 7, 0, Math.PI * 2);
+            ctx.fill();
+            
+            document.getElementById('ray2Input').innerHTML = `Координата точки: <input type="number" class="answer-input" id="ray2Answer" step="0.1" style="width: 100px;">`;
+        }
+        
+        function checkRay2Task() {
+            const answer = parseFloat(document.getElementById('ray2Answer').value);
+            const correct = Math.abs(answer - ray2Target) < 0.1;
+            document.getElementById('ray2Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный ответ: ${ray2Target.toFixed(1)}`}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+        
+        // Задание 1.3: Расположить в порядке возрастания
+        let ray3Points = [];
+        function generateRay3Task() {
+            ray3Points = [];
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+            for (let i = 0; i < 5; i++) {
+                ray3Points.push({ letter: letters[i], value: (Math.floor(Math.random() * 25) + 1) / 10 });
+            }
+            
+            document.getElementById('ray3Points').innerHTML = '<strong>Точки:</strong> ' + ray3Points.map(p => `${p.letter}(${p.value.toFixed(1)})`).join(', ');
+            document.getElementById('ray3Answer').value = '';
+            document.getElementById('ray3Result').innerHTML = '';
+        }
+        
+        function checkRay3Task() {
+            const answer = document.getElementById('ray3Answer').value.split(',').map(s => parseFloat(s.trim()));
+            const sorted = ray3Points.map(p => p.value).sort((a, b) => a - b);
+            const correct = answer.length === sorted.length && answer.every((v, i) => Math.abs(v - sorted[i]) < 0.05);
+            document.getElementById('ray3Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный порядок: ${sorted.map(v => v.toFixed(1)).join(', ')}`}
+            </div>`;
+        }
+        
+        // Задание 1.4: Между какими числами
+        let ray4Num = 0;
+        function generateRay4Task() {
+            ray4Num = Math.floor(Math.random() * 50) + 1 + (Math.floor(Math.random() * 9) + 1) / 10;
+            document.getElementById('ray4Number').textContent = ray4Num.toFixed(1);
+            document.getElementById('ray4Left').value = '';
+            document.getElementById('ray4Right').value = '';
+            document.getElementById('ray4Result').innerHTML = '';
+        }
+        
+        function checkRay4Task() {
+            const left = parseInt(document.getElementById('ray4Left').value);
+            const right = parseInt(document.getElementById('ray4Right').value);
+            const correctLeft = Math.floor(ray4Num);
+            const correctRight = correctLeft + 1;
+            const correct = left === correctLeft && right === correctRight;
+            document.getElementById('ray4Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Между ${correctLeft} и ${correctRight}`}
+            </div>`;
+        }
+
+        // =================== БЛОК 2: КООРДИНАТНАЯ ПРЯМАЯ ===================
+        
+        // Задание 2.1: Отметить точку
+        let line1Target = 0;
+        let line1UserX = -1;
+        
+        function generateLine1Task() {
+            const values = [-5, -4, -3, -2, -1, -0.5, 0, 0.5, 1, 2, 3, 4, 5];
+            line1Target = values[Math.floor(Math.random() * values.length)];
+            document.getElementById('line1Task').textContent = `Отметь точку на координатной прямой: ${line1Target}`;
+            document.getElementById('line1Result').innerHTML = '';
+            line1UserX = -1;
+            drawLine1Canvas();
+        }
+        
+        function drawLine1Canvas() {
+            const canvas = document.getElementById('line1Canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const originX = 350; // 0 is center
+            const y = 100;
+            const unitLen = 60;
+            
+            // Прямая
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(20, y);
+            ctx.lineTo(canvas.width - 20, y);
+            ctx.stroke();
+            
+            // Стрелки
+            ctx.fillStyle = '#2d3748';
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - 20, y - 8);
+            ctx.lineTo(canvas.width - 10, y);
+            ctx.lineTo(canvas.width - 20, y + 8);
+            ctx.fill();
+            
+            // Деления
+            ctx.font = '12px Segoe UI';
+            ctx.textAlign = 'center';
+            for (let i = -5; i <= 5; i++) {
+                const x = originX + i * unitLen;
+                ctx.beginPath();
+                ctx.moveTo(x, y - 10);
+                ctx.lineTo(x, y + 10);
+                ctx.strokeStyle = '#2d3748';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillText(i, x, y + 25);
+            }
+            
+            // Точка
+            if (line1UserX >= 0) {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(line1UserX, y, 7, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function handleLine1Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const originX = 350;
+            const unitLen = 60;
+            const val = Math.round((mx - originX) / unitLen * 2) / 2;
+            if (val >= -5 && val <= 5) {
+                line1UserX = mx;
+                drawLine1Canvas();
+            }
+        }
+        
+        function checkLine1Task() {
+            if (line1UserX < 0) return;
+            const originX = 350;
+            const unitLen = 60;
+            const userVal = Math.round((line1UserX - originX) / unitLen * 2) / 2;
+            const correct = Math.abs(userVal - line1Target) < 0.3;
+            document.getElementById('line1Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Нужно: ${line1Target}`}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+        
+        // Задание 2.2: Модуль
+        let modulTasks = [];
+        function generateModulTask() {
+            modulTasks = [];
+            const values = [-19, 7.4, -3.1, 0, 6, -12, 21, -0.38, -23, 9];
+            for (let i = 0; i < 4; i++) {
+                const val = values[Math.floor(Math.random() * values.length)];
+                modulTasks.push({ val, answer: Math.abs(val) });
+            }
+            
+            document.getElementById('modulTask').textContent = 'Найди модуль:';
+            document.getElementById('modulAnswers').innerHTML = modulTasks.map((t, i) => 
+                `<div style="margin: 5px 0;">|${t.val}| = <input type="number" class="answer-input" id="modul${i}" style="width: 100px;"></div>`
+            ).join('');
+            document.getElementById('modulResult').innerHTML = '';
+        }
+        
+        function checkModulTask() {
+            let correct = 0;
+            modulTasks.forEach((t, i) => {
+                const ans = parseFloat(document.getElementById(`modul${i}`).value);
+                if (ans === t.answer) {
+                    correct++;
+                    document.getElementById(`modul${i}`).style.borderColor = '#48bb78';
+                } else {
+                    document.getElementById(`modul${i}`).style.borderColor = '#e53e3e';
+                }
+            });
+            document.getElementById('modulResult').innerHTML = `<div class="result-message ${correct === modulTasks.length ? 'result-correct' : 'result-wrong'}">
+                Правильно: ${correct} из ${modulTasks.length}
+            </div>`;
+            if (correct === modulTasks.length) updateChallenge(20, true);
+        }
+        
+        // Задание 2.3: Противоположные
+        let oppositeNum = 0;
+        function generateOppositeTask() {
+            const nums = [-60, 8.2, -305, -5/7, 12.7, 4/11, 0.8, -9, 6, -17, 2.9, -4.6];
+            oppositeNum = nums[Math.floor(Math.random() * nums.length)];
+            const display = typeof oppositeNum === 'number' && oppositeNum % 1 !== 0 ? oppositeNum.toFixed(2) : oppositeNum;
+            document.getElementById('oppositeNumber').textContent = display;
+            document.getElementById('oppositeAnswer').value = '';
+            document.getElementById('oppositeResult').innerHTML = '';
+        }
+        
+        function checkOppositeTask() {
+            const answer = parseFloat(document.getElementById('oppositeAnswer').value);
+            const correct = Math.abs(answer - (-oppositeNum)) < 0.01;
+            document.getElementById('oppositeResult').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный ответ: ${-oppositeNum}`}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+        
+        // Задание 2.4: Целые между
+        let betweenLeft = 0, betweenRight = 0;
+        function generateBetweenTask() {
+            betweenLeft = Math.floor(Math.random() * 10) - 8;
+            betweenRight = betweenLeft + Math.floor(Math.random() * 5) + 2;
+            
+            document.getElementById('betweenTask').textContent = `Какие целые числа между ${betweenLeft} и ${betweenRight}?`;
+            const count = betweenRight - betweenLeft - 1;
+            document.getElementById('betweenAnswers').innerHTML = 
+                `<input type="text" class="answer-input" id="betweenAnswer" style="width: 250px;" placeholder="Через запятую">`;
+            document.getElementById('betweenResult').innerHTML = '';
+        }
+        
+        function checkBetweenTask() {
+            const answer = document.getElementById('betweenAnswer').value.split(',').map(s => parseInt(s.trim()));
+            const correct = [];
+            for (let i = betweenLeft + 1; i < betweenRight; i++) correct.push(i);
+            const isCorrect = answer.length === correct.length && answer.every((v, i) => v === correct[i]);
+            document.getElementById('betweenResult').innerHTML = `<div class="result-message ${isCorrect ? 'result-correct' : 'result-wrong'}">
+                ${isCorrect ? '✅ Правильно!' : `❌ Правильный ответ: ${correct.join(', ')}`}
+            </div>`;
+        }
+
+        // =================== БЛОК 3: КООРДИНАТНАЯ ПЛОСКОСТЬ ===================
+        
+        // Задание 3.1: Определить координаты
+        let bp1Points = [];
+        function generateBP1Task() {
+            bp1Points = [];
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+            for (let i = 0; i < 5; i++) {
+                bp1Points.push({
+                    letter: letters[i],
+                    x: Math.floor(Math.random() * 7) - 3,
+                    y: Math.floor(Math.random() * 7) - 3
+                });
+            }
+            
+            const canvas = document.getElementById('bp1Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 250, originY: 250 });
+            
+            bp1Points.forEach(p => {
+                drawPoint(ctx, p.x, p.y, p.letter, '#e53e3e', 250, 250, 50);
+            });
+            
+            document.getElementById('bp1Inputs').innerHTML = bp1Points.map(p => 
+                `<span style="margin: 5px;">${p.letter}( <input type="number" class="answer-input" id="bp1x_${p.letter}" style="width: 60px;">, <input type="number" class="answer-input" id="bp1y_${p.letter}" style="width: 60px;"> )</span>`
+            ).join('');
+            document.getElementById('bp1Result').innerHTML = '';
+        }
+        
+        function checkBP1Task() {
+            let correct = 0;
+            bp1Points.forEach(p => {
+                const ux = parseInt(document.getElementById(`bp1x_${p.letter}`).value);
+                const uy = parseInt(document.getElementById(`bp1y_${p.letter}`).value);
+                if (ux === p.x && uy === p.y) {
+                    correct++;
+                    document.getElementById(`bp1x_${p.letter}`).style.borderColor = '#48bb78';
+                    document.getElementById(`bp1y_${p.letter}`).style.borderColor = '#48bb78';
+                } else {
+                    document.getElementById(`bp1x_${p.letter}`).style.borderColor = '#e53e3e';
+                    document.getElementById(`bp1y_${p.letter}`).style.borderColor = '#e53e3e';
+                }
+            });
+            document.getElementById('bp1Result').innerHTML = `<div class="result-message ${correct === bp1Points.length ? 'result-correct' : 'result-wrong'}">
+                Правильно: ${correct} из ${bp1Points.length}
+            </div>`;
+            if (correct === bp1Points.length) updateChallenge(25, true);
+        }
+        
+        // Задание 3.2: Построить фигуру
+        let bp2CurrentFigure = null;
+        let bp2AnswerCorrect = null;
+        
+        function loadBP2Figure(type) {
+            const canvas = document.getElementById('bp2Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 250, originY: 250 });
+            
+            let points = [], question = '', answer = '';
+            switch(type) {
+                case 'triangle':
+                    points = [{x:1,y:-4},{x:-3,y:4},{x:6,y:3},{x:1,y:-4}];
+                    question = 'Построен треугольник ABC. Найдите координату пересечения стороны BC с осью Ox (ординату)';
+                    answer = 0;
+                    break;
+                case 'rectangle':
+                    points = [{x:-3,y:-5},{x:-3,y:2},{x:4,y:2},{x:4,y:-5},{x:-3,y:-5}];
+                    question = 'Построен прямоугольник ABCD. Найдите координату вершины D (абсциссу)';
+                    answer = 4;
+                    break;
+                case 'square':
+                    points = [{x:-2,y:-4},{x:2,y:-4},{x:2,y:0},{x:-2,y:0},{x:-2,y:-4}];
+                    question = 'Построен квадрат ABCD. Чему равна длина стороны?';
+                    answer = 4;
+                    break;
+                case 'quad':
+                    points = [{x:-4,y:-5},{x:-4,y:5},{x:4,y:3},{x:4,y:-3},{x:-4,y:-5}];
+                    question = 'Построен четырёхугольник ABCD. Найдите длину стороны AB';
+                    answer = 10;
+                    break;
+            }
+            
+            ctx.strokeStyle = '#5a67d8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(250 + points[0].x * 50, 250 - points[0].y * 50);
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(250 + points[i].x * 50, 250 - points[i].y * 50);
+            }
+            ctx.stroke();
+            
+            bp2CurrentFigure = type;
+            bp2AnswerCorrect = answer;
+            document.getElementById('bp2Task').textContent = `Фигура: ${type}`;
+            document.getElementById('bp2Question').textContent = question;
+            document.getElementById('bp2Input').innerHTML = `<input type="number" class="answer-input" id="bp2Answer" style="width: 100px;">`;
+            document.getElementById('bp2Result').innerHTML = '';
+        }
+        
+        function checkBP2Task() {
+            const answer = parseFloat(document.getElementById('bp2Answer').value);
+            const correct = Math.abs(answer - bp2AnswerCorrect) < 0.5;
+            document.getElementById('bp2Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный ответ: ${bp2AnswerCorrect}`}
+            </div>`;
+            if (correct) updateChallenge(25, true);
+        }
+        
+        // Задание 3.3: Быстрое определение четверти
+        let bp3Points = [];
+        function generateBP3Task() {
+            bp3Points = [];
+            const container = document.getElementById('bp3Rapid');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 8; i++) {
+                const x = Math.floor(Math.random() * 10) - 5;
+                const y = Math.floor(Math.random() * 10) - 5;
+                if (x === 0 || y === 0) { i--; continue; }
+                bp3Points.push({ x, y });
+                
+                container.innerHTML += `
+                    <div style="padding: 10px; background: #edf2f7; border-radius: 8px;">
+                        (${x}, ${y}): 
+                        <select class="answer-input" id="bp3_${i}" style="width: 80px;">
+                            <option value="">—</option>
+                            <option value="1">I</option>
+                            <option value="2">II</option>
+                            <option value="3">III</option>
+                            <option value="4">IV</option>
+                        </select>
+                    </div>
+                `;
+            }
+            document.getElementById('bp3Result').innerHTML = '';
+        }
+        
+        function checkBP3Task() {
+            let correct = 0;
+            bp3Points.forEach((p, i) => {
+                let q;
+                if (p.x > 0 && p.y > 0) q = 1;
+                else if (p.x < 0 && p.y > 0) q = 2;
+                else if (p.x < 0 && p.y < 0) q = 3;
+                else q = 4;
+                
+                const sel = document.getElementById(`bp3_${i}`);
+                if (parseInt(sel.value) === q) {
+                    correct++;
+                    sel.style.borderColor = '#48bb78';
+                } else {
+                    sel.style.borderColor = '#e53e3e';
+                }
+            });
+            document.getElementById('bp3Result').innerHTML = `<div class="result-message ${correct === bp3Points.length ? 'result-correct' : 'result-wrong'}">
+                Правильно: ${correct} из ${bp3Points.length}
+            </div>`;
+        }
+        
+        // Задание 3.4: Расположение точки
+        let bp4Answer = '';
+        function generateBP4Task() {
+            const x = Math.floor(Math.random() * 10) - 5;
+            const y = Math.floor(Math.random() * 10) - 5;
+            
+            let correct;
+            if (x === 0 && y === 0) correct = 'origin';
+            else if (x === 0) correct = 'oy';
+            else if (y === 0) correct = 'ox';
+            else if (x > 0 && y > 0) correct = 'q1';
+            else if (x < 0 && y > 0) correct = 'q2';
+            else if (x < 0 && y < 0) correct = 'q3';
+            else correct = 'q4';
+            
+            bp4Answer = correct;
+            
+            document.getElementById('bp4Task').textContent = `Где расположена точка (${x}, ${y})?`;
+            
+            const options = [
+                { value: 'q1', text: 'I четверть' },
+                { value: 'q2', text: 'II четверть' },
+                { value: 'q3', text: 'III четверть' },
+                { value: 'q4', text: 'IV четверть' },
+                { value: 'ox', text: 'На оси Ox' },
+                { value: 'oy', text: 'На оси Oy' }
+            ];
+            
+            document.getElementById('bp4Options').innerHTML = options.map(o => 
+                `<label style="display: inline-block; margin: 5px 10px; padding: 8px 15px; background: #edf2f7; border-radius: 5px; cursor: pointer;">
+                    <input type="radio" name="bp4" value="${o.value}"> ${o.text}
+                </label>`
+            ).join('');
+            document.getElementById('bp4Result').innerHTML = '';
+        }
+        
+        function checkBP4Task() {
+            const selected = document.querySelector('input[name="bp4"]:checked');
+            if (!selected) return;
+            const correct = selected.value === bp4Answer;
+            document.getElementById('bp4Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : '❌ Неправильно!'}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+
+        // =================== БЛОК 4: ГРАФИКИ ПРОЦЕССОВ ===================
+        
+        // Задание 4.1: График температуры
+        let graph1Data = [];
+        function generateGraph1Task() {
+            graph1Data = [];
+            for (let i = 0; i <= 20; i++) {
+                graph1Data.push({ x: i, y: Math.floor(Math.random() * 10) - 4 });
+            }
+            
+            const canvas = document.getElementById('graph1Canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const originX = 80;
+            const originY = 350;
+            const scale = 28;
+            
+            // Оси
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(originX, 50);
+            ctx.lineTo(originX, originY);
+            ctx.lineTo(canvas.width - 30, originY);
+            ctx.stroke();
+            
+            ctx.font = '12px Segoe UI';
+            ctx.textAlign = 'center';
+            
+            // Числа
+            for (let i = 0; i <= 20; i += 2) {
+                ctx.fillText(i, originX + i * scale, originY + 18);
+            }
+            ctx.textAlign = 'right';
+            for (let i = -4; i <= 6; i++) {
+                ctx.fillText(i + '°', originX - 10, originY - i * scale + 5);
+            }
+            ctx.textAlign = 'left';
+            ctx.fillText('t(°C)', 10, 60);
+            ctx.fillText('часы', canvas.width - 60, originY + 18);
+            
+            // График
+            ctx.strokeStyle = '#e53e3e';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            graph1Data.forEach((d, i) => {
+                const px = originX + d.x * scale;
+                const py = originY - d.y * scale;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            });
+            ctx.stroke();
+            
+            // Точки
+            graph1Data.forEach(d => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(originX + d.x * scale, originY - d.y * scale, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Вопросы
+            const qHours = [3, 7, 12, 15];
+            const qh = qHours[Math.floor(Math.random() * qHours.length)];
+            const correctTemp = graph1Data.find(d => d.x === qh).y;
+            
+            document.getElementById('graph1Questions').innerHTML = `
+                <div style="margin: 10px 0;">
+                    <p><strong>Какая температура была в ${qh} часов?</strong></p>
+                    <input type="number" class="answer-input" id="graph1Answer" style="width: 100px;">
+                </div>
+            `;
+            document.getElementById('graph1Questions').dataset.correct = correctTemp;
+            document.getElementById('graph1Result').innerHTML = '';
+        }
+        
+        function checkGraph1Task() {
+            const answer = parseInt(document.getElementById('graph1Answer').value);
+            const correct = parseInt(document.getElementById('graph1Questions').dataset.correct);
+            const isCorrect = answer === correct;
+            document.getElementById('graph1Result').innerHTML = `<div class="result-message ${isCorrect ? 'result-correct' : 'result-wrong'}">
+                ${isCorrect ? '✅ Правильно!' : `❌ Правильный ответ: ${correct}°C`}
+            </div>`;
+            if (isCorrect) updateChallenge(20, true);
+        }
+        
+        // Задание 4.2: График движения
+        let graph2Data = [];
+        function generateGraph2Task() {
+            const segments = [
+                { dx: 2, dy: 8 },
+                { dx: 0.5, dy: 0 },
+                { dx: 1.5, dy: 6 },
+                { dx: 1, dy: 0 },
+                { dx: 2, dy: -14 }
+            ];
+            
+            graph2Data = [{ x: 0, y: 0 }];
+            segments.forEach(s => {
+                const prev = graph2Data[graph2Data.length - 1];
+                graph2Data.push({ x: prev.x + s.dx, y: Math.max(0, prev.y + s.dy) });
+            });
+            
+            const canvas = document.getElementById('graph2Canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const originX = 80;
+            const originY = 350;
+            const scaleX = 80;
+            const scaleY = 20;
+            
+            // Оси
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(originX, 50);
+            ctx.lineTo(originX, originY);
+            ctx.lineTo(canvas.width - 30, originY);
+            ctx.stroke();
+            
+            ctx.font = '12px Segoe UI';
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 8; i++) {
+                ctx.fillText(i, originX + i * scaleX, originY + 18);
+            }
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 20; i += 5) {
+                ctx.fillText(i + ' км', originX - 10, originY - i * scaleY + 5);
+            }
+            ctx.textAlign = 'left';
+            ctx.fillText('S(км)', 10, 60);
+            ctx.fillText('часы', canvas.width - 60, originY + 18);
+            
+            // График
+            ctx.strokeStyle = '#3182ce';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            graph2Data.forEach((d, i) => {
+                const px = originX + d.x * scaleX;
+                const py = originY - d.y * scaleY;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            });
+            ctx.stroke();
+            
+            // Вопросы
+            document.getElementById('graph2Questions').innerHTML = `
+                <div style="margin: 10px 0;">
+                    <p><strong>Какое расстояние было через 2 часа?</strong></p>
+                    <input type="number" class="answer-input" id="graph2Answer" style="width: 100px;">
+                </div>
+            `;
+            const d2 = graph2Data.find(d => d.x === 2);
+            document.getElementById('graph2Questions').dataset.correct = d2 ? d2.y : 8;
+            document.getElementById('graph2Result').innerHTML = '';
+        }
+        
+        function checkGraph2Task() {
+            const answer = parseInt(document.getElementById('graph2Answer').value);
+            const correct = parseInt(document.getElementById('graph2Questions').dataset.correct);
+            const isCorrect = answer === correct;
+            document.getElementById('graph2Result').innerHTML = `<div class="result-message ${isCorrect ? 'result-correct' : 'result-wrong'}">
+                ${isCorrect ? '✅ Правильно!' : `❌ Правильный ответ: ${correct} км`}
+            </div>`;
+            if (isCorrect) updateChallenge(20, true);
+        }
+        
+        // Задание 4.3: Построить график
+        let graph3Points = [];
+        let graph3Target = [];
+        function generateGraph3Task() {
+            graph3Points = [];
+            const scenarios = [
+                { desc: 'Велосипедист ехал 3 часа со скоростью 12 км/ч, отдохнул 1 час, вернулся со скоростью 9 км/ч',
+                  target: [{x:0,y:0},{x:3,y:36},{x:4,y:36},{x:8,y:0}] },
+                { desc: 'Турист шёл 2 часа со скоростью 4 км/ч, затем 1 час со скоростью 3 км/ч, отдыхал 0.5 часа',
+                  target: [{x:0,y:0},{x:2,y:8},{x:3,y:11},{x:3.5,y:11}] }
+            ];
+            const sc = scenarios[Math.floor(Math.random() * scenarios.length)];
+            graph3Target = sc.target;
+            
+            document.getElementById('graph3Desc').textContent = sc.desc;
+            document.getElementById('graph3Result').innerHTML = '';
+            drawGraph3Canvas();
+        }
+        
+        function drawGraph3Canvas() {
+            const canvas = document.getElementById('graph3Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 100, originY: 350 });
+            
+            ctx.font = '12px Segoe UI';
+            ctx.fillStyle = '#718096';
+            ctx.fillText('часы (t)', canvas.width - 80, 370);
+            ctx.fillText('км (S)', 10, 100);
+            
+            graph3Points.forEach(p => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(100 + p.x * 50, 350 - p.y * 5, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            if (graph3Points.length > 1) {
+                ctx.strokeStyle = '#5a67d8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                graph3Points.forEach((p, i) => {
+                    const px = 100 + p.x * 50;
+                    const py = 350 - p.y * 5;
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                });
+                ctx.stroke();
+            }
+        }
+        
+        function handleGraph3Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const x = Math.round((mx - 100) / 50 * 2) / 2;
+            const y = Math.round((350 - my) / 5);
+            
+            if (x >= 0 && y >= 0) {
+                graph3Points.push({ x, y });
+                drawGraph3Canvas();
+            }
+        }
+        
+        function clearGraph3() { graph3Points = []; drawGraph3Canvas(); }
+        
+        function checkGraph3Task() {
+            const correct = graph3Target.every(t => 
+                graph3Points.some(p => Math.abs(p.x - t.x) < 0.5 && Math.abs(p.y - t.y) < 1)
+            );
+            document.getElementById('graph3Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Отлично!' : '❌ Сравни свой график с описанием'}
+            </div>`;
+            if (correct) updateChallenge(30, true);
+        }
+
+        // =================== БЛОК 5: ПРОПОРЦИОНАЛЬНОСТЬ ===================
+        
+        // Задание 5.1: Прямая пропорциональность
+        let prop1K = 0;
+        let prop1Points = [];
+        
+        function generateProp1Task() {
+            prop1K = [0.5, 1, 2, 3, 4, 5][Math.floor(Math.random() * 6)];
+            prop1Points = [];
+            document.getElementById('prop1Task').textContent = `Построй график прямой пропорциональности y = ${prop1K}x (кликни по точкам)`;
+            document.getElementById('prop1Result').innerHTML = '';
+            drawProp1Canvas();
+        }
+        
+        function drawProp1Canvas() {
+            const canvas = document.getElementById('prop1Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 100, originY: 450 });
+            
+            // Правильная линия
+            ctx.strokeStyle = 'rgba(72, 187, 120, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(100, 450);
+            ctx.lineTo(100 + 8 * 50, 450 - prop1K * 8 * 50);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Точки пользователя
+            prop1Points.forEach(p => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(100 + p.x * 50, 450 - p.y * 50, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+        
+        function handleProp1Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const x = Math.round((mx - 100) / 50 * 2) / 2;
+            const y = Math.round((450 - my) / 50 * 2) / 2;
+            
+            if (x >= 0 && y >= -2) {
+                prop1Points.push({ x, y });
+                drawProp1Canvas();
+            }
+        }
+        
+        function checkProp1Task() {
+            const correct = prop1Points.every(p => Math.abs(p.y - prop1K * p.x) < 0.5);
+            document.getElementById('prop1Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : '❌ Точки должны лежать на линии y = kx'}
+            </div>`;
+            if (correct) updateChallenge(25, true);
+        }
+        
+        // Задание 5.2: Обратная пропорциональность
+        let prop2K = 0;
+        let prop2UserPoints = [];
+        
+        function generateProp2Task() {
+            prop2K = [1, 2, 4, 6, 8, 12][Math.floor(Math.random() * 6)];
+            prop2UserPoints = [];
+            document.getElementById('prop2Task').textContent = `Заполни таблицу и построй график y = ${prop2K}/x`;
+            document.getElementById('prop2Result').innerHTML = '';
+            
+            const xValues = [1, 2, 3, 4, 6];
+            document.getElementById('prop2Table').innerHTML = `
+                <table style="max-width: 400px;">
+                    <tr><th>x</th>${xValues.map(x => `<td>${x}</td>`).join('')}</tr>
+                    <tr><th>y</th>${xValues.map((x, i) => `<td><input type="number" class="answer-input" id="prop2y_${i}" style="width: 60px;"></td>`).join('')}</tr>
+                </table>
+            `;
+            
+            const canvas = document.getElementById('prop2Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 100, originY: 450 });
+            
+            // Гипербола
+            ctx.strokeStyle = 'rgba(72, 187, 120, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            let first = true;
+            for (let x = 0.5; x <= 8; x += 0.2) {
+                const y = prop2K / x;
+                const px = 100 + x * 50;
+                const py = 450 - y * 50;
+                if (first) { ctx.moveTo(px, py); first = false; }
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+        
+        function handleProp2Click(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const x = Math.round((mx - 100) / 50 * 2) / 2;
+            const y = Math.round((450 - my) / 50 * 2) / 2;
+            
+            if (x > 0 && y > 0) {
+                prop2UserPoints.push({ x, y });
+                
+                ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(100 + x * 50, 450 - y * 50, 5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function checkProp2Task() {
+            const xValues = [1, 2, 3, 4, 6];
+            let correct = 0;
+            xValues.forEach((x, i) => {
+                const ans = parseFloat(document.getElementById(`prop2y_${i}`).value);
+                if (Math.abs(ans - prop2K / x) < 0.1) {
+                    correct++;
+                    document.getElementById(`prop2y_${i}`).style.borderColor = '#48bb78';
+                } else {
+                    document.getElementById(`prop2y_${i}`).style.borderColor = '#e53e3e';
+                }
+            });
+            document.getElementById('prop2Result').innerHTML = `<div class="result-message ${correct === xValues.length ? 'result-correct' : 'result-wrong'}">
+                Таблица: ${correct} из ${xValues.length}
+            </div>`;
+            if (correct === xValues.length) updateChallenge(25, true);
+        }
+        
+        // Задание 5.3: Проверить точку
+        let prop3Correct = false;
+        function generateProp3Task() {
+            const isDirect = Math.random() > 0.5;
+            let k, x, y, formula;
+            
+            if (isDirect) {
+                k = [2, 3, 4, 0.5, 2.5][Math.floor(Math.random() * 5)];
+                x = Math.floor(Math.random() * 5) + 1;
+                y = Math.floor(Math.random() * 10) + 1;
+                formula = `y = ${k}x`;
+                prop3Correct = Math.abs(y - k * x) < 0.1;
+            } else {
+                k = [4, 6, 8, 12][Math.floor(Math.random() * 4)];
+                x = Math.floor(Math.random() * 6) + 1;
+                y = Math.floor(Math.random() * 8) + 1;
+                formula = `y = ${k}/x`;
+                prop3Correct = Math.abs(y - k / x) < 0.1;
+            }
+            
+            document.getElementById('prop3Task').textContent = `Принадлежит ли точка A(${x}; ${y}) графику ${formula}?`;
+            document.getElementById('prop3Result').innerHTML = '';
+        }
+        
+        function checkProp3Answer(answer) {
+            const correct = answer === prop3Correct;
+            document.getElementById('prop3Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный ответ: ${prop3Correct ? 'Да' : 'Нет'}`}
+            </div>`;
+            if (correct) updateChallenge(15, true);
+        }
+        
+        // Задание 5.4: Найти коэффициент
+        let prop4K = 0;
+        function generateProp4Task() {
+            const isDirect = Math.random() > 0.5;
+            prop4K = [1, 2, 3, 4, 5, 6][Math.floor(Math.random() * 6)];
+            
+            const canvas = document.getElementById('prop4Canvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 50, originX: 100, originY: 350 });
+            
+            if (isDirect) {
+                ctx.strokeStyle = '#5a67d8';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(100, 350);
+                ctx.lineTo(100 + 6 * 50, 350 - prop4K * 6 * 50);
+                ctx.stroke();
+                document.getElementById('prop4Task').textContent = 'Определи коэффициент k для прямой пропорциональности y = kx';
+            } else {
+                ctx.strokeStyle = '#38a169';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                let first = true;
+                for (let x = 0.5; x <= 7; x += 0.2) {
+                    const y = prop4K / x;
+                    const px = 100 + x * 50;
+                    const py = 350 - y * 50;
+                    if (first) { ctx.moveTo(px, py); first = false; }
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                document.getElementById('prop4Task').textContent = 'Определи коэффициент k для обратной пропорциональности y = k/x';
+            }
+            
+            document.getElementById('prop4Answer').value = '';
+            document.getElementById('prop4Result').innerHTML = '';
+        }
+        
+        function checkProp4Task() {
+            const answer = parseFloat(document.getElementById('prop4Answer').value);
+            const correct = Math.abs(answer - prop4K) < 0.1;
+            document.getElementById('prop4Result').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно!' : `❌ Правильный ответ: k = ${prop4K}`}
+            </div>`;
+            if (correct) updateChallenge(25, true);
+        }
+
+        // =================== БЛОК 6: ИТОГОВЫЙ ТЕСТ ===================
+        
+        let finalTestQuestions = [];
+        function generateFinalTest() {
+            finalTestQuestions = [
+                {
+                    q: 'Точка D лежит на оси ординат, одна координата = 4. Координаты точки:',
+                    options: ['D(4; 4)', 'D(4; 0)', 'D(0; 4)', 'D(-4; 4)'],
+                    correct: 2
+                },
+                {
+                    q: 'Точка L лежит на оси абсцисс, одна координата = -6. Координаты точки:',
+                    options: ['L(-6; 6)', 'L(6; 0)', 'L(0; -6)', 'L(-6; 0)'],
+                    correct: 3
+                },
+                {
+                    q: 'График проходит через точки (0; 0) и (2; 1). Это график:',
+                    options: ['y = 5x', 'y = 4x', 'y = 0,5x', 'y = 0,25x'],
+                    correct: 2
+                },
+                {
+                    q: 'Какой вид имеет график обратной пропорциональности?',
+                    options: ['Прямая', 'Окружность', 'Гипербола', 'Парабола'],
+                    correct: 2
+                },
+                {
+                    q: 'Через какую точку проходит график y = kx?',
+                    options: ['(1; 1)', '(0; 1)', '(0; 0)', '(1; 0)'],
+                    correct: 2
+                }
+            ];
+            
+            const container = document.getElementById('finalTestContainer');
+            container.innerHTML = '';
+            finalTestQuestions.forEach((q, i) => {
+                container.innerHTML += `
+                    <div style="padding: 15px; margin: 10px 0; background: #f7fafc; border-radius: 10px;">
+                        <p style="font-weight: 600;">${i + 1}. ${q.q}</p>
+                        ${q.options.map((o, j) => `
+                            <label style="display: block; padding: 5px; margin: 3px 0; background: #edf2f7; border-radius: 5px; cursor: pointer;">
+                                <input type="radio" name="final_${i}" value="${j}"> ${o}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            document.getElementById('finalTestResult').innerHTML = '';
+        }
+        
+        function checkFinalTest() {
+            let correct = 0;
+            finalTestQuestions.forEach((q, i) => {
+                const selected = document.querySelector(`input[name="final_${i}"]:checked`);
+                if (selected) {
+                    if (parseInt(selected.value) === q.correct) {
+                        correct++;
+                        selected.closest('label').style.background = '#c6f6d5';
+                    } else {
+                        selected.closest('label').style.background = '#fed7d7';
+                    }
+                }
+            });
+            document.getElementById('finalTestResult').innerHTML = `<div class="result-message ${correct === finalTestQuestions.length ? 'result-correct' : 'result-wrong'}">
+                Результат: ${correct} из ${finalTestQuestions.length}
+            </div>`;
+        }
+        
+        // Финальные рисунки
+        function loadFinalFigure(type) {
+            const canvas = document.getElementById('finalDrawCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 250 });
+            
+            let points = [];
+            switch(type) {
+                case 'fish':
+                    points = [[12,2],[5,5],[2,5],[-3,7],[-1,4.5],[-6,4],[-11,-1],[-7,-5],[-1,-7],[3,-8],[5,-11],[4,-7],[6,-5],[3,-6],[2,-6],[-1,-5],[-6,-2],[0,-1],[-1,-3],[2,-2],[3,-1],[5,-1],[4,0],[8,0],[9,1],[12,2],[7.5,3]];
+                    break;
+                case 'cat':
+                    points = [[0,3],[-2,5],[-3,3],[-4,4],[-3,2],[-4,0],[-3,-1],[-2,-3],[0,-2],[2,-3],[3,-1],[4,0],[3,2],[4,4],[3,3],[2,5],[0,3]];
+                    break;
+                case 'bird':
+                    points = [[0,4],[-2,2],[-4,3],[-3,0],[-1,-1],[0,0],[1,-1],[3,0],[4,3],[2,2],[0,4]];
+                    break;
+            }
+            
+            ctx.strokeStyle = '#5a67d8';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(300 + points[0][0] * 15, 250 - points[0][1] * 15);
+            for (let i = 1; i < points.length; i++) {
+                ctx.lineTo(300 + points[i][0] * 15, 250 - points[i][1] * 15);
+            }
+            ctx.stroke();
+            
+            points.forEach((p, i) => {
+                ctx.fillStyle = '#e53e3e';
+                ctx.beginPath();
+                ctx.arc(300 + p[0] * 15, 250 - p[1] * 15, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+        
+        function clearFinalDraw() {
+            const canvas = document.getElementById('finalDrawCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 250 });
+        }
+
+        // =================== СИСТЕМА СОРЕВНОВАНИЯ ===================
+        
+        let challengeScore = 0;
+        let challengeCorrect = 0;
+        let challengeStreak = 0;
+        let challengeCurrent = null;
+        
+        function updateChallenge(points, correct) {
+            challengeScore += points;
+            if (correct) {
+                challengeCorrect++;
+                challengeStreak++;
+                if (challengeStreak >= 5) challengeScore += 25; // Bonus
+            } else {
+                challengeStreak = 0;
+            }
+            
+            updateChallengeDisplay();
+        }
+        
+        function updateChallengeDisplay() {
+            document.getElementById('challengeScore').textContent = challengeScore;
+            document.getElementById('challengeCorrect').textContent = challengeCorrect;
+            document.getElementById('challengeStreak').textContent = challengeStreak;
+            
+            let level, next;
+            if (challengeScore < 200) { level = '🌱 Новичок'; next = 200; }
+            else if (challengeScore < 500) { level = '📐 Ученик'; next = 500; }
+            else if (challengeScore < 1000) { level = '📏 Знаток'; next = 1000; }
+            else if (challengeScore < 2000) { level = '🎯 Мастер'; next = 2000; }
+            else if (challengeScore < 4000) { level = '🏆 Эксперт'; next = 4000; }
+            else { level = '👑 Легенда'; next = 'MAX'; }
+            
+            document.getElementById('challengeLevel').textContent = level;
+            document.getElementById('challengeNext').textContent = typeof next === 'number' ? `${next} очков` : 'MAX';
+            
+            if (typeof next === 'number') {
+                const prev = [0, 200, 500, 1000, 2000, 4000][[0, 200, 500, 1000, 2000, 4000].filter(v => v < challengeScore).length - 1] || 0;
+                const pct = Math.min(100, Math.round(((challengeScore - prev) / (next - prev)) * 100));
+                document.getElementById('challengeProgress').style.width = pct + '%';
+                document.getElementById('challengeProgress').textContent = pct + '%';
+            }
+        }
+        
+        function generateChallengeQuestion() {
+            const types = ['quarter', 'modul', 'opposite', 'point', 'prop', 'graph'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            let question, inputHtml, canvasHtml;
+            
+            switch(type) {
+                case 'quarter': {
+                    const x = Math.floor(Math.random() * 10) - 5;
+                    const y = Math.floor(Math.random() * 10) - 5;
+                    if (x === 0 || y === 0) return generateChallengeQuestion();
+                    question = `В какой четверти находится точка (${x}, ${y})?`;
+                    inputHtml = `
+                        <button class="btn btn-primary" onclick="checkChallengeAnswer('1')">I</button>
+                        <button class="btn btn-primary" onclick="checkChallengeAnswer('2')">II</button>
+                        <button class="btn btn-primary" onclick="checkChallengeAnswer('3')">III</button>
+                        <button class="btn btn-primary" onclick="checkChallengeAnswer('4')">IV</button>
+                    `;
+                    let answer;
+                    if (x > 0 && y > 0) answer = '1';
+                    else if (x < 0 && y > 0) answer = '2';
+                    else if (x < 0 && y < 0) answer = '3';
+                    else answer = '4';
+                    challengeCurrent = { answer };
+                    break;
+                }
+                case 'modul': {
+                    const val = (Math.floor(Math.random() * 20) - 10) / 10;
+                    question = `Найди модуль: |${val.toFixed(1)}| = ?`;
+                    inputHtml = `<input type="number" class="answer-input" id="challengeInput" step="0.1" style="width: 120px;">
+                                 <button class="btn btn-success" onclick="checkChallengeInput()">Проверить</button>`;
+                    challengeCurrent = { answer: Math.abs(val).toFixed(1) };
+                    break;
+                }
+                case 'opposite': {
+                    const val = Math.floor(Math.random() * 20) - 10;
+                    question = `Запиши число, противоположное ${val}`;
+                    inputHtml = `<input type="number" class="answer-input" id="challengeInput" style="width: 120px;">
+                                 <button class="btn btn-success" onclick="checkChallengeInput()">Проверить</button>`;
+                    challengeCurrent = { answer: (-val).toString() };
+                    break;
+                }
+                case 'point': {
+                    const formulas = [{k:2,type:'direct'},{k:3,type:'direct'},{k:0.5,type:'direct'},{k:6,type:'inverse'},{k:12,type:'inverse'}];
+                    const f = formulas[Math.floor(Math.random() * formulas.length)];
+                    const x = Math.floor(Math.random() * 5) + 1;
+                    const y = Math.floor(Math.random() * 10) + 1;
+                    const formula = f.type === 'direct' ? `y = ${f.k}x` : `y = ${f.k}/x`;
+                    const belongs = f.type === 'direct' ? Math.abs(y - f.k * x) < 0.1 : Math.abs(y - f.k / x) < 0.1;
+                    question = `Принадлежит ли точка A(${x}; ${y}) графику ${formula}?`;
+                    inputHtml = `
+                        <button class="btn btn-success" onclick="checkChallengeAnswer('yes')">✅ Да</button>
+                        <button class="btn btn-warning" onclick="checkChallengeAnswer('no')">❌ Нет</button>
+                    `;
+                    challengeCurrent = { answer: belongs ? 'yes' : 'no' };
+                    break;
+                }
+                default:
+                    return generateChallengeQuestion();
+            }
+            
+            document.getElementById('challengeQuestion').textContent = question;
+            document.getElementById('challengeCanvas').innerHTML = '';
+            document.getElementById('challengeInput').innerHTML = inputHtml;
+            document.getElementById('challengeOptions').innerHTML = '';
+            document.getElementById('challengeResult').innerHTML = '';
+        }
+        
+        function checkChallengeAnswer(answer) {
+            const correct = answer === challengeCurrent.answer;
+            document.getElementById('challengeResult').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно! +15 очков' : '❌ Неправильно!'}
+            </div>`;
+            updateChallenge(15, correct);
+            if (correct && challengeStreak % 5 === 0) launchConfetti();
+        }
+        
+        function checkChallengeInput() {
+            const answer = document.getElementById('challengeInput').value.trim();
+            const correct = Math.abs(parseFloat(answer) - parseFloat(challengeCurrent.answer)) < 0.1;
+            document.getElementById('challengeResult').innerHTML = `<div class="result-message ${correct ? 'result-correct' : 'result-wrong'}">
+                ${correct ? '✅ Правильно! +15 очков' : `❌ Правильный ответ: ${challengeCurrent.answer}`}
+            </div>`;
+            updateChallenge(15, correct);
+            if (correct && challengeStreak % 5 === 0) launchConfetti();
+        }
+
+        // =================== КОНФЕТТИ ===================
+        function launchConfetti() {
+            const colors = ['#f56565', '#ed8936', '#ecc94b', '#48bb78', '#4299e1', '#9f7aea'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        // =================== ВИКТОРИНА ===================
+        let quizQuestions = [];
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let quizTimer = null;
+        let quizTimeLeft = 0;
+
+        function startQuiz() {
+            quizQuestions = [
+                { text: 'Начало координат имеет координаты \((0, 0)\)', answer: true },
+                { text: 'Ось Oy — это горизонтальная ось', answer: false },
+                { text: 'Точка \((3, -2)\) находится во II четверти', answer: false },
+                { text: 'Если абсцисса равна 0, точка лежит на оси Oy', answer: true },
+                { text: 'График \(y = kx\) проходит через начало координат', answer: true },
+                { text: 'Точка \((-5, -3)\) находится в III четверти', answer: true },
+                { text: 'Ордината — это первое число в записи координат', answer: false },
+                { text: 'График обратной пропорциональности — это прямая', answer: false },
+                { text: 'Точка \((0, 7)\) лежит на оси ординат', answer: true },
+                { text: 'В I четверти оба числа положительные', answer: true },
+                { text: 'Декарт придумал систему координат в 1637 году', answer: true },
+                { text: 'Точка \((4, 0)\) лежит на оси ординат', answer: false },
+                { text: 'При симметрии относительно Ox точка \((x, y)\) превращается в \((x, -y)\)', answer: true },
+                { text: 'Гипербола — это график прямой пропорциональности', answer: false },
+                { text: 'Координатных четвертей всего 4', answer: true }
+            ];
+            
+            quizQuestions.sort(() => Math.random() - 0.5);
+            quizQuestions = quizQuestions.slice(0, 10);
+            
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            document.getElementById('quizTotal').textContent = quizQuestions.length;
+            document.getElementById('quizScore').textContent = 0;
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (currentQuizQuestion >= quizQuestions.length) {
+                document.getElementById('quizQuestion').textContent = '🎉 Викторина завершена!';
+                document.getElementById('quizFeedback').innerHTML = `
+                    <div class="result-message ${quizScore >= 7 ? 'result-correct' : 'result-wrong'}">
+                        Ваш результат: ${quizScore} из ${quizQuestions.length}!
+                    </div>
+                `;
+                if (quizScore >= 7) launchConfetti();
+                return;
+            }
+            
+            document.getElementById('quizCurrent').textContent = currentQuizQuestion + 1;
+            document.getElementById('quizQuestion').textContent = quizQuestions[currentQuizQuestion].text;
+            document.getElementById('quizFeedback').innerHTML = '';
+            
+            quizTimeLeft = 10;
+            updateQuizTimer();
+            clearInterval(quizTimer);
+            quizTimer = setInterval(() => {
+                quizTimeLeft--;
+                updateQuizTimer();
+                if (quizTimeLeft <= 0) {
+                    clearInterval(quizTimer);
+                    answerQuiz(false);
+                }
+            }, 1000);
+        }
+
+        function updateQuizTimer() {
+            const timerEl = document.getElementById('quizTimer');
+            timerEl.textContent = `⏱️ ${quizTimeLeft} сек`;
+            if (quizTimeLeft <= 3) {
+                timerEl.style.color = '#e53e3e';
+            } else {
+                timerEl.style.color = '#4a5568';
+            }
+        }
+
+        function answerQuiz(answer) {
+            clearInterval(quizTimer);
+            const correct = quizQuestions[currentQuizQuestion].answer;
+            const isCorrect = answer === correct;
+            
+            if (isCorrect) quizScore++;
+            document.getElementById('quizScore').textContent = quizScore;
+            
+            const feedback = document.getElementById('quizFeedback');
+            feedback.innerHTML = `
+                <div class="result-message ${isCorrect ? 'result-correct' : 'result-wrong'}">
+                    ${isCorrect ? '✅ Правильно!' : '❌ Неправильно!'} 
+                    ${!isCorrect ? `Правильный ответ: ${correct ? 'Верю ✅' : 'Не верю ❌'}` : ''}
+                </div>
+            `;
+            
+            currentQuizQuestion++;
+            setTimeout(showQuizQuestion, 1500);
+        }
+
+        // =================== РИСОВАНИЕ ===================
+        let drawMode = 'free';
+        let isDrawing = false;
+        let drawStartX, drawStartY;
+
+        function initDrawCanvas() {
+            const canvas = document.getElementById('drawCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 350, originY: 300 });
+            
+            canvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                drawStartX = e.clientX - rect.left;
+                drawStartY = e.clientY - rect.top;
+                
+                if (drawMode === 'free') {
+                    ctx.beginPath();
+                    ctx.moveTo(drawStartX, drawStartY);
+                }
+            });
+            
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                
+                const scale = 40;
+                const x = Math.round((mx - 350) / scale);
+                const y = Math.round((300 - my) / scale);
+                document.getElementById('drawCursor').textContent = `(${x}, ${y})`;
+                
+                if (isDrawing && drawMode === 'free') {
+                    ctx.strokeStyle = document.getElementById('drawColor').value;
+                    ctx.lineWidth = parseInt(document.getElementById('drawWidth').value);
+                    ctx.lineTo(mx, my);
+                    ctx.stroke();
+                }
+            });
+            
+            canvas.addEventListener('mouseup', (e) => {
+                if (!isDrawing) return;
+                isDrawing = false;
+                
+                const rect = canvas.getBoundingClientRect();
+                const endX = e.clientX - rect.left;
+                const endY = e.clientY - rect.top;
+                
+                const scale = 40;
+                const x1 = Math.round((drawStartX - 350) / scale);
+                const y1 = Math.round((300 - drawStartY) / scale);
+                const x2 = Math.round((endX - 350) / scale);
+                const y2 = Math.round((300 - endY) / scale);
+                
+                ctx.strokeStyle = document.getElementById('drawColor').value;
+                ctx.lineWidth = parseInt(document.getElementById('drawWidth').value);
+                
+                if (drawMode === 'line') {
+                    ctx.beginPath();
+                    ctx.moveTo(drawStartX, drawStartY);
+                    ctx.lineTo(endX, endY);
+                    ctx.stroke();
+                } else if (drawMode === 'circle') {
+                    const radius = Math.sqrt(Math.pow(endX - drawStartX, 2) + Math.pow(endY - drawStartY, 2));
+                    ctx.beginPath();
+                    ctx.arc(drawStartX, drawStartY, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                } else if (drawMode === 'rect') {
+                    ctx.strokeRect(drawStartX, drawStartY, endX - drawStartX, endY - drawStartY);
+                }
+                
+                document.getElementById('drawCursor').textContent = `Линия: (${x1}, ${y1}) → (${x2}, ${y2})`;
+            });
+        }
+
+        function setDrawMode(mode) {
+            drawMode = mode;
+            const modes = {
+                'line': '📏 Рисование линий',
+                'circle': '⭕ Рисование окружностей',
+                'rect': '⬜ Рисование прямоугольников',
+                'free': '✏️ Свободное рисование'
+            };
+            document.getElementById('drawMode').textContent = modes[mode];
+        }
+
+        function clearDrawCanvas() {
+            initDrawCanvas();
+        }
+
+        // =================== ДВИЖЕНИЕ ТОЧКИ ===================
+        let movePos = { x: 0, y: 0 };
+        let moveDist = 0;
+        let moveTrail = true;
+        let moveTrailPoints = [];
+
+        function initMoveCanvas() {
+            const canvas = document.getElementById('moveCanvas');
+            const ctx = canvas.getContext('2d');
+            drawMoveCanvas();
+            
+            canvas.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowUp': movePoint(0, 1); break;
+                    case 'ArrowDown': movePoint(0, -1); break;
+                    case 'ArrowLeft': movePoint(-1, 0); break;
+                    case 'ArrowRight': movePoint(1, 0); break;
+                }
+            });
+            canvas.focus();
+        }
+
+        function drawMoveCanvas() {
+            const canvas = document.getElementById('moveCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 300 });
+            
+            if (moveTrail && moveTrailPoints.length > 1) {
+                ctx.strokeStyle = 'rgba(90, 103, 216, 0.5)';
+                ctx.lineWidth = 3;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                moveTrailPoints.forEach((p, i) => {
+                    const px = 300 + p.x * 40;
+                    const py = 300 - p.y * 40;
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                });
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+            
+            const px = 300 + movePos.x * 40;
+            const py = 300 - movePos.y * 40;
+            
+            const time = Date.now() / 500;
+            const radius = 8 + Math.sin(time) * 2;
+            
+            ctx.fillStyle = '#e53e3e';
+            ctx.beginPath();
+            ctx.arc(px, py, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.font = 'bold 14px Segoe UI';
+            ctx.fillStyle = '#2d3748';
+            ctx.fillText(`(${movePos.x}, ${movePos.y})`, px + 15, py - 15);
+        }
+
+        function movePoint(dx, dy) {
+            moveTrailPoints.push({ ...movePos });
+            movePos.x += dx;
+            movePos.y += dy;
+            moveDist += Math.abs(dx) + Math.abs(dy);
+            
+            document.getElementById('movePosition').textContent = `(${movePos.x}, ${movePos.y})`;
+            document.getElementById('moveDistance').textContent = moveDist;
+            
+            drawMoveCanvas();
+        }
+
+        function resetMove() {
+            movePos = { x: 0, y: 0 };
+            moveDist = 0;
+            moveTrailPoints = [];
+            document.getElementById('movePosition').textContent = '(0, 0)';
+            document.getElementById('moveDistance').textContent = 0;
+            drawMoveCanvas();
+        }
+
+        function toggleTrail() {
+            moveTrail = !moveTrail;
+            document.getElementById('trailStatus').textContent = moveTrail ? 'ВКЛ' : 'ВЫКЛ';
+            if (!moveTrail) {
+                moveTrailPoints = [];
+            }
+            drawMoveCanvas();
+        }
+
+        setInterval(() => {
+            if (document.getElementById('move') && document.getElementById('move').classList.contains('active')) {
+                drawMoveCanvas();
+            }
+        }, 100);
+
+        // =================== СИММЕТРИЯ ===================
+        let symmetryPoints = [];
+        let symmetryX = false;
+        let symmetryY = false;
+        let symmetryO = false;
+
+        function handleSymmetryClick(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const scale = 40;
+            const x = Math.round((mx - 350) / scale);
+            const y = Math.round((300 - my) / scale);
+            
+            symmetryPoints.push({ x, y });
+            document.getElementById('symPoints').textContent = symmetryPoints.length;
+            drawSymmetry();
+        }
+
+        function drawSymmetry() {
+            const canvas = document.getElementById('symmetryCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 350, originY: 300 });
+            
+            symmetryPoints.forEach(p => {
+                drawPoint(ctx, p.x, p.y, '', '#e53e3e', 350, 300, 40);
+            });
+            
+            if (symmetryX) {
+                symmetryPoints.forEach(p => drawPoint(ctx, p.x, -p.y, '', '#3182ce', 350, 300, 40));
+            }
+            if (symmetryY) {
+                symmetryPoints.forEach(p => drawPoint(ctx, -p.x, p.y, '', '#38a169', 350, 300, 40));
+            }
+            if (symmetryO) {
+                symmetryPoints.forEach(p => drawPoint(ctx, -p.x, -p.y, '', '#d69e2e', 350, 300, 40));
+            }
+            
+            if (symmetryPoints.length > 1) {
+                ctx.strokeStyle = 'rgba(229, 62, 62, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(350 + symmetryPoints[0].x * 40, 300 - symmetryPoints[0].y * 40);
+                for (let i = 1; i < symmetryPoints.length; i++) {
+                    ctx.lineTo(350 + symmetryPoints[i].x * 40, 300 - symmetryPoints[i].y * 40);
+                }
+                ctx.stroke();
+            }
+        }
+
+        function toggleSymmetryX() { symmetryX = !symmetryX; drawSymmetry(); }
+        function toggleSymmetryY() { symmetryY = !symmetryY; drawSymmetry(); }
+        function toggleSymmetryO() { symmetryO = !symmetryO; drawSymmetry(); }
+
+        function clearSymmetry() {
+            symmetryPoints = [];
+            symmetryX = false;
+            symmetryY = false;
+            symmetryO = false;
+            document.getElementById('symPoints').textContent = 0;
+            const canvas = document.getElementById('symmetryCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 350, originY: 300 });
+        }
+
+        // =================== КОНСТРУКТОР ===================
+        let builderPoints = [];
+        let builderConnected = false;
+
+        function handleBuilderClick(event) {
+            const canvas = event.target;
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            
+            const scale = 40;
+            const x = Math.round((mx - 300) / scale);
+            const y = Math.round((300 - my) / scale);
+            
+            builderPoints.push({ x, y });
+            builderConnected = false;
+            updateBuilderCoords();
+            drawBuilder();
+        }
+
+        function drawBuilder() {
+            const canvas = document.getElementById('builderCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 300 });
+            
+            if (builderConnected && builderPoints.length > 1) {
+                ctx.strokeStyle = '#5a67d8';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(300 + builderPoints[0].x * 40, 300 - builderPoints[0].y * 40);
+                for (let i = 1; i < builderPoints.length; i++) {
+                    ctx.lineTo(300 + builderPoints[i].x * 40, 300 - builderPoints[i].y * 40);
+                }
+                ctx.closePath();
+                ctx.stroke();
+                
+                ctx.fillStyle = 'rgba(90, 103, 216, 0.1)';
+                ctx.fill();
+            }
+            
+            builderPoints.forEach((p, i) => {
+                drawPoint(ctx, p.x, p.y, String(i + 1), '#e53e3e', 300, 300, 40);
+            });
+        }
+
+        function connectBuilderPoints() { builderConnected = true; drawBuilder(); }
+        function undoBuilderPoint() { builderPoints.pop(); updateBuilderCoords(); drawBuilder(); }
+
+        function clearBuilder() {
+            builderPoints = [];
+            builderConnected = false;
+            updateBuilderCoords();
+            const canvas = document.getElementById('builderCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 300 });
+        }
+
+        function updateBuilderCoords() {
+            const container = document.getElementById('builderCoords');
+            if (builderPoints.length === 0) {
+                container.textContent = 'Координаты: пока нет точек';
+            } else {
+                container.textContent = builderPoints.map(p => `(${p.x}, ${p.y})`).join(' → ');
+            }
+        }
+
+        function exportBuilderCoords() {
+            if (builderPoints.length === 0) { alert('Сначала добавьте точки!'); return; }
+            const text = builderPoints.map(p => `(${p.x}, ${p.y})`).join(', ');
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Координаты скопированы в буфер обмена!');
+            }).catch(() => {
+                alert('Координаты: ' + text);
+            });
+        }
+
+        function loadBuilderTemplate(type) {
+            builderPoints = [];
+            builderConnected = false;
+            
+            switch(type) {
+                case 'pentagon':
+                    for (let i = 0; i < 5; i++) {
+                        const angle = (i * 72 - 90) * Math.PI / 180;
+                        builderPoints.push({
+                            x: Math.round(Math.cos(angle) * 3),
+                            y: Math.round(Math.sin(angle) * 3)
+                        });
+                    }
+                    break;
+                case 'hexagon':
+                    for (let i = 0; i < 6; i++) {
+                        const angle = (i * 60 - 90) * Math.PI / 180;
+                        builderPoints.push({
+                            x: Math.round(Math.cos(angle) * 3),
+                            y: Math.round(Math.sin(angle) * 3)
+                        });
+                    }
+                    break;
+                case 'arrow':
+                    builderPoints = [{x:0,y:3},{x:2,y:0},{x:1,y:0},{x:1,y:-3},{x:-1,y:-3},{x:-1,y:0},{x:-2,y:0}];
+                    break;
+                case 'heart':
+                    builderPoints = [{x:0,y:3},{x:-1,y:4},{x:-3,y:3},{x:-3,y:1},{x:-2,y:-1},{x:0,y:-3},{x:2,y:-1},{x:3,y:1},{x:3,y:3},{x:1,y:4}];
+                    break;
+            }
+            
+            builderConnected = true;
+            updateBuilderCoords();
+            drawBuilder();
+        }
+
+        // =================== ЗАДАЧНИК ===================
+        let currentProblem = null;
+        let currentProblemDifficulty = 'easy';
+        let problemsCorrect = 0;
+        let problemsTotal = 0;
+
+        function generateProblem(difficulty) {
+            currentProblemDifficulty = difficulty;
+            const canvas = document.getElementById('problemCanvas');
+            const ctx = canvas.getContext('2d');
+            drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 250, originY: 200 });
+            
+            document.getElementById('problemResult').innerHTML = '';
+            document.getElementById('problemInput').innerHTML = '';
+            
+            if (difficulty === 'easy') {
+                const x = Math.floor(Math.random() * 8) - 4;
+                const y = Math.floor(Math.random() * 8) - 4;
+                if (x === 0 || y === 0) return generateProblem('easy');
+                
+                drawPoint(ctx, x, y, 'A', '#e53e3e', 250, 200, 40);
+                
+                let correctQ;
+                if (x > 0 && y > 0) correctQ = 1;
+                else if (x < 0 && y > 0) correctQ = 2;
+                else if (x < 0 && y < 0) correctQ = 3;
+                else correctQ = 4;
+                
+                currentProblem = {
+                    type: 'quarter',
+                    text: `В какой четверти находится точка A(${x}, ${y})?`,
+                    answer: correctQ
+                };
+                
+            } else if (difficulty === 'medium') {
+                const x1 = Math.floor(Math.random() * 4) + 1;
+                const y1 = Math.floor(Math.random() * 4) + 1;
+                const points = [
+                    {x:x1,y:y1},{x:x1,y:-y1},{x:-x1,y:-y1},{x:-x1,y:y1},{x:x1,y:y1}
+                ];
+                
+                ctx.strokeStyle = '#5a67d8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(250 + points[0].x * 40, 200 - points[0].y * 40);
+                for (let i = 1; i < points.length; i++) {
+                    ctx.lineTo(250 + points[i].x * 40, 200 - points[i].y * 40);
+                }
+                ctx.stroke();
+                
+                points.slice(0, 4).forEach((p, i) => {
+                    drawPoint(ctx, p.x, p.y, String.fromCharCode(65 + i), '#e53e3e', 250, 200, 40);
+                });
+                
+                const perimeter = 2 * (2 * x1 + 2 * y1);
+                
+                currentProblem = {
+                    type: 'perimeter',
+                    text: `Найдите периметр прямоугольника ABCD`,
+                    answer: perimeter
+                };
+                
+            } else if (difficulty === 'hard') {
+                const x = Math.floor(Math.random() * 5) + 1;
+                const y = Math.floor(Math.random() * 5) + 1;
+                
+                drawPoint(ctx, x, y, 'A', '#e53e3e', 250, 200, 40);
+                
+                const symType = Math.floor(Math.random() * 3);
+                let answer, question;
+                
+                if (symType === 0) {
+                    question = `Точка A' симметрична точке A(${x}, ${y}) относительно оси Ox. Найдите ординату точки A'`;
+                    answer = -y;
+                } else if (symType === 1) {
+                    question = `Точка A' симметрична точке A(${x}, ${y}) относительно оси Oy. Найдите абсциссу точки A'`;
+                    answer = -x;
+                } else {
+                    question = `Точка A' симметрична точке A(${x}, ${y}) относительно начала координат. Найдите сумму координат точки A'`;
+                    answer = -x - y;
+                }
+                
+                currentProblem = {
+                    type: 'symmetry',
+                    text: question,
+                    answer: answer
+                };
+            }
+            
+            document.getElementById('problemText').textContent = currentProblem.text;
+            document.getElementById('problemInput').innerHTML = `
+                <input type="number" class="answer-input" id="problemAnswer" style="width: 150px; font-size: 1.2em;">
+            `;
+        }
+
+        function checkProblem() {
+            if (!currentProblem) return;
+            
+            const answer = parseFloat(document.getElementById('problemAnswer').value);
+            problemsTotal++;
+            
+            const result = document.getElementById('problemResult');
+            if (answer === currentProblem.answer) {
+                problemsCorrect++;
+                result.innerHTML = '<div class="result-message result-correct">✅ Правильно! Молодец!</div>';
+                launchConfetti();
+            } else {
+                result.innerHTML = `<div class="result-message result-wrong">❌ Неправильно! Правильный ответ: ${currentProblem.answer}</div>`;
+            }
+            
+            document.getElementById('problemsCorrect').textContent = problemsCorrect;
+            document.getElementById('problemsTotal').textContent = problemsTotal;
+        }
+
+        // =================== ОБНОВЛЁННАЯ showSection ===================
+        const originalShowSection = showSection;
+        showSection = function(id) {
+            document.querySelectorAll('.lesson-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (id === 'intro') drawIntroCanvas();
+            if (id === 'coords') drawPlaneCanvas();
+            if (id === 'quarters') { drawQuartersCanvas(); generateQuarterTasks(); }
+            if (id === 'practice') { drawInteractiveCanvas(); generateTask1Points(); generateTask2Points(); }
+            if (id === 'graphs') { drawTempGraph(); drawProportionalGraph(); drawInverseGraph(); }
+            if (id === 'game') startGame();
+            if (id === 'test') generateTest();
+            if (id === 'quiz') startQuiz();
+            if (id === 'draw') initDrawCanvas();
+            if (id === 'move') initMoveCanvas();
+            if (id === 'symmetry') {
+                const canvas = document.getElementById('symmetryCanvas');
+                const ctx = canvas.getContext('2d');
+                drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 350, originY: 300 });
+            }
+            if (id === 'builder') {
+                const canvas = document.getElementById('builderCanvas');
+                const ctx = canvas.getContext('2d');
+                drawGrid(ctx, canvas.width, canvas.height, { scale: 40, originX: 300, originY: 300 });
+            }
+            if (id === 'problems') generateProblem('easy');
+            if (id === 'block1') { generateRay1Task(); generateRay2Task(); generateRay3Task(); generateRay4Task(); }
+            if (id === 'block2') { generateLine1Task(); generateModulTask(); generateOppositeTask(); generateBetweenTask(); }
+            if (id === 'block3') { generateBP1Task(); generateBP3Task(); generateBP4Task(); }
+            if (id === 'block4') { generateGraph1Task(); generateGraph2Task(); generateGraph3Task(); }
+            if (id === 'block5') { generateProp1Task(); generateProp2Task(); generateProp3Task(); generateProp4Task(); }
+            if (id === 'block6') { generateFinalTest(); }
+            if (id === 'challenge') { updateChallengeDisplay(); generateChallengeQuestion(); }
+
+            // Перерендеривание KaTeX
+            setTimeout(initKatex, 100);
+        };
+
+        // Инициализация KaTeX
+        function initKatex() {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\(', right: '\)', display: false},
+                        {left: '\[', right: '\]', display: true}
+                    ]
+                });
+            }
+        }
+
+        // Инициализация
+        window.onload = function() {
+            drawIntroCanvas();
+            setTimeout(initKatex, 500);
+        };
+    </script>
+</body>
+</html>
