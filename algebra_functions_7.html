@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алгебра 7 — §19–20: Функция и Линейная функция</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+:root {
+  --pri: #7c3aed;
+  --pri2: #6d28d9;
+  --pri-l: #ede9fe;
+  --sec: #2563eb;
+  --bg: #f8f7ff;
+  --bg2: #ffffff;
+  --bg3: #f1f0f9;
+  --card: #ffffff;
+  --border: #e5e0f5;
+  --text: #1e1b2e;
+  --text2: #5b5479;
+  --green: #059669;
+  --green-l: #d1fae5;
+  --red: #dc2626;
+  --red-l: #fee2e2;
+  --amber: #d97706;
+  --amber-l: #fef3c7;
+  --blue-l: #dbeafe;
+  --shadow: 0 2px 12px rgba(124,58,237,0.10);
+  --radius: 14px;
+}
+[data-theme="dark"] {
+  --bg: #13111c;
+  --bg2: #1c1928;
+  --bg3: #211e30;
+  --card: #1c1928;
+  --border: #2e2a42;
+  --text: #f0eeff;
+  --text2: #a89ec8;
+  --pri-l: #2d1f5e;
+  --green-l: #064e3b;
+  --red-l: #7f1d1d;
+  --amber-l: #78350f;
+  --blue-l: #1e3a5f;
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+a { color: var(--pri); }
+
+/* ===== TOP BAR ===== */
+.topbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+.topbar-title { font-weight: 700; font-size: 17px; color: var(--pri); flex: 1; }
+.theme-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .2s;
+}
+.theme-btn:hover { background: var(--pri); color: #fff; border-color: var(--pri); }
+
+/* ===== TABS ===== */
+.tabs-wrap {
+  background: var(--bg2);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  padding: 0 20px;
+  gap: 4px;
+  overflow-x: auto;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text2);
+  padding: 14px 18px 11px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .2s;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+}
+.tab-btn:hover { color: var(--pri); }
+.tab-btn.active { color: var(--pri); border-bottom-color: var(--pri); }
+
+/* ===== PANES ===== */
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+.content-wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* ===== PARA HERO ===== */
+.para-hero {
+  border-radius: var(--radius);
+  padding: 32px 32px 28px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.para-hero.ph-purple { background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 60%, #2563eb 100%); }
+.para-hero.ph-blue   { background: linear-gradient(135deg, #2563eb 0%, #4f46e5 60%, #7c3aed 100%); }
+.para-hero.ph-tasks  { background: linear-gradient(135deg, #059669 0%, #0891b2 60%, #2563eb 100%); }
+.para-hero::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.ph-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 3px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: .5px;
+}
+.para-hero h2 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.para-hero p  { font-size: 14px; opacity: .88; max-width: 540px; }
+
+/* ===== SECTION HEADING ===== */
+.sec-head {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--pri);
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sec-head::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 20px;
+  background: var(--pri);
+  border-radius: 3px;
+}
+
+/* ===== FCARD ===== */
+.fcard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.fcard h4 { font-size: 14px; font-weight: 700; color: var(--pri); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.fcard p  { font-size: 15px; color: var(--text); }
+
+/* ===== FORMULA GRID ===== */
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.fgrid-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.fgrid-item .fi-icon { font-size: 22px; color: var(--pri); margin-bottom: 8px; }
+.fgrid-item .fi-label { font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+.fgrid-item .fi-val { font-size: 15px; color: var(--text); }
+
+/* ===== REMEMBER / WARN / STUDENT ===== */
+.remember-box, .warn-box, .student-box {
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.remember-box { background: var(--pri-l); border-left: 4px solid var(--pri); }
+.warn-box      { background: var(--amber-l); border-left: 4px solid var(--amber); }
+.student-box   { background: var(--blue-l); border-left: 4px solid var(--sec); }
+.remember-box .rb-icon { font-size: 20px; color: var(--pri); margin-top: 1px; }
+.warn-box      .rb-icon { font-size: 20px; color: var(--amber); margin-top: 1px; }
+.student-box   .rb-icon { font-size: 20px; color: var(--sec); margin-top: 1px; }
+.rb-text { font-size: 14px; color: var(--text); }
+.rb-text strong { font-weight: 700; }
+
+/* ===== EXAMPLE BOX ===== */
+.example-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.example-box .ex-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--sec);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.ex-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.ex-num {
+  background: var(--pri);
+  color: #fff;
+  border-radius: 50%;
+  width: 22px; height: 22px;
+  min-width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ex-ans {
+  background: var(--green-l);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* ===== ANALYSIS TABLE ===== */
+.atab {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+.atab th {
+  background: var(--pri);
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-align: left;
+}
+.atab td {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 14px;
+  color: var(--text);
+}
+.atab tr:last-child td { border-bottom: none; }
+.atab td.ok  { background: var(--green-l); font-weight: 600; color: var(--text); }
+.atab td.fail { background: var(--red-l); font-weight: 600; color: var(--text); }
+
+/* ===== IDIAG / CANVAS AREA ===== */
+.idiag {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.idiag h4 { font-size: 14px; font-weight: 700; color: var(--pri); margin-bottom: 12px; }
+.idiag canvas {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: 280px;
+  margin: 0 auto 12px;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.slider-row label { font-weight: 600; color: var(--text2); min-width: 60px; }
+.slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--pri);
+  cursor: pointer;
+}
+.slider-row .sv {
+  min-width: 38px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--pri);
+  font-family: 'Inter', monospace;
+}
+
+/* ===== MCQ ===== */
+.mcq-wrap { margin-bottom: 16px; }
+.mcq-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+.mcq-opts { display: flex; flex-direction: column; gap: 7px; }
+.mcq-opt {
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  transition: all .18s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mcq-opt:hover { border-color: var(--pri); background: var(--pri-l); }
+.mcq-opt.mcq-cor { background: var(--green-l); border-color: var(--green); color: var(--text); }
+.mcq-opt.mcq-wrong { background: var(--red-l); border-color: var(--red); color: var(--text); }
+.mcq-opt.disabled { pointer-events: none; }
+.mcq-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--border);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text2);
+  flex-shrink: 0;
+}
+.mcq-opt.mcq-cor  .mcq-badge { background: var(--green); color: #fff; }
+.mcq-opt.mcq-wrong .mcq-badge { background: var(--red); color: #fff; }
+.feedback {
+  display: none;
+  border-radius: 9px;
+  padding: 9px 14px;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.feedback.show { display: block; }
+.feedback.fb-ok   { background: var(--green-l); color: var(--text); border-left: 4px solid var(--green); }
+.feedback.fb-fail { background: var(--red-l);   color: var(--text); border-left: 4px solid var(--red); }
+
+/* ===== CONTROL Q ===== */
+.ctrl-q {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.ctrl-q-head {
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  transition: background .15s;
+}
+.ctrl-q-head:hover { background: var(--bg3); }
+.ctrl-q-head .cq-num {
+  background: var(--pri);
+  color: #fff;
+  border-radius: 50%;
+  width: 22px; height: 22px;
+  min-width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.ctrl-q-head .cq-arrow { font-size: 12px; color: var(--text2); transition: transform .2s; }
+.ctrl-q-head.open .cq-arrow { transform: rotate(180deg); }
+.ctrl-q-body {
+  display: none;
+  padding: 14px 18px 16px;
+  font-size: 14px;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+.ctrl-q-body.open { display: block; }
+
+/* ===== TASKS (§ Задачи) ===== */
+.score-bar {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.chip {
+  border-radius: 20px;
+  padding: 4px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.chip-ok  { background: var(--green-l); color: var(--text); }
+.chip-fail { background: var(--red-l);   color: var(--text); }
+.chip-tot { background: var(--pri-l);   color: var(--text); }
+.prog-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: var(--bg3);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 100px;
+}
+.prog-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--pri), var(--sec));
+  transition: width .4s;
+}
+.nav-dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.nav-dot {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg3);
+  color: var(--text2);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+.nav-dot.nd-cur  { border-color: var(--pri); background: var(--pri); color: #fff; }
+.nav-dot.nd-ok   { border-color: var(--green); background: var(--green-l); color: var(--text); }
+.nav-dot.nd-fail { border-color: var(--red);   background: var(--red-l);   color: var(--text); }
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+  min-height: 160px;
+}
+.task-card .tk-para { font-size: 12px; font-weight: 600; color: var(--pri); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.task-card .tk-q { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 16px; }
+.num-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.num-input-row input[type="number"] {
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 16px;
+  font-family: 'Inter', monospace;
+  color: var(--text);
+  width: 110px;
+  outline: none;
+  transition: border-color .2s;
+}
+.num-input-row input:focus { border-color: var(--pri); }
+.num-input-row input.inp-ok   { border-color: var(--green); background: var(--green-l); }
+.num-input-row input.inp-fail { border-color: var(--red);   background: var(--red-l); }
+.check-btn {
+  background: var(--pri);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Inter', sans-serif;
+}
+.check-btn:hover { background: var(--pri2); }
+.check-btn:disabled { opacity: .5; cursor: not-allowed; }
+.nav-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.nav-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Inter', sans-serif;
+}
+.nav-btn:hover { background: var(--pri); color: #fff; border-color: var(--pri); }
+.nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+.results-panel {
+  background: var(--card);
+  border: 2px solid var(--pri);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  display: none;
+  box-shadow: var(--shadow);
+}
+.results-panel.show { display: block; }
+.rp-icon { font-size: 48px; margin-bottom: 10px; }
+.rp-score { font-size: 32px; font-weight: 800; color: var(--pri); margin-bottom: 6px; }
+.rp-msg { font-size: 15px; color: var(--text2); margin-bottom: 18px; }
+.restart-btn {
+  background: var(--pri);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.restart-btn:hover { background: var(--pri2); }
+
+/* ===== SLIDER DEMO WRAPPER ===== */
+.demo-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.demo-wrap h4 { font-size: 14px; font-weight: 700; color: var(--pri); margin-bottom: 12px; }
+.demo-wrap canvas {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: 260px;
+  margin: 0 auto 14px;
+  border-radius: 8px;
+}
+.demo-formula {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--pri);
+  margin-bottom: 10px;
+}
+
+/* ===== NB PAPER ===== */
+.nb-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px 18px 28px;
+  margin-bottom: 16px;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+.nb-wrap::before {
+  content: '';
+  position: absolute;
+  left: 16px; top: 0; bottom: 0;
+  width: 2px;
+  background: #f87171;
+  opacity: .5;
+  border-radius: 2px;
+}
+.nb-wrap p { font-size: 14px; color: var(--text); line-height: 1.9; }
+
+/* ===== GRAPH TASKS ===== */
+.pick-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
+.pick-item { border:3px solid var(--border); border-radius:10px; overflow:hidden; cursor:pointer; transition:all .18s; background:var(--card); }
+.pick-item:hover { border-color:var(--pri); }
+.pick-item.pi-cor { border-color:var(--green); background:var(--green-l); pointer-events:none; }
+.pick-item.pi-wrong { border-color:var(--red); background:var(--red-l); pointer-events:none; }
+.pick-item canvas { display:block; width:100%; height:110px; }
+.pick-label { text-align:center; font-size:12px; font-weight:700; padding:4px 4px 6px; color:var(--text2); }
+.yn-row { display:flex; gap:10px; margin-bottom:12px; }
+.yn-btn { flex:1; padding:11px; border-radius:9px; border:2px solid var(--border); background:var(--bg3); font-size:15px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; color:var(--text); transition:all .18s; }
+.yn-btn:hover { border-color:var(--pri); background:var(--pri-l); }
+.yn-btn.yn-cor { border-color:var(--green); background:var(--green-l); }
+.yn-btn.yn-wrong { border-color:var(--red); background:var(--red-l); }
+.yn-btn[disabled] { pointer-events:none; }
+.gr-cv-main { display:block; width:100%; max-width:360px; height:220px; margin:0 auto 14px; border-radius:8px; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .content-wrap { padding: 16px 12px 50px; }
+  .para-hero { padding: 20px 18px; }
+  .para-hero h2 { font-size: 20px; }
+  .fgrid { grid-template-columns: 1fr 1fr; }
+  .atab { font-size: 12px; }
+  .atab th, .atab td { padding: 7px 9px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-title"><i class="fas fa-square-root-variable"></i> Алгебра 7 &mdash; §19–20</div>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+    <i class="fas fa-moon" id="themeIcon"></i> <span id="themeLabel">Светлая</span>
+  </button>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <button class="tab-btn active" data-tab="p19" onclick="switchTab('p19',this)">
+    <i class="fas fa-infinity"></i> §19 Функция
+  </button>
+  <button class="tab-btn" data-tab="p20" onclick="switchTab('p20',this)">
+    <i class="fas fa-chart-line"></i> §20 Линейная функция
+  </button>
+  <button class="tab-btn" data-tab="graphs" onclick="switchTab('graphs',this)">
+    <i class="fas fa-chart-bar"></i> Графики
+  </button>
+  <button class="tab-btn" data-tab="tasks" onclick="switchTab('tasks',this)">
+    <i class="fas fa-pen-to-square"></i> Задачи
+  </button>
+</div>
+
+<!-- ============================================================ -->
+<!-- §19 ФУНКЦИЯ -->
+<!-- ============================================================ -->
+<div class="tab-pane active" id="tab-p19">
+<div class="content-wrap">
+
+  <div class="para-hero ph-purple">
+    <div class="ph-tag">§19</div>
+    <h2>Функция</h2>
+    <p>Понятие функции, область определения и значений, нули функции, знакопостоянство</p>
+  </div>
+
+  <!-- ОПРЕДЕЛЕНИЕ -->
+  <div class="sec-head"><span>Определение функции</span></div>
+
+  <div class="fcard">
+    <h4>Определение</h4>
+    <p>
+      <strong>Функция</strong> &mdash; это правило, по которому каждому значению переменной $x$ из множества $D$ ставится в соответствие <em>одно</em> значение $y$.<br>
+      Записывают: $y = f(x)$, где $x$ &mdash; <strong>аргумент</strong>, $y$ &mdash; <strong>значение функции</strong>.
+    </p>
+  </div>
+
+  <div class="remember-box">
+    <i class="fas fa-star rb-icon"></i>
+    <div class="rb-text">
+      <strong>Ключевое условие:</strong> каждому $x$ соответствует ровно одно значение $y$. Если хотя бы одному $x$ соответствуют два разных $y$ &mdash; это не функция.
+    </div>
+  </div>
+
+  <!-- 4 СПОСОБА ЗАДАНИЯ -->
+  <div class="sec-head"><span>Способы задания функции</span></div>
+
+  <div class="fgrid">
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-function"></i></div>
+      <div class="fi-label">Аналитический</div>
+      <div class="fi-val">Формулой: $y = 2x + 1$</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-table"></i></div>
+      <div class="fi-label">Таблица</div>
+      <div class="fi-val">
+        <table style="font-size:13px;margin:0 auto;border-collapse:collapse">
+          <tr><td style="padding:2px 8px;font-weight:700">$x$</td><td style="padding:2px 8px">0</td><td style="padding:2px 8px">1</td><td style="padding:2px 8px">2</td></tr>
+          <tr><td style="padding:2px 8px;font-weight:700">$y$</td><td style="padding:2px 8px">1</td><td style="padding:2px 8px">3</td><td style="padding:2px 8px">5</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="fi-label">Графический</div>
+      <div class="fi-val">График &mdash; прямая, парабола, гипербола и т.д.</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="fi-label">Словесный</div>
+      <div class="fi-val">"Цена товара равна произведению..."</div>
+    </div>
+  </div>
+
+  <!-- ОБЛАСТЬ ОПРЕДЕЛЕНИЯ И ЗНАЧЕНИЙ -->
+  <div class="sec-head"><span>Область определения и значений</span></div>
+
+  <div class="fgrid">
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrows-left-right"></i></div>
+      <div class="fi-label">Область определения $D(f)$</div>
+      <div class="fi-val">Все допустимые значения $x$ (аргумента)</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrows-up-down"></i></div>
+      <div class="fi-label">Область значений $E(f)$</div>
+      <div class="fi-val">Все возможные значения $y$ (функции)</div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-head"><i class="fas fa-lightbulb"></i> Пример: найти $D(f)$ для $f(x) = \dfrac{1}{x-3}$</div>
+    <div class="ex-step"><span class="ex-num">1</span><span>Знаменатель не может равняться нулю: $x - 3 \neq 0$</span></div>
+    <div class="ex-step"><span class="ex-num">2</span><span>Значит $x \neq 3$</span></div>
+    <div class="ex-step"><span class="ex-num">3</span><span>$D(f) = (-\infty;\, 3) \cup (3;\, +\infty)$ &mdash; все числа, кроме 3</span></div>
+    <div class="ex-ans"><i class="fas fa-check" style="color:var(--green)"></i> Ответ: $D(f)$ &mdash; все $x \neq 3$</div>
+  </div>
+
+  <!-- НУЛИ ФУНКЦИИ -->
+  <div class="sec-head"><span>Нули функции</span></div>
+
+  <div class="fcard">
+    <h4>Нуль функции</h4>
+    <p><strong>Нуль функции</strong> &mdash; значение аргумента $x_0$, при котором $f(x_0) = 0$.<br>
+    Геометрически: точки пересечения графика с осью $Ox$.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-head"><i class="fas fa-lightbulb"></i> Пример: найти нуль функции $f(x) = 3x - 6$</div>
+    <div class="ex-step"><span class="ex-num">1</span><span>Ставим $f(x) = 0$: $\quad 3x - 6 = 0$</span></div>
+    <div class="ex-step"><span class="ex-num">2</span><span>$3x = 6$</span></div>
+    <div class="ex-step"><span class="ex-num">3</span><span>$x = 2$</span></div>
+    <div class="ex-ans"><i class="fas fa-check" style="color:var(--green)"></i> Нуль функции: $x_0 = 2$</div>
+  </div>
+
+  <!-- ЗНАКОПОСТОЯНСТВО -->
+  <div class="sec-head"><span>Знакопостоянство функции</span></div>
+
+  <div class="fcard">
+    <h4>Промежутки знакопостоянства</h4>
+    <p>
+      <strong>Промежуток знакопостоянства</strong> &mdash; интервал, на котором функция принимает только положительные или только отрицательные значения.<br><br>
+      Нули функции делят числовую прямую на промежутки. На каждом промежутке функция имеет постоянный знак.
+    </p>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-head"><i class="fas fa-lightbulb"></i> Пример: знаки функции $f(x) = 2x - 6$</div>
+    <div class="ex-step"><span class="ex-num">1</span><span>Нуль: $2x-6=0 \Rightarrow x=3$</span></div>
+    <div class="ex-step"><span class="ex-num">2</span><span>При $x < 3$: $f(1) = -4 < 0$ &mdash; функция отрицательная</span></div>
+    <div class="ex-step"><span class="ex-num">3</span><span>При $x > 3$: $f(4) = 2 > 0$ &mdash; функция положительная</span></div>
+    <div class="ex-ans"><i class="fas fa-check" style="color:var(--green)"></i> $f(x) < 0$ при $x < 3$; $\quad f(x) > 0$ при $x > 3$</div>
+  </div>
+
+  <div class="warn-box">
+    <i class="fas fa-triangle-exclamation rb-icon"></i>
+    <div class="rb-text">
+      <strong>Важно:</strong> в самом нуле $f(x_0) = 0$ — функция не положительная и не отрицательная. Нули всегда записывают отдельно от промежутков знакопостоянства.
+    </div>
+  </div>
+
+  <!-- ИНТЕРАКТИВНЫЙ ВВОД f(x) -->
+  <div class="sec-head"><span>Интерактив: вычислить значение функции</span></div>
+
+  <div class="idiag">
+    <h4><i class="fas fa-calculator"></i> Вычислить $f(x) = 2x + 1$</h4>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+      <label style="font-size:14px;font-weight:600;color:var(--text2)">$x =$</label>
+      <input type="number" id="p19sliderInput" value="3"
+        style="width:90px;padding:8px 12px;border-radius:8px;border:2px solid var(--border);background:var(--bg3);color:var(--text);font-size:16px;font-family:Inter,monospace;outline:none"
+        oninput="calcP19()">
+      <span style="font-size:15px;font-weight:700;color:var(--text2)">$\Rightarrow$</span>
+      <span id="p19result" style="font-size:22px;font-weight:800;color:var(--pri)">7</span>
+    </div>
+    <div style="font-size:13px;color:var(--text2)">
+      Область определения: $D(f) = \mathbb{R}$ (все вещественные числа)<br>
+      Нуль функции: $x_0 = -0{,}5$
+    </div>
+  </div>
+
+  <!-- КОНТРОЛЬНЫЕ ВОПРОСЫ §19 -->
+  <div class="sec-head"><span>Контрольные вопросы §19</span></div>
+
+  <div class="ctrl-q" id="cq19_1">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">1</span>Что такое функция? Приведите пример.</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Функция &mdash; это правило, по которому каждому значению аргумента $x$ ставится в соответствие одно значение $y = f(x)$.<br>
+      Пример: $y = x^2$ — каждому числу соответствует его квадрат.
+    </div>
+  </div>
+  <div class="ctrl-q" id="cq19_2">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">2</span>Чем отличается $D(f)$ от $E(f)$?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      $D(f)$ &mdash; <strong>область определения</strong>: множество допустимых значений $x$ (аргумента).<br>
+      $E(f)$ &mdash; <strong>область значений</strong>: множество всех возможных значений $y = f(x)$.<br>
+      Например, для $y = x^2$: $D(f) = \mathbb{R}$, а $E(f) = [0; +\infty)$.
+    </div>
+  </div>
+  <div class="ctrl-q" id="cq19_3">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">3</span>Как найти нуль функции?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Нуль функции &mdash; это решение уравнения $f(x) = 0$. Нужно приравнять выражение функции к нулю и решить уравнение.<br>
+      Пример: $f(x) = 5x - 10 = 0 \Rightarrow x = 2$.
+    </div>
+  </div>
+  <div class="ctrl-q" id="cq19_4">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">4</span>Назовите четыре способа задания функции.</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      1. <strong>Аналитический</strong> &mdash; формулой: $y = 3x - 2$<br>
+      2. <strong>Табличный</strong> &mdash; таблицей значений<br>
+      3. <strong>Графический</strong> &mdash; графиком<br>
+      4. <strong>Словесный</strong> &mdash; описанием на естественном языке
+    </div>
+  </div>
+  <div class="ctrl-q" id="cq19_5">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">5</span>Что такое промежуток знакопостоянства?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Промежуток знакопостоянства &mdash; интервал, на котором функция имеет постоянный знак (всегда положительная или всегда отрицательная). Нули разделяют область определения на такие промежутки.
+    </div>
+  </div>
+  <div class="ctrl-q" id="cq19_6">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">6</span>Найдите $f(3)$ для $f(x) = 4x - 5$.</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      $f(3) = 4 \cdot 3 - 5 = 12 - 5 = 7$
+    </div>
+  </div>
+
+</div><!-- .content-wrap -->
+</div><!-- #tab-p19 -->
+
+<!-- ============================================================ -->
+<!-- §20 ЛИНЕЙНАЯ ФУНКЦИЯ -->
+<!-- ============================================================ -->
+<div class="tab-pane" id="tab-p20">
+<div class="content-wrap">
+
+  <div class="para-hero ph-blue">
+    <div class="ph-tag">§20</div>
+    <h2>Линейная функция</h2>
+    <p>Вид $y = kx + b$, угловой коэффициент, свободный член, нули, знакопостоянство, расположение прямых</p>
+  </div>
+
+  <!-- ОПРЕДЕЛЕНИЕ ЛФ -->
+  <div class="sec-head"><span>Определение и вид</span></div>
+
+  <div class="fcard">
+    <h4>Линейная функция</h4>
+    <p>
+      <strong>Линейная функция</strong> &mdash; функция вида $y = kx + b$, где $k \neq 0$.<br><br>
+      $k$ &mdash; <strong>угловой коэффициент</strong> (наклон прямой)<br>
+      $b$ &mdash; <strong>свободный член</strong> (сдвиг по оси $Oy$)
+    </p>
+  </div>
+
+  <div class="fgrid">
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrow-trend-up"></i></div>
+      <div class="fi-label">$k > 0$</div>
+      <div class="fi-val">Функция <strong>возрастает</strong>: прямая идёт снизу-влево направо-вверх</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrow-trend-down"></i></div>
+      <div class="fi-label">$k < 0$</div>
+      <div class="fi-val">Функция <strong>убывает</strong>: прямая идёт сверху-влево направо-вниз</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrow-up"></i></div>
+      <div class="fi-label">$b > 0$</div>
+      <div class="fi-val">График пересекает ось $Oy$ выше нуля</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-arrow-down"></i></div>
+      <div class="fi-label">$b < 0$</div>
+      <div class="fi-val">График пересекает ось $Oy$ ниже нуля</div>
+    </div>
+  </div>
+
+  <!-- НУЛЬ ЛФ -->
+  <div class="sec-head"><span>Нуль линейной функции</span></div>
+
+  <div class="fcard">
+    <h4>Формула нуля</h4>
+    <p>
+      Нуль линейной функции $y = kx + b$: приравниваем к нулю:<br>
+      $$kx + b = 0 \quad\Longrightarrow\quad x_0 = -\dfrac{b}{k}$$
+      Это точка пересечения прямой с осью $Ox$.
+    </p>
+  </div>
+
+  <!-- ЗНАК ЛФ -->
+  <div class="sec-head"><span>Знакопостоянство линейной функции</span></div>
+
+  <table class="atab">
+    <thead>
+      <tr>
+        <th>Условие</th>
+        <th>$y > 0$ (функция положительна)</th>
+        <th>$y < 0$ (функция отрицательна)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>$k > 0$</strong></td>
+        <td class="ok">$x > -\dfrac{b}{k}$</td>
+        <td class="fail">$x < -\dfrac{b}{k}$</td>
+      </tr>
+      <tr>
+        <td><strong>$k < 0$</strong></td>
+        <td class="ok">$x < -\dfrac{b}{k}$</td>
+        <td class="fail">$x > -\dfrac{b}{k}$</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ПОСТРОЕНИЕ ГРАФИКА -->
+  <div class="sec-head"><span>Построение графика</span></div>
+
+  <div class="example-box">
+    <div class="ex-head"><i class="fas fa-drafting-compass"></i> Построить $y = 3x + 2$ по двум точкам</div>
+    <div class="ex-step"><span class="ex-num">1</span><span>Возьмём $x = 0$: $y = 3 \cdot 0 + 2 = 2$ &mdash; точка $(0;\; 2)$</span></div>
+    <div class="ex-step"><span class="ex-num">2</span><span>Возьмём $x = -1$: $y = 3 \cdot (-1) + 2 = -1$ &mdash; точка $(-1;\; -1)$</span></div>
+    <div class="ex-step"><span class="ex-num">3</span><span>Отметим обе точки и проведём прямую через них</span></div>
+    <div class="ex-ans"><i class="fas fa-check" style="color:var(--green)"></i> Нуль: $x_0 = -\frac{2}{3}$. При $k=3>0$ &mdash; функция возрастает.</div>
+  </div>
+
+  <!-- ИНТЕРАКТИВНЫЙ СЛАЙДЕР y=kx+b -->
+  <div class="sec-head"><span>Интерактив: $y = kx + b$</span></div>
+
+  <div class="demo-wrap">
+    <h4><i class="fas fa-sliders"></i> Передвигайте ползунки — график изменяется в реальном времени</h4>
+    <div class="demo-formula" id="p20formula">$y = 2x + 1$</div>
+    <canvas id="p20cv"></canvas>
+    <div class="slider-row">
+      <label>$k$ =</label>
+      <input type="range" id="p20k" min="-4" max="4" step="0.5" value="2" oninput="drawP20()">
+      <span class="sv" id="p20kv">2</span>
+    </div>
+    <div class="slider-row">
+      <label>$b$ =</label>
+      <input type="range" id="p20b" min="-8" max="8" step="1" value="1" oninput="drawP20()">
+      <span class="sv" id="p20bv">1</span>
+    </div>
+    <div style="font-size:13px;color:var(--text2);margin-top:8px">
+      <span style="display:inline-block;width:12px;height:12px;background:#7c3aed;border-radius:50%;margin-right:4px;vertical-align:middle"></span> Точка на оси $Oy$ (при $x=0$): $y = b$
+      &nbsp;&nbsp;
+      <span style="display:inline-block;width:12px;height:12px;background:#dc2626;border-radius:50%;margin-right:4px;vertical-align:middle"></span> Нуль (на оси $Ox$): $x_0 = -b/k$
+    </div>
+  </div>
+
+  <!-- ВЗАИМНОЕ РАСПОЛОЖЕНИЕ ПРЯМЫХ -->
+  <div class="sec-head"><span>Взаимное расположение прямых</span></div>
+
+  <div class="fgrid">
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-equals"></i></div>
+      <div class="fi-label">Параллельные</div>
+      <div class="fi-val">$k_1 = k_2$, $b_1 \neq b_2$</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-xmark"></i></div>
+      <div class="fi-label">Пересекаются</div>
+      <div class="fi-val">$k_1 \neq k_2$</div>
+    </div>
+    <div class="fgrid-item">
+      <div class="fi-icon"><i class="fas fa-grip-lines"></i></div>
+      <div class="fi-label">Совпадают</div>
+      <div class="fi-val">$k_1 = k_2$, $b_1 = b_2$</div>
+    </div>
+  </div>
+
+  <div class="student-box">
+    <i class="fas fa-graduation-cap rb-icon"></i>
+    <div class="rb-text">
+      <strong>Лайфхак:</strong> Если нужно провести прямую параллельно данной $y = kx + b$, достаточно взять тот же $k$, но изменить $b$. Например, параллельная к $y = 3x + 5$ &mdash; это $y = 3x - 2$.
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <i class="fas fa-triangle-exclamation rb-icon"></i>
+    <div class="rb-text">
+      <strong>Внимание!</strong> Функция $y = kx$ является частным случаем линейной функции с $b = 0$. Её график всегда проходит через начало координат $(0;\, 0)$.
+    </div>
+  </div>
+
+  <!-- КОНТРОЛЬНЫЕ ВОПРОСЫ §20 -->
+  <div class="sec-head"><span>Контрольные вопросы §20</span></div>
+
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">1</span>Что означает $k$ в формуле $y = kx + b$?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      $k$ &mdash; угловой коэффициент. Показывает наклон прямой: при $k > 0$ прямая возрастает, при $k < 0$ &mdash; убывает. Чем больше $|k|$, тем круче прямая.
+    </div>
+  </div>
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">2</span>Как найти нуль линейной функции?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Приравниваем $kx + b = 0$, откуда $x_0 = -b/k$. Это $x$-координата точки пересечения прямой с осью $Ox$.
+    </div>
+  </div>
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">3</span>Когда две прямые параллельны?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Прямые $y = k_1 x + b_1$ и $y = k_2 x + b_2$ параллельны тогда и только тогда, когда $k_1 = k_2$ и $b_1 \neq b_2$.
+    </div>
+  </div>
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">4</span>Где пересекает ось $Oy$ прямая $y = -2x + 5$?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Подставляем $x = 0$: $y = -2 \cdot 0 + 5 = 5$. Прямая пересекает ось $Oy$ в точке $(0;\; 5)$.
+    </div>
+  </div>
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">5</span>При каком $k$ функция $y = kx + 3$ убывает?</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      При $k < 0$. Например, $y = -2x + 3$ убывает на всей числовой оси.
+    </div>
+  </div>
+  <div class="ctrl-q">
+    <div class="ctrl-q-head" onclick="toggleCQ(this)">
+      <div style="display:flex;align-items:center"><span class="cq-num">6</span>Прямая проходит через $(0;\, -3)$ и $(1;\, 1)$. Найдите $k$ и $b$.</div>
+      <i class="fas fa-chevron-down cq-arrow"></i>
+    </div>
+    <div class="ctrl-q-body">
+      Из $(0;\, -3)$: $b = -3$.<br>
+      Из $(1;\, 1)$: $k \cdot 1 + (-3) = 1 \Rightarrow k = 4$.<br>
+      Уравнение: $y = 4x - 3$.
+    </div>
+  </div>
+
+</div><!-- .content-wrap -->
+</div><!-- #tab-p20 -->
+
+<!-- ============================================================ -->
+<!-- ГРАФИКИ -->
+<!-- ============================================================ -->
+<div class="tab-pane" id="tab-graphs">
+<div class="content-wrap">
+
+  <div class="para-hero" style="background:linear-gradient(135deg,#7c3aed 0%,#2563eb 55%,#059669 100%);color:#fff">
+    <div class="ph-tag">Графики</div>
+    <h2>Задания на графики</h2>
+    <p>8 интерактивных заданий — распознай, считай и анализируй графики линейных функций</p>
+  </div>
+
+  <div class="score-bar">
+    <div class="chip chip-ok"><i class="fas fa-check"></i> <span id="grCntOk">0</span></div>
+    <div class="chip chip-fail"><i class="fas fa-xmark"></i> <span id="grCntFail">0</span></div>
+    <div class="chip chip-tot"><i class="fas fa-list"></i> <span id="grCntPos">0</span> / 8</div>
+    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="grProgFill" style="width:0%"></div></div>
+  </div>
+
+  <div class="nav-dots" id="grNavDots"></div>
+  <div class="task-card" id="grCard"></div>
+
+  <div class="nav-btns">
+    <button class="nav-btn" id="grBtnPrev" onclick="grNav(-1)"><i class="fas fa-arrow-left"></i> Назад</button>
+    <button class="nav-btn" id="grBtnNext" onclick="grNav(1)">Далее <i class="fas fa-arrow-right"></i></button>
+    <button class="nav-btn" onclick="grShowResults()" style="margin-left:auto"><i class="fas fa-flag-checkered"></i> Результат</button>
+  </div>
+
+  <div class="results-panel" id="grResults">
+    <div class="rp-icon" id="grRpIcon"></div>
+    <div class="rp-score" id="grRpScore">0 / 8</div>
+    <div class="rp-msg" id="grRpMsg"></div>
+    <button class="restart-btn" onclick="grRestart()"><i class="fas fa-rotate-right"></i> Начать заново</button>
+  </div>
+
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ЗАДАЧИ -->
+<!-- ============================================================ -->
+<div class="tab-pane" id="tab-tasks">
+<div class="content-wrap">
+
+  <div class="para-hero ph-tasks">
+    <div class="ph-tag">Задачи</div>
+    <h2>§19–20: Контрольные задания</h2>
+    <p>14 заданий по теории функции и линейной функции &mdash; MCQ и числовой ввод</p>
+  </div>
+
+  <!-- SCORE BAR -->
+  <div class="score-bar">
+    <div class="chip chip-ok"><i class="fas fa-check"></i> <span id="tkCntOk">0</span></div>
+    <div class="chip chip-fail"><i class="fas fa-xmark"></i> <span id="tkCntFail">0</span></div>
+    <div class="chip chip-tot"><i class="fas fa-list"></i> <span id="tkCntPos">0</span> / 14</div>
+    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="tkProgFill" style="width:0%"></div></div>
+  </div>
+
+  <!-- NAV DOTS -->
+  <div class="nav-dots" id="tkNavDots"></div>
+
+  <!-- TASK CARD -->
+  <div class="task-card" id="tkCard"></div>
+
+  <!-- NAV BTNS -->
+  <div class="nav-btns">
+    <button class="nav-btn" id="tkBtnPrev" onclick="tkNav(-1)"><i class="fas fa-arrow-left"></i> Назад</button>
+    <button class="nav-btn" id="tkBtnNext" onclick="tkNav(1)">Далее <i class="fas fa-arrow-right"></i></button>
+    <button class="nav-btn" onclick="tkShowResults()" style="margin-left:auto"><i class="fas fa-flag-checkered"></i> Результат</button>
+  </div>
+
+  <!-- RESULTS PANEL -->
+  <div class="results-panel" id="tkResults">
+    <div class="rp-icon" id="rpIcon">&#127881;</div>
+    <div class="rp-score" id="rpScore">0 / 15</div>
+    <div class="rp-msg" id="rpMsg">Хороший результат!</div>
+    <button class="restart-btn" onclick="tkRestart()"><i class="fas fa-rotate-right"></i> Начать заново</button>
+  </div>
+
+</div><!-- .content-wrap -->
+</div><!-- #tab-tasks -->
+
+<script>
+// ===== THEME =====
+var TK = 'alg7_theme';
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  var icon = document.getElementById('themeIcon');
+  var lbl  = document.getElementById('themeLabel');
+  if (t === 'dark') {
+    icon.className = 'fas fa-sun'; lbl.textContent = 'Светлая';
+  } else {
+    icon.className = 'fas fa-moon'; lbl.textContent = 'Тёмная';
+  }
+}
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(TK, next);
+  applyTheme(next);
+  setTimeout(function() { drawP20(); }, 50);
+}
+(function() {
+  var saved = localStorage.getItem(TK) || 'light';
+  applyTheme(saved);
+})();
+
+// ===== TABS =====
+function switchTab(name, btn) {
+  var panes = document.querySelectorAll('.tab-pane');
+  var btns  = document.querySelectorAll('.tab-btn');
+  for (var i = 0; i < panes.length; i++) panes[i].classList.remove('active');
+  for (var i = 0; i < btns.length;  i++) btns[i].classList.remove('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (name === 'p20')    { setTimeout(function() { drawP20(); }, 50); }
+  if (name === 'graphs') { setTimeout(function() { renderGrTask(grCur); }, 50); }
+  if (name === 'tasks')  { setTimeout(function() { renderTkTask(tkCur); }, 30); }
+}
+
+// ===== CONTROL Q ACCORDION =====
+function toggleCQ(head) {
+  var body = head.parentElement.querySelector('.ctrl-q-body');
+  var open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  head.classList.toggle('open', !open);
+}
+
+// ===== §19 CALC =====
+function calcP19() {
+  var x = parseFloat(document.getElementById('p19sliderInput').value);
+  var y = 2 * x + 1;
+  document.getElementById('p19result').textContent = isNaN(y) ? '?' : y;
+}
+
+// ===== §20 CANVAS =====
+function getTheme() { return document.documentElement.getAttribute('data-theme') || 'dark'; }
+
+function p20Colors() {
+  var dark = getTheme() === 'dark';
+  return {
+    bg:     dark ? '#1c1928' : '#ffffff',
+    grid:   dark ? '#2e2a42' : '#e5e0f5',
+    axis:   dark ? '#a89ec8' : '#5b5479',
+    label:  dark ? '#f0eeff' : '#1e1b2e',
+    line:   '#2563eb',
+    dotB:   '#7c3aed',
+    dotR:   '#dc2626'
+  };
+}
+
+function drawP20() {
+  var cv = document.getElementById('p20cv');
+  if (!cv) return;
+  var k = parseFloat(document.getElementById('p20k').value);
+  var b = parseFloat(document.getElementById('p20b').value);
+  document.getElementById('p20kv').textContent = k;
+  document.getElementById('p20bv').textContent = b;
+
+  var kStr = k === 1 ? '' : (k === -1 ? '-' : k);
+  var bStr = b >= 0 ? '+ ' + b : '- ' + Math.abs(b);
+  var formula = '$y = ' + kStr + 'x ' + bStr + '$';
+  if (b === 0) formula = '$y = ' + kStr + 'x$';
+  document.getElementById('p20formula').innerHTML = formula;
+  if (window.renderMathInElement) {
+    renderMathInElement(document.getElementById('p20formula'), {
+      delimiters: [{left:'$',right:'$',display:false}]
+    });
+  }
+
+  var dpr = window.devicePixelRatio || 1;
+  var w = cv.clientWidth  || 380;
+  var h = cv.clientHeight || 260;
+  cv.width  = Math.round(w * dpr);
+  cv.height = Math.round(h * dpr);
+  var ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  var C = p20Colors();
+  var ox = Math.round(w * 0.38);
+  var oy = Math.round(h * 0.50);
+  var step = Math.min((w - ox - 10) / 8, (oy - 10) / 8);
+
+  // BG
+  ctx.fillStyle = C.bg;
+  ctx.fillRect(0, 0, w, h);
+
+  // GRID
+  ctx.strokeStyle = C.grid;
+  ctx.lineWidth = 0.7;
+  for (var i = -Math.ceil(ox / step); i <= Math.ceil((w - ox) / step); i++) {
+    var px = ox + i * step;
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, h); ctx.stroke();
+  }
+  for (var j = -Math.ceil((h - oy) / step); j <= Math.ceil(oy / step); j++) {
+    var py = oy - j * step;
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(w, py); ctx.stroke();
+  }
+
+  // AXES
+  ctx.strokeStyle = C.axis;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(w, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 0); ctx.lineTo(ox, h); ctx.stroke();
+  // Arrows
+  ctx.fillStyle = C.axis;
+  ctx.beginPath(); ctx.moveTo(w - 6, oy - 5); ctx.lineTo(w, oy); ctx.lineTo(w - 6, oy + 5); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(ox - 5, 6); ctx.lineTo(ox, 0); ctx.lineTo(ox + 5, 6); ctx.fill();
+  // Labels
+  ctx.font = '11px Inter, sans-serif';
+  ctx.fillStyle = C.label;
+  ctx.fillText('x', w - 8, oy - 8);
+  ctx.fillText('y', ox + 6, 10);
+  ctx.fillText('0', ox - 14, oy + 13);
+  // Tick labels
+  ctx.font = '10px Inter, sans-serif';
+  ctx.fillStyle = C.axis;
+  ctx.textAlign = 'center';
+  for (var i = -8; i <= 8; i++) {
+    if (i === 0) continue;
+    var px = ox + i * step;
+    if (px > 6 && px < w - 6) {
+      ctx.beginPath(); ctx.moveTo(px, oy - 3); ctx.lineTo(px, oy + 3); ctx.strokeStyle = C.axis; ctx.lineWidth = 1; ctx.stroke();
+      if (i % 2 === 0) ctx.fillText(i, px, oy + 13);
+    }
+  }
+  ctx.textAlign = 'right';
+  for (var j = -8; j <= 8; j++) {
+    if (j === 0) continue;
+    var py = oy - j * step;
+    if (py > 6 && py < h - 6) {
+      ctx.beginPath(); ctx.moveTo(ox - 3, py); ctx.lineTo(ox + 3, py); ctx.strokeStyle = C.axis; ctx.lineWidth = 1; ctx.stroke();
+      if (j % 2 === 0) ctx.fillText(j, ox - 5, py + 4);
+    }
+  }
+
+  // LINE
+  ctx.strokeStyle = C.line;
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  var x1 = -ox / step;
+  var x2 = (w - ox) / step;
+  ctx.beginPath();
+  ctx.moveTo(ox + x1 * step, oy - (k * x1 + b) * step);
+  ctx.lineTo(ox + x2 * step, oy - (k * x2 + b) * step);
+  ctx.stroke();
+
+  // DOT b (y-intercept)
+  ctx.beginPath();
+  ctx.arc(ox, oy - b * step, 6, 0, 2 * Math.PI);
+  ctx.fillStyle = C.dotB; ctx.fill();
+  ctx.strokeStyle = C.bg; ctx.lineWidth = 2; ctx.stroke();
+
+  // DOT zero (x-intercept)
+  if (k !== 0) {
+    var x0 = -b / k;
+    var px0 = ox + x0 * step;
+    if (px0 > 8 && px0 < w - 8) {
+      ctx.beginPath();
+      ctx.arc(px0, oy, 6, 0, 2 * Math.PI);
+      ctx.fillStyle = C.dotR; ctx.fill();
+      ctx.strokeStyle = C.bg; ctx.lineWidth = 2; ctx.stroke();
+    }
+  }
+}
+
+// ===== TASKS =====
+var TK_TASKS = [
+  // §19 tasks
+  {
+    para: '§19 Функция',
+    type: 'mcq',
+    q: 'Что такое область определения функции $D(f)$?',
+    opts: [
+      'Множество всех возможных значений функции $y$',
+      'Множество всех допустимых значений аргумента $x$',
+      'Набор формул для вычисления $y$',
+      'Количество нулей функции'
+    ],
+    ans: 1,
+    fb: 'Область определения $D(f)$ — это множество всех допустимых значений аргумента $x$, при которых функция определена.'
+  },
+  {
+    para: '§19 Функция',
+    type: 'num',
+    q: 'Вычислите $f(4)$, если $f(x) = 3x - 2$.',
+    ans: 10,
+    fb: '$f(4) = 3 \\cdot 4 - 2 = 12 - 2 = 10$'
+  },
+  {
+    para: '§19 Функция',
+    type: 'mcq',
+    q: 'Найдите нуль функции $f(x) = 4x - 8$.',
+    opts: ['$x = 4$', '$x = -2$', '$x = 2$', '$x = 8$'],
+    ans: 2,
+    fb: '$4x - 8 = 0 \\Rightarrow 4x = 8 \\Rightarrow x = 2$'
+  },
+  {
+    para: '§19 Функция',
+    type: 'num',
+    q: 'Найдите нуль функции $f(x) = -x + 5$.',
+    ans: 5,
+    fb: '$-x + 5 = 0 \\Rightarrow x = 5$'
+  },
+  {
+    para: '§19 Функция',
+    type: 'mcq',
+    q: 'При каких $x$ функция $f(x) = 2x - 6$ отрицательна?',
+    opts: ['$x > 3$', '$x < 3$', '$x > -3$', '$x < -3$'],
+    ans: 1,
+    fb: '$2x - 6 < 0 \\Rightarrow 2x < 6 \\Rightarrow x < 3$'
+  },
+  // §20 tasks
+  {
+    para: '§20 Линейная функция',
+    type: 'mcq',
+    q: 'Какая из функций является линейной?',
+    opts: ['$y = x^2 + 1$', '$y = 3x - 5$', '$y = \\dfrac{1}{x}$', '$y = \\sqrt{x}$'],
+    ans: 1,
+    fb: 'Линейная функция имеет вид $y = kx + b$. Это $y = 3x - 5$ с $k = 3$, $b = -5$.'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'num',
+    q: 'Найдите угловой коэффициент $k$ для $y = -7x + 4$.',
+    ans: -7,
+    fb: 'Функция $y = -7x + 4$ имеет вид $y = kx + b$, значит $k = -7$.'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'num',
+    q: 'Найдите нуль линейной функции $y = 5x - 10$.',
+    ans: 2,
+    fb: '$5x - 10 = 0 \\Rightarrow 5x = 10 \\Rightarrow x = 2$'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'mcq',
+    q: 'Функция $y = -3x + 9$ является...',
+    opts: ['Возрастающей', 'Убывающей', 'Постоянной', 'Периодической'],
+    ans: 1,
+    fb: 'Так как $k = -3 < 0$, функция убывает (при увеличении $x$ значение $y$ уменьшается).'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'num',
+    q: 'Вычислите $f(-2)$ для $f(x) = 4x + 6$.',
+    ans: -2,
+    fb: '$f(-2) = 4 \\cdot (-2) + 6 = -8 + 6 = -2$'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'mcq',
+    q: 'Являются ли прямые $y = 2x + 5$ и $y = 2x - 3$ параллельными?',
+    opts: ['Нет, они пересекаются', 'Нет, они совпадают', 'Да, они параллельны', 'Невозможно определить'],
+    ans: 2,
+    fb: 'У обеих прямых $k_1 = k_2 = 2$, но $b_1 = 5 \\neq b_2 = -3$. Прямые параллельны.'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'num',
+    q: 'Прямая $y = kx + b$ проходит через $(0;\, -4)$. Найдите $b$.',
+    ans: -4,
+    fb: 'При $x = 0$: $y = k \\cdot 0 + b = b$. Значит $b = -4$.'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'mcq',
+    q: 'Найдите нуль функции $y = -x + 6$.',
+    opts: ['$x = -6$', '$x = 6$', '$x = 1$', '$x = -1$'],
+    ans: 1,
+    fb: '$-x + 6 = 0 \\Rightarrow x = 6$'
+  },
+  {
+    para: '§20 Линейная функция',
+    type: 'num',
+    q: 'Прямая $y = kx + 3$ проходит через точку $(2;\, 7)$. Найдите $k$.',
+    ans: 2,
+    fb: '$7 = k \\cdot 2 + 3 \\Rightarrow 2k = 4 \\Rightarrow k = 2$'
+  }
+];
+
+var tkCur = 0;
+var tkState = []; // 0=unanswered, 1=correct, -1=wrong
+for (var i = 0; i < TK_TASKS.length; i++) tkState[i] = 0;
+
+function tkBuildDots() {
+  var wrap = document.getElementById('tkNavDots');
+  if (!wrap) return;
+  var html = '';
+  for (var i = 0; i < TK_TASKS.length; i++) {
+    var cls = 'nav-dot';
+    if (i === tkCur) cls += ' nd-cur';
+    else if (tkState[i] === 1)  cls += ' nd-ok';
+    else if (tkState[i] === -1) cls += ' nd-fail';
+    html += '<div class="' + cls + '" onclick="tkGoTo(' + i + ')">' + (i + 1) + '</div>';
+  }
+  wrap.innerHTML = html;
+}
+
+function tkUpdateScore() {
+  var ok = 0, fail = 0, pos = 0;
+  for (var i = 0; i < TK_TASKS.length; i++) {
+    if (tkState[i] === 1)  ok++;
+    if (tkState[i] === -1) fail++;
+    if (tkState[i] !== 0)  pos++;
+  }
+  document.getElementById('tkCntOk').textContent   = ok;
+  document.getElementById('tkCntFail').textContent  = fail;
+  document.getElementById('tkCntPos').textContent   = pos;
+  var pct = Math.round(pos / TK_TASKS.length * 100);
+  document.getElementById('tkProgFill').style.width = pct + '%';
+}
+
+function renderTkTask(idx) {
+  var card = document.getElementById('tkCard');
+  if (!card) return;
+  var t = TK_TASKS[idx];
+  var done = tkState[idx] !== 0;
+  var html = '';
+  html += '<div class="tk-para">' + t.para + '</div>';
+  html += '<div class="tk-q">' + t.q + '</div>';
+
+  if (t.type === 'mcq') {
+    html += '<div class="mcq-opts">';
+    for (var i = 0; i < t.opts.length; i++) {
+      var cls = 'mcq-opt';
+      if (done) {
+        cls += ' disabled';
+        if (i === t.ans) cls += ' mcq-cor';
+        else if (tkState[idx] === -1 && tkLastWrong[idx] === i) cls += ' mcq-wrong';
+      }
+      html += '<div class="' + cls + '" onclick="tkCheckMcq(' + idx + ',' + i + ')">';
+      html += '<span class="mcq-badge">' + String.fromCharCode(65 + i) + '</span>';
+      html += t.opts[i] + '</div>';
+    }
+    html += '</div>';
+    if (done) {
+      var fbCls = 'feedback show ' + (tkState[idx] === 1 ? 'fb-ok' : 'fb-fail');
+      var fbIcon = tkState[idx] === 1 ? '<i class="fas fa-check"></i> Верно!' : '<i class="fas fa-xmark"></i> Неверно.';
+      html += '<div class="' + fbCls + '">' + fbIcon + ' ' + t.fb + '</div>';
+    }
+  } else {
+    html += '<div class="num-input-row">';
+    var inpCls = done ? (tkState[idx] === 1 ? ' inp-ok' : ' inp-fail') : '';
+    html += '<input type="number" id="tkNumInput" class="' + inpCls + '" placeholder="Ответ" ' + (done ? 'disabled value="' + t.ans + '"' : '') + '>';
+    if (!done) html += '<button class="check-btn" onclick="tkCheckNum(' + idx + ')">Проверить</button>';
+    html += '</div>';
+    if (done) {
+      var fbCls2 = 'feedback show ' + (tkState[idx] === 1 ? 'fb-ok' : 'fb-fail');
+      var fbIcon2 = tkState[idx] === 1 ? '<i class="fas fa-check"></i> Верно!' : '<i class="fas fa-xmark"></i> Неверно.';
+      html += '<div class="' + fbCls2 + '">' + fbIcon2 + ' ' + t.fb + '</div>';
+    }
+  }
+
+  card.innerHTML = html;
+
+  // Re-render math
+  if (window.renderMathInElement) {
+    renderMathInElement(card, {
+      delimiters: [
+        {left:'$$', right:'$$', display:true},
+        {left:'$',  right:'$',  display:false}
+      ]
+    });
+  }
+
+  // Nav buttons state
+  var prevBtn = document.getElementById('tkBtnPrev');
+  var nextBtn = document.getElementById('tkBtnNext');
+  if (prevBtn) prevBtn.disabled = (idx === 0);
+  if (nextBtn) nextBtn.disabled = (idx === TK_TASKS.length - 1);
+
+  tkBuildDots();
+  tkUpdateScore();
+}
+
+var tkLastWrong = {};
+
+function tkCheckMcq(idx, chosen) {
+  if (tkState[idx] !== 0) return;
+  tkState[idx] = (chosen === TK_TASKS[idx].ans) ? 1 : -1;
+  if (tkState[idx] === -1) tkLastWrong[idx] = chosen;
+  renderTkTask(idx);
+}
+
+function tkCheckNum(idx) {
+  var inp = document.getElementById('tkNumInput');
+  if (!inp) return;
+  var val = parseFloat(inp.value);
+  tkState[idx] = (Math.abs(val - TK_TASKS[idx].ans) < 0.001) ? 1 : -1;
+  renderTkTask(idx);
+}
+
+function tkNav(dir) {
+  var next = tkCur + dir;
+  if (next < 0 || next >= TK_TASKS.length) return;
+  tkCur = next;
+  document.getElementById('tkResults').classList.remove('show');
+  renderTkTask(tkCur);
+}
+
+function tkGoTo(idx) {
+  tkCur = idx;
+  document.getElementById('tkResults').classList.remove('show');
+  renderTkTask(tkCur);
+}
+
+function tkShowResults() {
+  var ok = 0;
+  for (var i = 0; i < TK_TASKS.length; i++) if (tkState[i] === 1) ok++;
+  var total = TK_TASKS.length;
+  var panel = document.getElementById('tkResults');
+  document.getElementById('rpScore').textContent = ok + ' / ' + total;
+  var pct = ok / total;
+  var icon, msg;
+  if (pct >= 0.9) { icon = '\uD83C\uDF89'; msg = 'Отлично! Тема хорошо усвоена.'; }
+  else if (pct >= 0.7) { icon = '\uD83D\uDC4D'; msg = 'Хорошо! Повтори несколько моментов.'; }
+  else if (pct >= 0.5) { icon = '\uD83D\uDCDA'; msg = 'Неплохо, но стоит повторить теорию.'; }
+  else { icon = '\uD83D\uDD04'; msg = 'Перечитай §19 и §20 и попробуй снова.'; }
+  document.getElementById('rpIcon').textContent = icon;
+  document.getElementById('rpMsg').textContent  = msg;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function tkRestart() {
+  for (var i = 0; i < TK_TASKS.length; i++) tkState[i] = 0;
+  tkLastWrong = {};
+  tkCur = 0;
+  document.getElementById('tkResults').classList.remove('show');
+  renderTkTask(0);
+}
+
+// ===== GRAPH TASKS =====
+var GR_TASKS = [
+  {
+    type: 'pick-graph',
+    q: 'Выбери график функции $y = 2x + 1$',
+    graphs: [{k:2,b:1},{k:-1,b:2},{k:2,b:-1},{k:0.5,b:1}],
+    correct: 0,
+    fb: 'Правильно: $y=2x+1$ — возрастающая прямая ($k=2>0$), пересекает ось $Oy$ в точке $(0;\\,1)$.'
+  },
+  {
+    type: 'find-k',
+    q: 'Определи угловой коэффициент $k$ по двум отмеченным точкам $(0;\\,-2)$ и $(1;\\,1)$',
+    k: 3, b: -2, pts: [[0,-2],[1,1]], ans: 3,
+    fb: '$k = \\dfrac{y_2 - y_1}{x_2 - x_1} = \\dfrac{1-(-2)}{1-0} = 3$'
+  },
+  {
+    type: 'read-value',
+    q: 'По графику $y = 2x - 2$ найди значение $f(3)$',
+    k: 2, b: -2, mrkX: 3, ans: 4,
+    fb: '$f(3) = 2 \\cdot 3 - 2 = 6 - 2 = 4$'
+  },
+  {
+    type: 'yn',
+    q: 'Принадлежит ли точка $(2;\\,8)$ графику $y = 4x$?',
+    k: 4, b: 0, pt: [2,8], ans: 'yes',
+    fb: 'Подставим: $y = 4 \\cdot 2 = 8$. Да, точка $(2;\\,8)$ лежит на графике.'
+  },
+  {
+    type: 'pick-graph',
+    q: 'Какой из графиков соответствует <strong>убывающей</strong> линейной функции?',
+    graphs: [{k:2,b:0},{k:-2,b:1},{k:1,b:-2},{k:0.5,b:2}],
+    correct: 1,
+    fb: 'Функция убывает при $k < 0$. Вариант Б: $k = -2 < 0$ — убывающая прямая.'
+  },
+  {
+    type: 'find-k',
+    q: 'Определи угловой коэффициент $k$ по двум отмеченным точкам $(0;\\,4)$ и $(2;\\,2)$',
+    k: -1, b: 4, pts: [[0,4],[2,2]], ans: -1,
+    fb: '$k = \\dfrac{2-4}{2-0} = \\dfrac{-2}{2} = -1$. Функция убывает.'
+  },
+  {
+    type: 'read-value',
+    q: 'По графику $y = 3x$ найди значение $f(-2)$',
+    k: 3, b: 0, mrkX: -2, ans: -6,
+    fb: '$f(-2) = 3 \\cdot (-2) = -6$'
+  },
+  {
+    type: 'yn',
+    q: 'Является ли точка $(3;\\,0)$ нулём функции $y = -x + 3$?',
+    k: -1, b: 3, pt: [3,0], ans: 'yes',
+    fb: '$y = -3 + 3 = 0$. Да, при $x = 3$ функция равна нулю — это нуль функции.'
+  }
+];
+
+var grCur = 0;
+var grState = [];
+for (var _gi = 0; _gi < GR_TASKS.length; _gi++) grState[_gi] = 0;
+var grLastWrong = {};
+
+function gxSetup(cv, mini) {
+  var dpr = window.devicePixelRatio || 1;
+  var w = cv.clientWidth  || (mini ? 140 : 360);
+  var h = cv.clientHeight || (mini ? 110 : 220);
+  cv.width  = Math.round(w * dpr);
+  cv.height = Math.round(h * dpr);
+  var ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var ox = Math.round(w * (mini ? 0.30 : 0.36));
+  var oy = Math.round(h * (mini ? 0.56 : 0.50));
+  var maxX = mini ? 5 : 7;
+  var maxY = mini ? 3 : 6;
+  var step = Math.min((w - ox - 6) / maxX, (oy - 6) / maxY);
+  return { ctx:ctx, w:w, h:h, ox:ox, oy:oy, step:step };
+}
+
+function gxBg(s, C) {
+  s.ctx.fillStyle = C.bg;
+  s.ctx.fillRect(0, 0, s.w, s.h);
+}
+
+function gxGrid(s, C) {
+  var ctx = s.ctx, ox = s.ox, oy = s.oy, step = s.step;
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 0.7;
+  for (var i = -Math.ceil(ox/step); i <= Math.ceil((s.w-ox)/step); i++) {
+    var px = ox + i*step; ctx.beginPath(); ctx.moveTo(px,0); ctx.lineTo(px,s.h); ctx.stroke();
+  }
+  for (var j = -Math.ceil((s.h-oy)/step); j <= Math.ceil(oy/step); j++) {
+    var py = oy - j*step; ctx.beginPath(); ctx.moveTo(0,py); ctx.lineTo(s.w,py); ctx.stroke();
+  }
+}
+
+function gxAxes(s, C, mini) {
+  var ctx = s.ctx, ox = s.ox, oy = s.oy, w = s.w, h = s.h, step = s.step;
+  ctx.strokeStyle = C.axis; ctx.lineWidth = mini ? 1 : 1.5;
+  ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(w,oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,h); ctx.stroke();
+  ctx.fillStyle = C.axis;
+  ctx.beginPath(); ctx.moveTo(w-5,oy-4); ctx.lineTo(w,oy); ctx.lineTo(w-5,oy+4); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(ox-4,5);   ctx.lineTo(ox,0); ctx.lineTo(ox+4,5);   ctx.fill();
+  if (mini) return;
+  ctx.font = '11px Inter,sans-serif'; ctx.fillStyle = C.label;
+  ctx.textAlign = 'left';
+  ctx.fillText('x', w-8, oy-7);
+  ctx.fillText('y', ox+5, 10);
+  ctx.fillText('0', ox-14, oy+12);
+  ctx.font = '10px Inter,sans-serif'; ctx.fillStyle = C.axis;
+  ctx.textAlign = 'center';
+  for (var i = -Math.ceil(ox/step); i <= Math.ceil((w-ox)/step); i++) {
+    if (i===0) continue;
+    var px = ox+i*step; if (px<6||px>w-6) continue;
+    ctx.beginPath(); ctx.moveTo(px,oy-2); ctx.lineTo(px,oy+2); ctx.strokeStyle=C.axis; ctx.lineWidth=1; ctx.stroke();
+    if (i%2===0) ctx.fillText(i, px, oy+13);
+  }
+  ctx.textAlign = 'right';
+  for (var j = -Math.ceil((h-oy)/step); j <= Math.ceil(oy/step); j++) {
+    if (j===0) continue;
+    var py = oy-j*step; if (py<6||py>h-6) continue;
+    ctx.beginPath(); ctx.moveTo(ox-2,py); ctx.lineTo(ox+2,py); ctx.strokeStyle=C.axis; ctx.lineWidth=1; ctx.stroke();
+    if (j%2===0) ctx.fillText(j, ox-5, py+4);
+  }
+}
+
+function gxLine(s, k, b, color) {
+  var ctx = s.ctx, ox = s.ox, oy = s.oy, step = s.step;
+  var x1 = -ox/step, x2 = (s.w-ox)/step;
+  ctx.strokeStyle = color || '#2563eb'; ctx.lineWidth = 2.2;
+  ctx.beginPath();
+  ctx.moveTo(ox+x1*step, oy-(k*x1+b)*step);
+  ctx.lineTo(ox+x2*step, oy-(k*x2+b)*step);
+  ctx.stroke();
+}
+
+function gxDot(s, x, y, color) {
+  var ctx = s.ctx, ox = s.ox, oy = s.oy, step = s.step;
+  var C = p20Colors();
+  ctx.beginPath(); ctx.arc(ox+x*step, oy-y*step, 5.5, 0, 2*Math.PI);
+  ctx.fillStyle = color || '#7c3aed'; ctx.fill();
+  ctx.strokeStyle = C.bg; ctx.lineWidth = 2; ctx.stroke();
+}
+
+function drawPickCvGr(cv, k, b) {
+  var C = p20Colors();
+  var s = gxSetup(cv, true);
+  gxBg(s, C); gxGrid(s, C); gxAxes(s, C, true); gxLine(s, k, b, '#2563eb');
+}
+
+function drawMainCvGr(cv, t) {
+  var C = p20Colors();
+  var s = gxSetup(cv, false);
+  gxBg(s, C); gxGrid(s, C); gxAxes(s, C, false); gxLine(s, t.k, t.b, '#2563eb');
+  if (t.type === 'find-k') {
+    for (var i = 0; i < t.pts.length; i++) gxDot(s, t.pts[i][0], t.pts[i][1], '#7c3aed');
+  } else if (t.type === 'read-value') {
+    var px = s.ox + t.mrkX * s.step;
+    var yv = t.k * t.mrkX + t.b;
+    var py = s.oy - yv * s.step;
+    s.ctx.strokeStyle = '#dc2626'; s.ctx.lineWidth = 1.5; s.ctx.setLineDash([5,3]);
+    s.ctx.beginPath(); s.ctx.moveTo(px, 0); s.ctx.lineTo(px, s.h); s.ctx.stroke();
+    s.ctx.beginPath(); s.ctx.moveTo(s.ox, py); s.ctx.lineTo(px, py); s.ctx.stroke();
+    s.ctx.setLineDash([]);
+    gxDot(s, t.mrkX, yv, '#dc2626');
+    s.ctx.font = 'bold 11px Inter,sans-serif'; s.ctx.fillStyle = '#dc2626';
+    s.ctx.textAlign = 'center'; s.ctx.fillText(t.mrkX, px, s.h - 3);
+    s.ctx.textAlign = 'left';
+  } else if (t.type === 'yn') {
+    gxDot(s, t.pt[0], t.pt[1], '#dc2626');
+    var lx = s.ox + t.pt[0]*s.step + 9, ly = s.oy - t.pt[1]*s.step - 9;
+    s.ctx.font = 'bold 11px Inter,sans-serif'; s.ctx.fillStyle = '#dc2626'; s.ctx.textAlign = 'left';
+    s.ctx.fillText('(' + t.pt[0] + '; ' + t.pt[1] + ')', lx, ly);
+  }
+}
+
+function grBuildDots() {
+  var wrap = document.getElementById('grNavDots'); if (!wrap) return;
+  var html = '';
+  for (var i = 0; i < GR_TASKS.length; i++) {
+    var cls = 'nav-dot';
+    if (i === grCur) cls += ' nd-cur';
+    else if (grState[i] === 1)  cls += ' nd-ok';
+    else if (grState[i] === -1) cls += ' nd-fail';
+    html += '<div class="' + cls + '" onclick="grGoTo(' + i + ')">' + (i+1) + '</div>';
+  }
+  wrap.innerHTML = html;
+}
+
+function grUpdateScore() {
+  var ok = 0, fail = 0, pos = 0;
+  for (var i = 0; i < GR_TASKS.length; i++) {
+    if (grState[i] === 1)  ok++;
+    if (grState[i] === -1) fail++;
+    if (grState[i] !== 0)  pos++;
+  }
+  document.getElementById('grCntOk').textContent  = ok;
+  document.getElementById('grCntFail').textContent = fail;
+  document.getElementById('grCntPos').textContent  = pos;
+  document.getElementById('grProgFill').style.width = Math.round(pos/GR_TASKS.length*100) + '%';
+}
+
+function renderGrTask(idx) {
+  var card = document.getElementById('grCard'); if (!card) return;
+  var t = GR_TASKS[idx];
+  var done = grState[idx] !== 0;
+  var html = '<div class="tk-para">§20 \u2014 \u0413\u0440\u0430\u0444\u0438\u043a\u0438</div>';
+  html += '<div class="tk-q">' + t.q + '</div>';
+
+  if (t.type === 'pick-graph') {
+    html += '<div class="pick-grid">';
+    for (var i = 0; i < t.graphs.length; i++) {
+      var pcls = 'pick-item';
+      if (done) { if (i===t.correct) pcls+=' pi-cor'; else if (grLastWrong[idx]===i) pcls+=' pi-wrong'; }
+      html += '<div class="' + pcls + '" onclick="grCheckPick(' + idx + ',' + i + ')">';
+      html += '<canvas id="grPCv_' + idx + '_' + i + '"></canvas>';
+      html += '<div class="pick-label">' + String.fromCharCode(65+i) + '</div></div>';
+    }
+    html += '</div>';
+  } else if (t.type === 'find-k' || t.type === 'read-value') {
+    html += '<canvas id="grMainCv" class="gr-cv-main"></canvas>';
+    var hint = t.type === 'find-k' ? 'k = ' : 'y = ';
+    if (!done) {
+      html += '<div class="num-input-row"><input type="number" id="grNumInput" placeholder="' + hint + '"><button class="check-btn" onclick="grCheckNum(' + idx + ')">Проверить</button></div>';
+    } else {
+      var icls = grState[idx]===1 ? 'inp-ok' : 'inp-fail';
+      html += '<div class="num-input-row"><input type="number" class="' + icls + '" value="' + t.ans + '" disabled></div>';
+    }
+  } else if (t.type === 'yn') {
+    html += '<canvas id="grMainCv" class="gr-cv-main"></canvas>';
+    var ycls = 'yn-btn', ncls = 'yn-btn';
+    if (done) {
+      ycls += ' disabled'; ncls += ' disabled';
+      if (t.ans==='yes') { ycls+=' yn-cor'; if (grState[idx]===-1) ncls+=' yn-wrong'; }
+      else               { ncls+=' yn-cor'; if (grState[idx]===-1) ycls+=' yn-wrong'; }
+    }
+    html += '<div class="yn-row"><button class="' + ycls + '" onclick="grCheckYN(' + idx + ',\'yes\')">Да</button>';
+    html += '<button class="' + ncls + '" onclick="grCheckYN(' + idx + ',\'no\')">Нет</button></div>';
+  }
+
+  if (done) {
+    var fbCls = 'feedback show ' + (grState[idx]===1 ? 'fb-ok' : 'fb-fail');
+    var fbIcon = grState[idx]===1 ? '<i class="fas fa-check"></i> Верно! ' : '<i class="fas fa-xmark"></i> Неверно. ';
+    html += '<div class="' + fbCls + '">' + fbIcon + t.fb + '</div>';
+  }
+
+  card.innerHTML = html;
+  if (window.renderMathInElement) {
+    renderMathInElement(card, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});
+  }
+
+  requestAnimationFrame(function() {
+    if (t.type === 'pick-graph') {
+      for (var i = 0; i < t.graphs.length; i++) {
+        var cv = document.getElementById('grPCv_' + idx + '_' + i);
+        if (cv) drawPickCvGr(cv, t.graphs[i].k, t.graphs[i].b);
+      }
+    } else {
+      var cv = document.getElementById('grMainCv');
+      if (cv) drawMainCvGr(cv, t);
+    }
+  });
+
+  var pb = document.getElementById('grBtnPrev'); if (pb) pb.disabled = (idx===0);
+  var nb = document.getElementById('grBtnNext'); if (nb) nb.disabled = (idx===GR_TASKS.length-1);
+  grBuildDots();
+  grUpdateScore();
+}
+
+function grCheckPick(idx, chosen) {
+  if (grState[idx]!==0) return;
+  grState[idx] = (chosen===GR_TASKS[idx].correct) ? 1 : -1;
+  if (grState[idx]===-1) grLastWrong[idx] = chosen;
+  renderGrTask(idx);
+}
+
+function grCheckYN(idx, ans) {
+  if (grState[idx]!==0) return;
+  grState[idx] = (ans===GR_TASKS[idx].ans) ? 1 : -1;
+  renderGrTask(idx);
+}
+
+function grCheckNum(idx) {
+  var inp = document.getElementById('grNumInput'); if (!inp) return;
+  var val = parseFloat(inp.value);
+  grState[idx] = (Math.abs(val - GR_TASKS[idx].ans) < 0.001) ? 1 : -1;
+  renderGrTask(idx);
+}
+
+function grNav(dir) {
+  var next = grCur + dir;
+  if (next<0 || next>=GR_TASKS.length) return;
+  grCur = next;
+  document.getElementById('grResults').classList.remove('show');
+  renderGrTask(grCur);
+}
+
+function grGoTo(idx) {
+  grCur = idx;
+  document.getElementById('grResults').classList.remove('show');
+  renderGrTask(grCur);
+}
+
+function grShowResults() {
+  var ok = 0;
+  for (var i = 0; i < GR_TASKS.length; i++) if (grState[i]===1) ok++;
+  var total = GR_TASKS.length;
+  document.getElementById('grRpScore').textContent = ok + ' / ' + total;
+  var pct = ok / total;
+  var icon, msg;
+  if      (pct >= 0.9) { icon = '\uD83C\uDF89'; msg = 'Отлично! Графики отлично усвоены.'; }
+  else if (pct >= 0.7) { icon = '\uD83D\uDC4D'; msg = 'Хорошо! Потренируйся ещё немного.'; }
+  else if (pct >= 0.5) { icon = '\uD83D\uDCDA'; msg = 'Неплохо, повтори построение графиков.'; }
+  else                  { icon = '\uD83D\uDD04'; msg = 'Посмотри ещё раз §20 и попробуй снова.'; }
+  document.getElementById('grRpIcon').textContent = icon;
+  document.getElementById('grRpMsg').textContent  = msg;
+  var panel = document.getElementById('grResults');
+  panel.classList.add('show');
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function grRestart() {
+  for (var i = 0; i < GR_TASKS.length; i++) grState[i] = 0;
+  grLastWrong = {}; grCur = 0;
+  document.getElementById('grResults').classList.remove('show');
+  renderGrTask(0);
+}
+
+function refreshGrCvs() {
+  var active = document.querySelector('.tab-pane.active');
+  if (!active || active.id !== 'tab-graphs') return;
+  renderGrTask(grCur);
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  calcP19();
+  setTimeout(function() { drawP20(); }, 100);
+  renderTkTask(0);
+  tkBuildDots();
+  renderGrTask(0);
+  grBuildDots();
+});
+
+window.addEventListener('resize', function() {
+  var active = document.querySelector('.tab-pane.active');
+  if (active && active.id === 'tab-p20')    drawP20();
+  if (active && active.id === 'tab-graphs') refreshGrCvs();
+});
+</script>
+</body>
+</html>

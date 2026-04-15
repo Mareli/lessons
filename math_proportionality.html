@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прямая и обратная пропорциональные зависимости — Математика 6 класс</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --pri: #059669;
+  --acc: #10b981;
+  --bg: #f0fdf4;
+  --bg2: #dcfce7;
+  --bg3: #bbf7d0;
+  --card: #ffffff;
+  --text: #1a2e1a;
+  --text2: #374151;
+  --text3: #6b7280;
+  --border: #d1fae5;
+  --border2: #a7f3d0;
+  --shadow: rgba(5,150,105,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --orange: #ea580c;
+  --red: #dc2626;
+  --green: #16a34a;
+  --yellow: #ca8a04;
+}
+[data-theme="dark"] {
+  --bg: #0a1a0f;
+  --bg2: #0d2218;
+  --bg3: #112b1e;
+  --card: #152b1e;
+  --text: #d1fae5;
+  --text2: #a7f3d0;
+  --text3: #6ee7b7;
+  --border: #1a3d28;
+  --border2: #1e5235;
+  --shadow: rgba(16,185,129,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, var(--pri) 0%, #047857 100%);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(5,150,105,0.25);
+}
+.header-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+.header-titles { flex: 1; min-width: 0; }
+.header-titles h1 {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-titles p {
+  font-size: 0.72rem;
+  opacity: 0.82;
+  margin-top: 2px;
+}
+.theme-btn {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.theme-btn:hover { background: rgba(255,255,255,0.28); }
+
+/* Tab bar */
+.tab-bar {
+  position: sticky;
+  top: 60px;
+  z-index: 99;
+  background: var(--card);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  gap: 0;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.tab-btn.active {
+  color: var(--pri);
+  border-bottom-color: var(--pri);
+}
+.tab-btn:hover:not(.active) { color: var(--text2); }
+
+/* Tab content */
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Main content area */
+.content { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+/* Section headings */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pri);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.section-title .icon { font-size: 1.1rem; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--pri);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.card p { font-size: 0.9rem; color: var(--text2); }
+
+/* Formula box */
+.formula-box {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border: 2px solid var(--acc);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--pri);
+}
+[data-theme="dark"] .formula-box {
+  background: linear-gradient(135deg, #0d2e1c, #112b1f);
+}
+
+/* Rule box */
+.rule-box {
+  background: var(--bg2);
+  border-left: 4px solid var(--pri);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.rule-box .rule-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--pri);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.rule-box ol, .rule-box ul {
+  padding-left: 1.3rem;
+  font-size: 0.88rem;
+  color: var(--text2);
+}
+.rule-box li { margin-bottom: 0.3rem; }
+
+/* Graph container */
+.graph-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.graph-section h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text2);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.canvas-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  max-height: 300px;
+  position: relative;
+}
+.canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border2);
+  background: var(--bg);
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.slider-row label { font-size: 0.85rem; color: var(--text3); font-weight: 600; }
+.slider-row input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+  accent-color: var(--pri);
+  height: 6px;
+  cursor: pointer;
+}
+.slider-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--pri);
+  min-width: 2.5rem;
+  text-align: center;
+}
+.formula-display {
+  display: inline-block;
+  background: var(--bg2);
+  border-radius: 6px;
+  padding: 0.25rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--pri);
+  margin-top: 0.5rem;
+}
+
+/* Value table */
+.val-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 0.75rem;
+}
+.val-table th {
+  background: var(--bg3);
+  color: var(--text2);
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.val-table td {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  color: var(--text2);
+  font-family: monospace;
+}
+
+/* Example cards grid */
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.example-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.example-card:hover { box-shadow: 0 4px 14px var(--shadow); transform: translateY(-1px); }
+.example-card .ex-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+.example-card .ex-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text2);
+  margin-bottom: 0.3rem;
+}
+.example-card .ex-formula {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--pri);
+  background: var(--bg2);
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+.example-card p {
+  font-size: 0.78rem;
+  color: var(--text3);
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 2px dashed var(--border2);
+  margin: 2rem 0;
+}
+
+/* Comparison grid */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 520px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card {
+  border-radius: var(--radius);
+  padding: 1rem;
+  border: 2px solid;
+}
+.compare-card.direct { background: #eff6ff; border-color: #93c5fd; }
+.compare-card.inverse { background: #faf5ff; border-color: #c4b5fd; }
+[data-theme="dark"] .compare-card.direct { background: #0f1e3a; border-color: #2563eb; }
+[data-theme="dark"] .compare-card.inverse { background: #1a0f2e; border-color: #7c3aed; }
+.compare-card h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.compare-card.direct h4 { color: var(--blue); }
+.compare-card.inverse h4 { color: var(--purple); }
+.compare-card ul {
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--text2);
+}
+.compare-card li { margin-bottom: 0.3rem; }
+
+/* ===== TASKS TAB ===== */
+.tasks-content { max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+/* Score bar */
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.1rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.score-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--bg2);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+}
+.score-chip.correct { color: var(--green); }
+.score-chip.position { color: var(--blue); }
+.score-chip.skipped { color: var(--yellow); }
+
+/* Nav dots */
+.nav-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.nav-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  background: var(--bg2);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  transition: all 0.15s;
+}
+.nav-dot:hover { border-color: var(--pri); color: var(--pri); }
+.nav-dot.current { border-color: var(--pri); border-width: 3px; color: var(--pri); background: var(--bg); }
+.nav-dot.correct { background: #dcfce7; border-color: var(--green); color: var(--green); }
+.nav-dot.wrong { background: #fee2e2; border-color: var(--red); color: var(--red); }
+.nav-dot.skipped-dot { background: #fef9c3; border-color: var(--yellow); color: var(--yellow); }
+
+/* Task card */
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.4rem 1.1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px var(--shadow);
+  min-height: 200px;
+}
+.task-meta {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text3);
+  margin-bottom: 0.5rem;
+}
+.task-question {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.1rem;
+  line-height: 1.5;
+}
+
+/* MCQ options */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+.option-btn {
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: var(--text2);
+  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--acc); background: var(--bg3); }
+.option-btn.selected-correct {
+  background: #dcfce7;
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 700;
+}
+.option-btn.selected-wrong {
+  background: #fee2e2;
+  border-color: var(--red);
+  color: var(--red);
+}
+.option-btn.reveal-correct {
+  background: #dcfce7;
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 700;
+}
+.option-btn:disabled { cursor: not-allowed; opacity: 0.85; }
+
+/* Numeric input */
+.numeric-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+.num-input {
+  flex: 1;
+  min-width: 90px;
+  max-width: 160px;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid var(--border2);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--bg2);
+  color: var(--text);
+  transition: border-color 0.15s;
+  outline: none;
+}
+.num-input:focus { border-color: var(--pri); }
+.num-input.correct-input { border-color: var(--green); background: #dcfce7; }
+.num-input.wrong-input { border-color: var(--red); background: #fee2e2; }
+.unit-label {
+  font-size: 0.9rem;
+  color: var(--text3);
+  font-weight: 600;
+}
+.check-btn {
+  padding: 0.55rem 1.1rem;
+  background: var(--pri);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  font-family: inherit;
+}
+.check-btn:hover:not(:disabled) { background: #047857; }
+.check-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Feedback box */
+.feedback-box {
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  display: none;
+  line-height: 1.5;
+}
+.feedback-box.correct-fb {
+  display: block;
+  background: #dcfce7;
+  border-left: 4px solid var(--green);
+  color: #166534;
+}
+.feedback-box.wrong-fb {
+  display: block;
+  background: #fee2e2;
+  border-left: 4px solid var(--red);
+  color: #991b1b;
+}
+[data-theme="dark"] .feedback-box.correct-fb { background: #0d2e1c; color: #6ee7b7; }
+[data-theme="dark"] .feedback-box.wrong-fb { background: #2d0e0e; color: #fca5a5; }
+
+/* Task nav buttons */
+.task-nav {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+.nav-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text2);
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.nav-btn:hover:not(:disabled) { border-color: var(--pri); color: var(--pri); }
+.nav-btn.next-btn {
+  background: var(--pri);
+  border-color: var(--pri);
+  color: #fff;
+}
+.nav-btn.next-btn:hover:not(:disabled) { background: #047857; border-color: #047857; }
+.nav-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Results panel */
+.results-panel {
+  display: none;
+  background: var(--card);
+  border: 2px solid var(--pri);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+.results-panel.visible { display: block; }
+.results-score {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--pri);
+  margin-bottom: 0.25rem;
+}
+.results-msg { font-size: 1rem; color: var(--text2); margin-bottom: 1.5rem; }
+.restart-btn {
+  padding: 0.7rem 1.8rem;
+  background: var(--pri);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.restart-btn:hover { background: #047857; }
+
+/* Utility */
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.text-muted { color: var(--text3); font-size: 0.82rem; }
+
+@media (max-width: 480px) {
+  .header-titles h1 { font-size: 0.82rem; }
+  .content { padding: 1rem 0.75rem 2rem; }
+  .tasks-content { padding: 1rem 0.75rem 2rem; }
+  .task-card { padding: 1rem 1rem 0.9rem; }
+  .formula-box { font-size: 1.1rem; }
+}
+
+/* ===== GRAPH TASKS ===== */
+.pick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+}
+.pick-item {
+  border: 2px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem;
+  cursor: pointer;
+  background: var(--bg);
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.pick-item:hover { border-color: var(--pri); background: var(--bg2); }
+.pick-item.selected { border-color: var(--pri); background: rgba(5,150,105,0.09); }
+[data-theme="dark"] .pick-item.selected { background: rgba(5,150,105,0.16); }
+.pick-cv { width: 100%; height: 110px; display: block; border-radius: 3px; background: var(--bg); }
+.pick-label { font-size: 0.72rem; color: var(--text3); margin-top: 0.25rem; font-weight: 600; }
+.yn-row { display: flex; gap: 1rem; justify-content: center; margin: 0.75rem 0; }
+.yn-btn {
+  padding: 0.55rem 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.yn-btn.yn-yes { border-color: #059669; color: #059669; }
+.yn-btn.yn-yes:hover:not(:disabled) { background: #059669; color: #fff; }
+.yn-btn.yn-no { border-color: #dc2626; color: #dc2626; }
+.yn-btn.yn-no:hover:not(:disabled) { background: #dc2626; color: #fff; }
+.gr-click-hint { font-size: 0.8rem; color: var(--text3); text-align: center; margin-bottom: 0.35rem; font-style: italic; }
+.gr-num-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.75rem 0; flex-wrap: wrap; }
+.gr-num-row span { font-size: 0.9rem; color: var(--text2); font-weight: 600; }
+.gr-num-input {
+  width: 80px;
+  padding: 0.4rem 0.5rem;
+  border: 2px solid var(--border2);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+  font-family: inherit;
+  outline: none;
+}
+.gr-num-input:focus { border-color: var(--pri); }
+.gr-num-input.correct-input { border-color: var(--green); background: #dcfce7; color: #166534; }
+.gr-num-input.wrong-input { border-color: var(--red); background: #fee2e2; color: #991b1b; }
+[data-theme="dark"] .gr-num-input.correct-input { background: #0d2e1c; color: #6ee7b7; }
+[data-theme="dark"] .gr-num-input.wrong-input { background: #2d0e0e; color: #fca5a5; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-icon"><i class="fas fa-chart-line"></i></div>
+  <div class="header-titles">
+    <h1>Прямая и обратная пропорциональные зависимости</h1>
+    <p>Математика &middot; 6 класс &middot; Глава 5, §3 &middot; Герасимов/Пирютко</p>
+  </div>
+  <button class="theme-btn" id="themeBtn" title="Сменить тему">
+    <i class="fas fa-moon" id="themeIcon"></i>
+  </button>
+</header>
+
+<!-- Tab bar -->
+<nav class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="theory">
+    <i class="fas fa-book-open"></i> Теория
+  </button>
+  <button class="tab-btn" data-tab="tasks">
+    <i class="fas fa-pencil-alt"></i> Задачи
+  </button>
+  <button class="tab-btn" data-tab="graphs">
+    <i class="fas fa-chart-bar"></i> Графики
+  </button>
+</nav>
+
+<!-- =================== THEORY TAB =================== -->
+<div class="tab-pane active" id="tab-theory">
+<div class="content">
+
+  <!-- Section 1: Direct -->
+  <div class="section-title"><i class="fas fa-arrow-trend-up icon"></i> Прямая пропорциональная зависимость</div>
+
+  <div class="card">
+    <h3><i class="fas fa-circle-info"></i> Определение</h3>
+    <p>Говорят, что величина $y$ прямо пропорциональна величине $x$, если они связаны формулой $y = kx$, где $k \neq 0$ — <strong>коэффициент пропорциональности</strong>.</p>
+    <p style="margin-top:0.5rem">Если $x$ увеличивается в $N$ раз, то $y$ тоже увеличивается в $N$ раз.</p>
+  </div>
+
+  <div class="formula-box">$$y = kx, \quad k \neq 0$$</div>
+
+  <div class="rule-box">
+    <div class="rule-title"><i class="fas fa-list-check"></i> Алгоритм построения графика</div>
+    <ol>
+      <li>Найти коэффициент пропорциональности $k$.</li>
+      <li>Отметить точку $(1;\; k)$ в системе координат.</li>
+      <li>Провести прямую через начало координат и эту точку.</li>
+    </ol>
+    <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--text3)">График — <strong>прямая линия, проходящая через начало координат</strong>.</p>
+  </div>
+
+  <!-- Graph 1 -->
+  <div class="graph-section">
+    <h3><i class="fas fa-chart-line" style="color:var(--blue)"></i> Интерактивный график: $y = kx$</h3>
+    <div class="canvas-wrap"><canvas id="canvas-direct"></canvas></div>
+    <div class="slider-row">
+      <label>$k =$</label>
+      <input type="range" id="slider-direct" min="0.5" max="4" step="0.5" value="2">
+      <span class="slider-val" id="sval-direct">2</span>
+      <span class="formula-display" id="form-direct">y = 2x</span>
+    </div>
+    <div id="table-direct-wrap">
+      <table class="val-table" id="table-direct">
+        <thead><tr><th>x</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody><tr><th>y</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Examples Direct -->
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="ex-icon">🛶</div>
+      <div class="ex-title">Плот плывёт со скоростью 2 км/ч</div>
+      <div class="ex-formula">$s = 2t$</div>
+      <p>Расстояние прямо пропорционально времени. $k = 2$.</p>
+    </div>
+    <div class="example-card">
+      <div class="ex-icon">📓</div>
+      <div class="ex-title">Цена тетради 2 р.</div>
+      <div class="ex-formula">$C = 2K$</div>
+      <p>Стоимость прямо пропорциональна количеству тетрадей.</p>
+    </div>
+    <div class="example-card">
+      <div class="ex-icon">📐</div>
+      <div class="ex-title">Ширина прямоугольника 2 см</div>
+      <div class="ex-formula">$S = 2a$</div>
+      <p>Площадь прямо пропорциональна длине при фиксированной ширине.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Section 2: Inverse -->
+  <div class="section-title"><i class="fas fa-arrows-left-right icon"></i> Обратная пропорциональная зависимость</div>
+
+  <div class="card">
+    <h3><i class="fas fa-circle-info"></i> Определение</h3>
+    <p>Говорят, что величина $y$ обратно пропорциональна величине $x$, если они связаны формулой $y = \dfrac{k}{x}$, где $k \neq 0$, $x \neq 0$.</p>
+    <p style="margin-top:0.5rem">Если $x$ увеличивается в $N$ раз, то $y$ уменьшается в $N$ раз.</p>
+  </div>
+
+  <div class="formula-box">$$y = \frac{k}{x}, \quad k \neq 0,\; x \neq 0$$</div>
+
+  <div class="rule-box">
+    <div class="rule-title"><i class="fas fa-circle-nodes"></i> О графике</div>
+    <ul>
+      <li>График — кривая, называемая <strong>гиперболой</strong>.</li>
+      <li>Расположена в I и III четвертях, если $k > 0$.</li>
+      <li>Ключевые точки: $(1;\; k)$ и $(k;\; 1)$.</li>
+      <li>Никогда не пересекает ни одну из осей координат.</li>
+    </ul>
+  </div>
+
+  <!-- Graph 2 -->
+  <div class="graph-section">
+    <h3><i class="fas fa-chart-line" style="color:var(--purple)"></i> Интерактивный график: $y = k/x$</h3>
+    <div class="canvas-wrap"><canvas id="canvas-inverse"></canvas></div>
+    <div class="slider-row">
+      <label>$k =$</label>
+      <input type="range" id="slider-inverse" min="1" max="12" step="1" value="6">
+      <span class="slider-val" id="sval-inverse">6</span>
+      <span class="formula-display" id="form-inverse">y = 6/x</span>
+    </div>
+    <div id="table-inverse-wrap">
+      <table class="val-table" id="table-inverse">
+        <thead><tr><th>x</th><th>1</th><th>2</th><th>3</th><th>4</th><th>6</th></tr></thead>
+        <tbody><tr><th>y</th><td>6</td><td>3</td><td>2</td><td>1.5</td><td>1</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Examples Inverse -->
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="ex-icon">🚗</div>
+      <div class="ex-title">Путь 9 км при скорости $v$</div>
+      <div class="ex-formula">$t = \dfrac{9}{v}$</div>
+      <p>Время обратно пропорционально скорости. $k = 9$.</p>
+    </div>
+    <div class="example-card">
+      <div class="ex-icon">🟦</div>
+      <div class="ex-title">Площадь прямоугольника 4 м²</div>
+      <div class="ex-formula">$b = \dfrac{4}{a}$</div>
+      <p>При фиксированной площади ширина обратно пропорциональна длине.</p>
+    </div>
+    <div class="example-card">
+      <div class="ex-icon">💰</div>
+      <div class="ex-title">Бюджет 9 р., цена Ц</div>
+      <div class="ex-formula">$K = \dfrac{9}{\text{Ц}}$</div>
+      <p>Количество покупок обратно пропорционально цене товара.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Comparison -->
+  <div class="section-title"><i class="fas fa-scale-balanced icon"></i> Сравнение</div>
+  <div class="compare-grid">
+    <div class="compare-card direct">
+      <h4><i class="fas fa-arrow-up-right-dots"></i> Прямая пропорциональность</h4>
+      <ul>
+        <li>Формула: $y = kx$</li>
+        <li>График: прямая через $(0; 0)$</li>
+        <li>$x \uparrow N$ раз &rarr; $y \uparrow N$ раз</li>
+        <li>$k$ = тангенс угла наклона прямой</li>
+        <li>Проходит через начало координат</li>
+      </ul>
+    </div>
+    <div class="compare-card inverse">
+      <h4><i class="fas fa-arrow-right-arrow-left"></i> Обратная пропорциональность</h4>
+      <ul>
+        <li>Формула: $y = k/x$</li>
+        <li>График: гипербола</li>
+        <li>$x \uparrow N$ раз &rarr; $y \downarrow N$ раз</li>
+        <li>$k = x \cdot y$ = const для всех точек</li>
+        <li>Никогда не проходит через оси</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /content -->
+</div><!-- /tab-theory -->
+
+<!-- =================== TASKS TAB =================== -->
+<div class="tab-pane" id="tab-tasks">
+<div class="tasks-content">
+  <div class="score-bar" id="scoreBar">
+    <span class="score-chip correct" id="chip-correct"><i class="fas fa-check"></i> Верно: <b id="cnt-correct">0</b></span>
+    <span class="score-chip position" id="chip-pos"><i class="fas fa-list-ol"></i> Задача: <b id="cnt-pos">1</b>/15</span>
+    <span class="score-chip skipped" id="chip-skip"><i class="fas fa-forward"></i> Пропущено: <b id="cnt-skip">0</b></span>
+  </div>
+
+  <div class="nav-dots" id="navDots"></div>
+  <div class="task-card" id="taskCard"></div>
+  <div class="task-nav" id="taskNav"></div>
+  <div class="results-panel" id="resultsPanel">
+    <div style="font-size:2.5rem; margin-bottom:0.5rem">🏆</div>
+    <div class="results-score" id="resultsScore"></div>
+    <div class="results-msg" id="resultsMsg"></div>
+    <button class="restart-btn" onclick="restartTasks()"><i class="fas fa-redo"></i> Начать заново</button>
+  </div>
+</div>
+</div>
+
+<!-- =================== GRAPHS TAB =================== -->
+<div class="tab-pane" id="tab-graphs">
+<div class="tasks-content">
+  <div class="score-bar">
+    <span class="score-chip correct"><i class="fas fa-check"></i> Верно: <b id="grCntCorrect">0</b></span>
+    <span class="score-chip position"><i class="fas fa-list-ol"></i> Задача: <b id="grCntPos">1</b>/10</span>
+    <span class="score-chip skipped"><i class="fas fa-forward"></i> Пропущено: <b id="grCntSkip">0</b></span>
+  </div>
+  <div class="nav-dots" id="grNavDots"></div>
+  <div class="task-card" id="grTaskCard"></div>
+  <div class="task-nav" id="grNavBtns"></div>
+  <div class="results-panel" id="grResultsPanel">
+    <div style="font-size:2.5rem;margin-bottom:0.5rem">&#128202;</div>
+    <div class="results-score" id="grScore"></div>
+    <div class="results-msg" id="grResultsMsg"></div>
+    <button class="restart-btn" onclick="restartGrTasks()"><i class="fas fa-redo"></i> Начать заново</button>
+  </div>
+</div>
+</div>
+
+<script>
+// ===================== THEME =====================
+(function() {
+  var saved = localStorage.getItem('math6_theme');
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+})();
+
+document.getElementById('themeBtn').addEventListener('click', function() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('math6_theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('math6_theme', 'dark');
+  }
+  document.getElementById('themeIcon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+  drawDirect();
+  drawInverse();
+  refreshGrCvs();
+});
+// Set icon correctly on load
+(function() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('themeIcon').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+})();
+
+// ===================== TABS =====================
+document.getElementById('tabBar').addEventListener('click', function(e) {
+  var btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  var tabName = btn.getAttribute('data-tab');
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-' + tabName).classList.add('active');
+  if (tabName === 'theory') {
+    setTimeout(function() { drawDirect(); drawInverse(); }, 50);
+  } else if (tabName === 'graphs') {
+    setTimeout(function() { renderGrTask(grCur); }, 50);
+  }
+});
+
+// ===================== KATEX =====================
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left:'$$', right:'$$', display:true},
+        {left:'$', right:'$', display:false}
+      ],
+      throwOnError: false
+    });
+  }
+  drawDirect();
+  drawInverse();
+  buildTasks();
+  buildGrTasks();
+});
+
+// ===================== CANVAS HELPERS =====================
+function getCSSVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function isDarkMode() {
+  return document.documentElement.getAttribute('data-theme') === 'dark';
+}
+
+function setupCanvas(canvas) {
+  var dpr = window.devicePixelRatio || 1;
+  var w = canvas.clientWidth;
+  var h = canvas.clientHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return { ctx: ctx, w: w, h: h };
+}
+
+function drawGrid(ctx, w, h, ox, oy, step, dark) {
+  ctx.beginPath();
+  ctx.strokeStyle = dark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+  ctx.lineWidth = 1;
+  for (var x = ox % step; x < w; x += step) {
+    ctx.moveTo(x, 0); ctx.lineTo(x, h);
+  }
+  for (var y = oy % step; y < h; y += step) {
+    ctx.moveTo(0, y); ctx.lineTo(w, y);
+  }
+  ctx.stroke();
+}
+
+function drawAxes(ctx, w, h, ox, oy, step, dark) {
+  var axisColor = dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)';
+  ctx.strokeStyle = axisColor;
+  ctx.fillStyle = axisColor;
+  ctx.lineWidth = 1.5;
+  var arrowSize = 7;
+
+  // X axis
+  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(w - 4, oy); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(w - 4, oy);
+  ctx.lineTo(w - 4 - arrowSize, oy - arrowSize/2);
+  ctx.lineTo(w - 4 - arrowSize, oy + arrowSize/2);
+  ctx.closePath(); ctx.fill();
+
+  // Y axis
+  ctx.beginPath(); ctx.moveTo(ox, h); ctx.lineTo(ox, 4); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(ox, 4);
+  ctx.lineTo(ox - arrowSize/2, 4 + arrowSize);
+  ctx.lineTo(ox + arrowSize/2, 4 + arrowSize);
+  ctx.closePath(); ctx.fill();
+
+  // Axis labels
+  ctx.font = 'bold 11px sans-serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  ctx.fillText('x', w - 12, oy + 4);
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.fillText('y', ox + 5, 6);
+
+  // Tick marks & labels
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = dark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.45)';
+  ctx.strokeStyle = dark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.3)';
+  ctx.lineWidth = 1;
+
+  for (var i = 1; i * step + ox < w - 10; i++) {
+    var tx = ox + i * step;
+    ctx.beginPath(); ctx.moveTo(tx, oy - 3); ctx.lineTo(tx, oy + 3); ctx.stroke();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText(i, tx, oy + 4);
+  }
+  for (var j = 1; oy - j * step > 10; j++) {
+    var ty = oy - j * step;
+    ctx.beginPath(); ctx.moveTo(ox - 3, ty); ctx.lineTo(ox + 3, ty); ctx.stroke();
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    ctx.fillText(j, ox - 5, ty);
+  }
+}
+
+// ===================== GRAPH 1: DIRECT =====================
+function drawDirect() {
+  var canvas = document.getElementById('canvas-direct');
+  if (!canvas || !canvas.clientWidth) return;
+  var s = setupCanvas(canvas);
+  var ctx = s.ctx, w = s.w, h = s.h;
+  var dark = isDarkMode();
+
+  var pad = 32;
+  var ox = pad;
+  var oy = h - pad;
+  var step = Math.min((w - pad - 10) / 7, (h - pad - 10) / 7);
+  step = Math.max(step, 20);
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = dark ? '#0a1a0f' : '#f9fffe';
+  ctx.fillRect(0, 0, w, h);
+
+  drawGrid(ctx, w, h, ox, oy, step, dark);
+  drawAxes(ctx, w, h, ox, oy, step, dark);
+
+  var k = parseFloat(document.getElementById('slider-direct').value);
+
+  // Draw line y = kx
+  ctx.beginPath();
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+
+  var x0 = -ox / step;
+  var x1 = (w - ox) / step;
+  ctx.moveTo(ox + x0 * step, oy - k * x0 * step);
+  ctx.lineTo(ox + x1 * step, oy - k * x1 * step);
+  ctx.stroke();
+
+  // Origin dot
+  ctx.beginPath();
+  ctx.fillStyle = '#2563eb';
+  ctx.arc(ox, oy, 4, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Highlight point (1, k)
+  var px = ox + step;
+  var py = oy - k * step;
+  if (px < w && py > 5) {
+    ctx.beginPath();
+    ctx.fillStyle = '#ea580c';
+    ctx.arc(px, py, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.arc(px, py, 6, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Label
+    ctx.font = 'bold 11px sans-serif';
+    ctx.fillStyle = '#ea580c';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    var kDisp = (k === Math.floor(k)) ? k.toString() : k.toString();
+    ctx.fillText('(1; ' + kDisp + ')', px + 8, py - 2);
+  }
+}
+
+document.getElementById('slider-direct').addEventListener('input', function() {
+  var k = parseFloat(this.value);
+  document.getElementById('sval-direct').textContent = k;
+  var kStr = (k === Math.floor(k)) ? k.toString() : k.toString();
+  document.getElementById('form-direct').textContent = 'y = ' + kStr + 'x';
+  updateDirectTable(k);
+  drawDirect();
+});
+
+function updateDirectTable(k) {
+  var xs = [1, 2, 3, 4, 5];
+  var tbody = document.querySelector('#table-direct tbody tr');
+  var cells = tbody.querySelectorAll('td');
+  for (var i = 0; i < xs.length; i++) {
+    var y = k * xs[i];
+    cells[i].textContent = (y === Math.floor(y)) ? y.toString() : y.toFixed(1);
+  }
+}
+
+// ===================== GRAPH 2: INVERSE =====================
+function drawInverse() {
+  var canvas = document.getElementById('canvas-inverse');
+  if (!canvas || !canvas.clientWidth) return;
+  var s = setupCanvas(canvas);
+  var ctx = s.ctx, w = s.w, h = s.h;
+  var dark = isDarkMode();
+
+  var pad = 32;
+  var ox = pad;
+  var oy = h - pad;
+  var step = Math.min((w - pad - 10) / 13, (h - pad - 10) / 13);
+  step = Math.max(step, 18);
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = dark ? '#0a1a0f' : '#f9fffe';
+  ctx.fillRect(0, 0, w, h);
+
+  drawGrid(ctx, w, h, ox, oy, step, dark);
+  drawAxes(ctx, w, h, ox, oy, step, dark);
+
+  var k = parseFloat(document.getElementById('slider-inverse').value);
+
+  // Draw hyperbola y = k/x (first quadrant only, x > 0)
+  ctx.beginPath();
+  ctx.strokeStyle = '#7c3aed';
+  ctx.lineWidth = 2.5;
+  var first = true;
+  var xMin = 0.05;
+  var xMax = (w - ox) / step;
+  var segments = 400;
+  for (var i = 0; i <= segments; i++) {
+    var xv = xMin + (xMax - xMin) * i / segments;
+    var yv = k / xv;
+    var cx = ox + xv * step;
+    var cy = oy - yv * step;
+    if (cy < 0 || cy > oy) { first = true; continue; }
+    if (first) { ctx.moveTo(cx, cy); first = false; }
+    else ctx.lineTo(cx, cy);
+  }
+  ctx.stroke();
+
+  // Highlight (1, k)
+  var p1x = ox + step;
+  var p1y = oy - k * step;
+  if (p1x < w && p1y > 4 && p1y < oy) {
+    ctx.beginPath();
+    ctx.fillStyle = '#ea580c';
+    ctx.arc(p1x, p1y, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.arc(p1x, p1y, 6, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillStyle = '#ea580c';
+    ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillText('(1; ' + k + ')', p1x + 7, p1y - 2);
+  }
+
+  // Highlight (k, 1)
+  var p2x = ox + k * step;
+  var p2y = oy - step;
+  if (p2x < w - 5 && p2y > 4) {
+    ctx.beginPath();
+    ctx.fillStyle = '#059669';
+    ctx.arc(p2x, p2y, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.arc(p2x, p2y, 6, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillStyle = '#059669';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+    ctx.fillText('(' + k + '; 1)', p2x, p2y - 8);
+  }
+}
+
+document.getElementById('slider-inverse').addEventListener('input', function() {
+  var k = parseFloat(this.value);
+  document.getElementById('sval-inverse').textContent = k;
+  document.getElementById('form-inverse').textContent = 'y = ' + k + '/x';
+  updateInverseTable(k);
+  drawInverse();
+});
+
+function updateInverseTable(k) {
+  var xs = [1, 2, 3, 4, 6];
+  var tbody = document.querySelector('#table-inverse tbody tr');
+  var cells = tbody.querySelectorAll('td');
+  for (var i = 0; i < xs.length; i++) {
+    var y = k / xs[i];
+    cells[i].textContent = (y === Math.floor(y)) ? y.toString() : y.toFixed(2);
+  }
+}
+
+// ===================== RESIZE =====================
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    drawDirect();
+    drawInverse();
+    refreshGrCvs();
+  }, 80);
+});
+
+// ===================== TASKS =====================
+var TASKS = [
+  {
+    id: 1,
+    type: 'mcq',
+    meta: 'Задача 1 из 15 · Тест · Упр. 53',
+    q: 'Каков вид графика функции $y = kx$ ($k \\neq 0$)?',
+    options: [
+      'Парабола',
+      'Прямая, проходящая через начало координат',
+      'Гипербола',
+      'Прямая, не проходящая через начало координат'
+    ],
+    correct: 1,
+    ex: 'График $y = kx$ — это прямая линия, проходящая через начало координат $(0; 0)$. Это основной признак прямой пропорциональной зависимости.'
+  },
+  {
+    id: 2,
+    type: 'mcq',
+    meta: 'Задача 2 из 15 · Тест · Упр. 54',
+    q: 'Каков вид графика функции $y = k/x$ ($k \\neq 0$, $x \\neq 0$)?',
+    options: [
+      'Прямая через начало координат',
+      'Парабола',
+      'Гипербола',
+      'Окружность'
+    ],
+    correct: 2,
+    ex: 'График $y = k/x$ называется гиперболой. При $k > 0$ она расположена в I и III четвертях координатной плоскости.'
+  },
+  {
+    id: 3,
+    type: 'mcq',
+    meta: 'Задача 3 из 15 · Тест · Упр. 56',
+    q: 'Принадлежит ли точка $B(2;\\ 5)$ графику функции $y = 2{,}5x$?',
+    options: [
+      'Да, принадлежит',
+      'Нет, не принадлежит'
+    ],
+    correct: 0,
+    ex: 'Проверяем: $y = 2{,}5 \\cdot 2 = 5$. Получили $5 = 5$ — верно. Значит, точка $B(2;\\ 5)$ лежит на графике $y = 2{,}5x$.'
+  },
+  {
+    id: 4,
+    type: 'mcq',
+    meta: 'Задача 4 из 15 · Тест · Упр. 56',
+    q: 'Принадлежит ли точка $A(5;\\ 2)$ графику функции $y = 2{,}5x$?',
+    options: [
+      'Да, принадлежит',
+      'Нет, не принадлежит'
+    ],
+    correct: 1,
+    ex: 'Проверяем: $y = 2{,}5 \\cdot 5 = 12{,}5$. Но $12{,}5 \\neq 2$. Значит, точка $A(5;\\ 2)$ НЕ лежит на графике $y = 2{,}5x$.'
+  },
+  {
+    id: 5,
+    type: 'mcq',
+    meta: 'Задача 5 из 15 · Тест · Упр. 63',
+    q: 'Принадлежит ли точка $A(1;\\ 8)$ графику функции $y = 8/x$?',
+    options: [
+      'Да, принадлежит',
+      'Нет, не принадлежит'
+    ],
+    correct: 0,
+    ex: 'Проверяем: $y = 8 / 1 = 8$. Получили $8 = 8$ — верно. Точка $A(1;\\ 8)$ лежит на гиперболе $y = 8/x$.'
+  },
+  {
+    id: 6,
+    type: 'mcq',
+    meta: 'Задача 6 из 15 · Тест · Упр. 63',
+    q: 'Принадлежит ли точка $B(2;\\ 6)$ графику функции $y = 8/x$?',
+    options: [
+      'Да, принадлежит',
+      'Нет, не принадлежит'
+    ],
+    correct: 1,
+    ex: 'Проверяем: $y = 8 / 2 = 4$. Но $4 \\neq 6$. Значит, точка $B(2;\\ 6)$ НЕ лежит на гиперболе $y = 8/x$.'
+  },
+  {
+    id: 7,
+    type: 'numeric',
+    meta: 'Задача 7 из 15 · Числовая · Упр. 57',
+    q: 'Функция $y = kx$ (прямая пропорциональность). График проходит через точку $M(1;\\ 3)$. Найдите коэффициент $k$.',
+    unit: '',
+    answer: 3,
+    tol: 0.001,
+    ex: 'Подставляем координаты точки $M(1;\\ 3)$: $3 = k \\cdot 1$, значит $k = 3$. График: прямая $y = 3x$.'
+  },
+  {
+    id: 8,
+    type: 'numeric',
+    meta: 'Задача 8 из 15 · Числовая · Упр. 57',
+    q: 'Функция $y = kx$. График проходит через точку $K(2;\\ 7)$. Найдите коэффициент $k$.',
+    unit: '',
+    answer: 3.5,
+    tol: 0.01,
+    ex: 'Подставляем: $7 = k \\cdot 2$, значит $k = 7 / 2 = 3{,}5$. График: прямая $y = 3{,}5x$.'
+  },
+  {
+    id: 9,
+    type: 'numeric',
+    meta: 'Задача 9 из 15 · Числовая · Упр. 53',
+    q: 'Плот плывёт со скоростью 2 км/ч. Зависимость: $s = 2t$. Какое расстояние проплывёт плот за 4 часа?',
+    unit: 'км',
+    answer: 8,
+    tol: 0.001,
+    ex: 'Подставляем $t = 4$: $s = 2 \\cdot 4 = 8$ км. Зависимость прямая: с увеличением времени расстояние растёт пропорционально.'
+  },
+  {
+    id: 10,
+    type: 'numeric',
+    meta: 'Задача 10 из 15 · Числовая · Упр. 62',
+    q: 'Расстояние 9 км. Время зависит от скорости: $t = 9/v$. Сколько часов займёт путь при скорости $v = 3$ км/ч?',
+    unit: 'ч',
+    answer: 3,
+    tol: 0.001,
+    ex: 'Подставляем $v = 3$: $t = 9 / 3 = 3$ часа. Зависимость обратная: чем выше скорость, тем меньше времени нужно.'
+  },
+  {
+    id: 11,
+    type: 'numeric',
+    meta: 'Задача 11 из 15 · Числовая · Упр. 65',
+    q: 'Площадь прямоугольника 12 см². Одна сторона $a = 3$ см. Найдите другую сторону $b$.',
+    unit: 'см',
+    answer: 4,
+    tol: 0.001,
+    ex: 'Из формулы $S = a \\cdot b$: $b = S / a = 12 / 3 = 4$ см. Это обратная пропорциональность: $b = 12/a$.'
+  },
+  {
+    id: 12,
+    type: 'numeric',
+    meta: 'Задача 12 из 15 · Числовая · Упр. 55',
+    q: 'Пешеход идёт со скоростью 3,5 км/ч. Какое расстояние пройдёт он за 4 часа?',
+    unit: 'км',
+    answer: 14,
+    tol: 0.001,
+    ex: 'По формуле $s = vt$: $s = 3{,}5 \\cdot 4 = 14$ км. Это прямая пропорциональная зависимость с коэффициентом $k = 3{,}5$.'
+  },
+  {
+    id: 13,
+    type: 'mcq',
+    meta: 'Задача 13 из 15 · Тест · Упр. 66',
+    q: 'Бюджет 9 р. Количество покупок $K$ зависит от цены одного товара Ц. Какова формула этой зависимости?',
+    options: [
+      '$K = 9 \\cdot $ Ц',
+      '$K = 9 / $ Ц',
+      '$K = $ Ц $/ 9$',
+      '$K = $ Ц $- 9$'
+    ],
+    correct: 1,
+    ex: 'При фиксированном бюджете 9 р.: $K = 9 / $ Ц. Это обратная пропорциональность: чем дороже товар, тем меньше штук можно купить.'
+  },
+  {
+    id: 14,
+    type: 'mcq',
+    meta: 'Задача 14 из 15 · Тест · Упр. 67',
+    q: 'Автомобиль едет со скоростью 60 км/ч. Расстояние $s$ зависит от времени $t$. Какова формула?',
+    options: [
+      '$s = t / 60$',
+      '$s = 60 / t$',
+      '$s = 60t$',
+      '$s = 60 + t$'
+    ],
+    correct: 2,
+    ex: 'По формуле пути: $s = v \\cdot t = 60t$. Это прямая пропорциональная зависимость с коэффициентом $k = 60$.'
+  },
+  {
+    id: 15,
+    type: 'numeric',
+    meta: 'Задача 15 из 15 · Числовая · Упр. 57',
+    q: 'Функция $y = kx$ (прямая пропорциональность). График проходит через точку $T\\left(1;\\ \\dfrac{1}{5}\\right)$. Найдите $k$.',
+    unit: '',
+    answer: 0.2,
+    tol: 0.001,
+    ex: 'Подставляем: $1/5 = k \\cdot 1$, значит $k = 1/5 = 0{,}2$. График: прямая $y = 0{,}2x$ — пологая, но всё равно проходит через начало координат.'
+  }
+];
+
+var taskState = [];
+var currentTask = 0;
+var answered = false;
+
+function initTaskState() {
+  taskState = [];
+  for (var i = 0; i < TASKS.length; i++) {
+    taskState.push({ status: 'unanswered', chosen: null });
+  }
+}
+
+function buildTasks() {
+  initTaskState();
+  currentTask = 0;
+  renderTask(0);
+  renderDots();
+  updateScoreBar();
+  document.getElementById('resultsPanel').classList.remove('visible');
+}
+
+function restartTasks() {
+  buildTasks();
+}
+
+function updateScoreBar() {
+  var correct = 0, skipped = 0;
+  for (var i = 0; i < taskState.length; i++) {
+    if (taskState[i].status === 'correct') correct++;
+    else if (taskState[i].status === 'skipped') skipped++;
+  }
+  document.getElementById('cnt-correct').textContent = correct;
+  document.getElementById('cnt-pos').textContent = (currentTask + 1);
+  document.getElementById('cnt-skip').textContent = skipped;
+}
+
+function renderDots() {
+  var container = document.getElementById('navDots');
+  var html = '';
+  for (var i = 0; i < TASKS.length; i++) {
+    var cls = 'nav-dot';
+    if (i === currentTask) cls += ' current';
+    else if (taskState[i].status === 'correct') cls += ' correct';
+    else if (taskState[i].status === 'wrong') cls += ' wrong';
+    else if (taskState[i].status === 'skipped') cls += ' skipped-dot';
+    html += '<button class="' + cls + '" onclick="jumpTo(' + i + ')" title="Задача ' + (i+1) + '">' + (i+1) + '</button>';
+  }
+  container.innerHTML = html;
+}
+
+function jumpTo(idx) {
+  currentTask = idx;
+  answered = false;
+  renderTask(idx);
+  renderDots();
+  updateScoreBar();
+}
+
+function renderTask(idx) {
+  var t = TASKS[idx];
+  var card = document.getElementById('taskCard');
+  card.style.display = 'block';
+
+  var html = '';
+  html += '<div class="task-meta">' + t.meta + '</div>';
+  html += '<div class="task-question">' + t.q + '</div>';
+
+  if (t.type === 'mcq') {
+    html += '<div class="options-list" id="optionsList">';
+    for (var i = 0; i < t.options.length; i++) {
+      var st = taskState[idx];
+      var btnCls = 'option-btn';
+      var disabled = '';
+      if (st.status !== 'unanswered' && st.status !== 'skipped') {
+        disabled = ' disabled';
+        if (i === t.correct) btnCls += ' reveal-correct';
+        if (i === st.chosen && st.chosen !== t.correct) btnCls += ' selected-wrong';
+        if (i === st.chosen && st.chosen === t.correct) btnCls = 'option-btn selected-correct';
+      }
+      html += '<button class="' + btnCls + '"' + disabled + ' onclick="chooseOption(' + idx + ',' + i + ')">' + t.options[i] + '</button>';
+    }
+    html += '</div>';
+  } else {
+    var st2 = taskState[idx];
+    var inputCls = 'num-input';
+    var inputDisabled = '';
+    var inputVal = '';
+    if (st2.status !== 'unanswered' && st2.status !== 'skipped') {
+      inputDisabled = ' disabled';
+      inputVal = ' value="' + st2.chosen + '"';
+      if (st2.status === 'correct') inputCls += ' correct-input';
+      else inputCls += ' wrong-input';
+    }
+    html += '<div class="numeric-row">';
+    html += '<input type="text" class="' + inputCls + '" id="numInput"' + inputVal + inputDisabled + ' placeholder="Ответ" onkeydown="numKeydown(event,' + idx + ')">';
+    if (t.unit) html += '<span class="unit-label">' + t.unit + '</span>';
+    if (!inputDisabled) {
+      html += '<button class="check-btn" id="checkBtn" onclick="checkNumeric(' + idx + ')">Проверить</button>';
+    }
+    html += '</div>';
+  }
+
+  // Feedback
+  var fbCls = 'feedback-box';
+  var fbText = '';
+  var st3 = taskState[idx];
+  if (st3.status === 'correct') {
+    fbCls += ' correct-fb';
+    fbText = '<strong><i class="fas fa-check-circle"></i> Верно!</strong> ' + t.ex;
+  } else if (st3.status === 'wrong') {
+    fbCls += ' wrong-fb';
+    fbText = '<strong><i class="fas fa-times-circle"></i> Неверно.</strong> ' + t.ex;
+  } else if (st3.status === 'skipped') {
+    fbCls += ' wrong-fb';
+    fbText = '<strong><i class="fas fa-forward"></i> Пропущено.</strong> ' + t.ex;
+  }
+  html += '<div class="' + fbCls + '" id="feedbackBox">' + fbText + '</div>';
+
+  card.innerHTML = html;
+
+  // Render nav buttons
+  renderNav(idx);
+
+  // KaTeX render
+  if (window.renderMathInElement) {
+    renderMathInElement(card, {
+      delimiters: [
+        {left:'$$', right:'$$', display:true},
+        {left:'$', right:'$', display:false}
+      ],
+      throwOnError: false
+    });
+  }
+}
+
+function renderNav(idx) {
+  var nav = document.getElementById('taskNav');
+  var st = taskState[idx];
+  var isAnswered = (st.status !== 'unanswered' && st.status !== 'skipped') || st.status === 'skipped';
+  var allDone = checkAllAnswered();
+
+  var html = '';
+
+  // Skip button — only if not yet answered
+  if (st.status === 'unanswered') {
+    html += '<button class="nav-btn" onclick="skipTask(' + idx + ')"><i class="fas fa-forward"></i> Пропустить</button>';
+  }
+
+  // Next button
+  var nextIdx = findNextTask(idx);
+  if (nextIdx !== -1) {
+    var nextDisabled = (st.status === 'unanswered') ? ' disabled' : '';
+    html += '<button class="nav-btn next-btn"' + nextDisabled + ' id="nextBtn" onclick="goNext(' + idx + ')">Следующее <i class="fas fa-arrow-right"></i></button>';
+  } else if (isAnswered) {
+    html += '<button class="nav-btn next-btn" onclick="showResults()"><i class="fas fa-flag-checkered"></i> Завершить</button>';
+  }
+
+  nav.innerHTML = html;
+}
+
+function chooseOption(taskIdx, optionIdx) {
+  var t = TASKS[taskIdx];
+  taskState[taskIdx].chosen = optionIdx;
+  if (optionIdx === t.correct) {
+    taskState[taskIdx].status = 'correct';
+  } else {
+    taskState[taskIdx].status = 'wrong';
+  }
+  renderTask(taskIdx);
+  renderDots();
+  updateScoreBar();
+  checkAutoFinish();
+}
+
+function checkNumeric(taskIdx) {
+  var input = document.getElementById('numInput');
+  if (!input) return;
+  var raw = input.value.replace(',', '.').trim();
+  var val = parseFloat(raw);
+  if (isNaN(val)) { input.focus(); return; }
+  var t = TASKS[taskIdx];
+  taskState[taskIdx].chosen = val;
+  if (Math.abs(val - t.answer) <= t.tol) {
+    taskState[taskIdx].status = 'correct';
+  } else {
+    taskState[taskIdx].status = 'wrong';
+  }
+  renderTask(taskIdx);
+  renderDots();
+  updateScoreBar();
+  checkAutoFinish();
+}
+
+function numKeydown(e, idx) {
+  if (e.key === 'Enter') checkNumeric(idx);
+}
+
+function skipTask(idx) {
+  taskState[idx].status = 'skipped';
+  taskState[idx].chosen = null;
+  var next = findNextTask(idx);
+  if (next !== -1) {
+    currentTask = next;
+    renderTask(next);
+  } else {
+    renderTask(idx);
+  }
+  renderDots();
+  updateScoreBar();
+  checkAutoFinish();
+}
+
+function goNext(idx) {
+  var next = findNextTask(idx);
+  if (next !== -1) {
+    currentTask = next;
+    renderTask(next);
+    renderDots();
+    updateScoreBar();
+  } else {
+    showResults();
+  }
+}
+
+function findNextTask(fromIdx) {
+  // Next unanswered after current
+  for (var i = fromIdx + 1; i < TASKS.length; i++) {
+    if (taskState[i].status === 'unanswered') return i;
+  }
+  // Then wrap from beginning
+  for (var j = 0; j < fromIdx; j++) {
+    if (taskState[j].status === 'unanswered') return j;
+  }
+  // All answered — find next in sequence (any)
+  if (fromIdx + 1 < TASKS.length) return fromIdx + 1;
+  return -1;
+}
+
+function checkAllAnswered() {
+  for (var i = 0; i < taskState.length; i++) {
+    if (taskState[i].status === 'unanswered') return false;
+  }
+  return true;
+}
+
+function checkAutoFinish() {
+  if (checkAllAnswered()) {
+    // Re-render nav to show "Завершить"
+    renderNav(currentTask);
+  }
+}
+
+// ===================== GRAPH TASKS =====================
+var GR_TASKS = [
+  {
+    type: 'pick-graph',
+    q: 'Какой из четырёх графиков является <b>прямой пропорциональностью</b> $y = kx$?',
+    hint: 'Прямая пропорциональность — прямая линия, проходящая через начало координат.',
+    graphs: [
+      { t: 'line', k: 2 },
+      { t: 'shift', k: 2, b: 2 },
+      { t: 'hyp', k: 4 },
+      { t: 'para', k: 0.3 }
+    ],
+    labels: ['y = 2x', 'y = 2x + 2', 'y = 4/x', 'y \u2248 x\u00b2'],
+    correct: 0,
+    ex: 'y = 2x — прямая через (0; 0). Только она — прямая пропорциональность. y = 2x+2 не проходит через начало; y = 4/x — гипербола; y\u00a0\u2248\u00a0x\u00b2 — парабола.'
+  },
+  {
+    type: 'find-k',
+    q: 'По графику прямой пропорциональности $y = kx$ определи коэффициент $k$.',
+    hint: 'Возьми отмеченную точку (2;\u00a06) и вычисли $k = y / x$.',
+    gt: 'line', k: 3,
+    mpt: [2, 6],
+    ans: 3, pfx: 'k\u00a0=\u00a0',
+    ex: 'Точка (2;\u00a06): $k = 6 / 2 = 3$.'
+  },
+  {
+    type: 'read-value',
+    q: 'По графику $y = 2x$ найди значение $y$ при $x = 4$.',
+    hint: 'Поднимись от x\u00a0=\u00a04 вертикально до прямой, прочитай y.',
+    gt: 'line', k: 2,
+    mrkX: 4,
+    ans: 8, pfx: 'y\u00a0=\u00a0',
+    ex: '$y = 2 \\cdot 4 = 8$.'
+  },
+  {
+    type: 'yn',
+    q: 'Лежит ли точка $(3;\\ 9)$ на графике $y = 3x$?',
+    hint: 'Подставь $x = 3$ в формулу: $y = 3 \\cdot 3$.',
+    gt: 'line', k: 3,
+    pt: [3, 9], ans: 'yes',
+    ex: '$y = 3 \\cdot 3 = 9$ — совпадает. Точка лежит на графике.'
+  },
+  {
+    type: 'pick-graph',
+    q: 'Какой из четырёх графиков является <b>обратной пропорциональностью</b> $y = k/x$?',
+    hint: 'Обратная пропорциональность — гипербола в I и III четвертях координатной плоскости.',
+    graphs: [
+      { t: 'line', k: 3 },
+      { t: 'hyp', k: 4 },
+      { t: 'shift', k: -1, b: 7 },
+      { t: 'para', k: 0.25 }
+    ],
+    labels: ['y = 3x', 'y = 4/x', 'y = 7\u2212x', 'y = 0.25x\u00b2'],
+    correct: 1,
+    ex: 'y = 4/x — гипербола (обратная пропорциональность). Остальные: прямая, убывающая линейная и парабола.'
+  },
+  {
+    type: 'find-k',
+    q: 'По графику обратной пропорциональности $y = k/x$ определи коэффициент $k$.',
+    hint: 'Возьми отмеченную точку (2;\u00a03) и вычисли $k = x \\cdot y$.',
+    gt: 'hyp', k: 6,
+    mpt: [2, 3],
+    ans: 6, pfx: 'k\u00a0=\u00a0',
+    ex: 'Точка (2;\u00a03): $k = 2 \\cdot 3 = 6$.'
+  },
+  {
+    type: 'read-value',
+    q: 'По графику $y = 6/x$ найди значение $y$ при $x = 2$.',
+    hint: 'Найди x\u00a0=\u00a02 на оси, поднимись до гиперболы, прочитай y.',
+    gt: 'hyp', k: 6,
+    mrkX: 2,
+    ans: 3, pfx: 'y\u00a0=\u00a0',
+    ex: '$y = 6 / 2 = 3$.'
+  },
+  {
+    type: 'yn',
+    q: 'Лежит ли точка $(4;\\ 3)$ на графике $y = 12/x$?',
+    hint: 'Проверь: $x \\cdot y = k$?',
+    gt: 'hyp', k: 12,
+    pt: [4, 3], ans: 'yes',
+    ex: '$4 \\cdot 3 = 12 = k$. Точка лежит на графике.'
+  },
+  {
+    type: 'click',
+    q: 'Отметь точку $(3;\\ 6)$ на графике $y = 2x$. Нажми на нужное место графика.',
+    hint: 'При $x = 3$: $y = 2 \\cdot 3 = 6$. Ищи пересечение вертикали $x=3$ с прямой.',
+    gt: 'line', k: 2,
+    tx: 3, ty: 6, tol: 0.85,
+    ex: 'Точка (3;\u00a06): при $x = 3$ получаем $y = 2 \\cdot 3 = 6$.'
+  },
+  {
+    type: 'yn',
+    q: 'Лежит ли точка $(2;\\ 5)$ на графике $y = 2x$?',
+    hint: 'Подставь $x = 2$ в формулу: $y = 2 \\cdot 2$.',
+    gt: 'line', k: 2,
+    pt: [2, 5], ans: 'no',
+    ex: '$y = 2 \\cdot 2 = 4$, но в точке $y = 5 \\neq 4$. Точка не лежит на графике.'
+  }
+];
+
+var grState = [];
+var grCur = 0;
+var grClickRes = null;
+
+function buildGrTasks() {
+  grState = [];
+  for (var i = 0; i < GR_TASKS.length; i++) {
+    grState.push({ status: 'unanswered', sel: -1, given: '' });
+  }
+  grCur = 0;
+  grClickRes = null;
+  var rp = document.getElementById('grResultsPanel');
+  if (rp) rp.classList.remove('visible');
+  var tc = document.getElementById('grTaskCard');
+  if (tc) tc.style.display = '';
+  var nb = document.getElementById('grNavBtns');
+  if (nb) nb.style.display = '';
+  renderGrTask(0);
+}
+
+// ---- Canvas setup ----
+function grSetup(cv, mini) {
+  var dpr = window.devicePixelRatio || 1;
+  var w = cv.clientWidth || (mini ? 120 : 260);
+  var h = cv.clientHeight || (mini ? 110 : 200);
+  cv.width = w * dpr;
+  cv.height = h * dpr;
+  var ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+  var mf = mini ? 0.22 : 0.14;
+  var ox = Math.round(w * mf);
+  var oy = Math.round(h * (1 - mf * 0.65));
+  var step = Math.min((w - ox - 8) / 10, (oy - 8) / 10);
+  return { ctx: ctx, w: w, h: h, ox: ox, oy: oy, step: step };
+}
+
+function grBg(ctx, w, h) {
+  ctx.fillStyle = isDarkMode() ? '#0c1a12' : '#f9fffc';
+  ctx.fillRect(0, 0, w, h);
+}
+
+function grGrid(ctx, ox, oy, step, w, h) {
+  ctx.strokeStyle = isDarkMode() ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+  ctx.lineWidth = 0.5;
+  var i;
+  for (i = 0; ox + i * step <= w + 1; i++) {
+    ctx.beginPath(); ctx.moveTo(ox + i * step, 0); ctx.lineTo(ox + i * step, h); ctx.stroke();
+  }
+  for (i = 1; ox - i * step >= -1; i++) {
+    ctx.beginPath(); ctx.moveTo(ox - i * step, 0); ctx.lineTo(ox - i * step, h); ctx.stroke();
+  }
+  for (i = 0; oy - i * step >= -1; i++) {
+    ctx.beginPath(); ctx.moveTo(0, oy - i * step); ctx.lineTo(w, oy - i * step); ctx.stroke();
+  }
+  for (i = 1; oy + i * step <= h + 1; i++) {
+    ctx.beginPath(); ctx.moveTo(0, oy + i * step); ctx.lineTo(w, oy + i * step); ctx.stroke();
+  }
+}
+
+function grAxes(ctx, ox, oy, step, w, h, mini) {
+  var ac = isDarkMode() ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)';
+  var tc = isDarkMode() ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
+  var as = 6;
+  ctx.strokeStyle = ac; ctx.fillStyle = ac; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(w - 4, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(w - 4, oy); ctx.lineTo(w - 4 - as, oy - as / 2); ctx.lineTo(w - 4 - as, oy + as / 2); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(ox, h); ctx.lineTo(ox, 4); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 4); ctx.lineTo(ox - as / 2, 4 + as); ctx.lineTo(ox + as / 2, 4 + as); ctx.closePath(); ctx.fill();
+  if (!mini) {
+    ctx.fillStyle = tc;
+    ctx.font = '9px sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (var xi = 1; xi <= 10 && ox + xi * step < w - 10; xi++) {
+      ctx.fillText('' + xi, ox + xi * step, oy + 3);
+    }
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (var yi = 1; yi <= 10 && oy - yi * step > 4; yi++) {
+      ctx.fillText('' + yi, ox - 3, oy - yi * step);
+    }
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillStyle = ac;
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.fillText('x', w - 6, oy - 3);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText('y', ox + 7, 3);
+  }
+}
+
+function grLine(ctx, ox, oy, step, k, w, h, c) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, w, h); ctx.clip();
+  ctx.strokeStyle = c || '#3b82f6'; ctx.lineWidth = 2;
+  var xA = -ox / step, xB = (w - ox) / step;
+  ctx.beginPath();
+  ctx.moveTo(ox + xA * step, oy - k * xA * step);
+  ctx.lineTo(ox + xB * step, oy - k * xB * step);
+  ctx.stroke(); ctx.restore();
+}
+
+function grShift(ctx, ox, oy, step, k, b, w, h, c) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, w, h); ctx.clip();
+  ctx.strokeStyle = c || '#8b5cf6'; ctx.lineWidth = 2;
+  var xA = -ox / step, xB = (w - ox) / step;
+  ctx.beginPath();
+  ctx.moveTo(ox + xA * step, oy - (k * xA + b) * step);
+  ctx.lineTo(ox + xB * step, oy - (k * xB + b) * step);
+  ctx.stroke(); ctx.restore();
+}
+
+function grHyp(ctx, ox, oy, step, k, w, h, c) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, w, h); ctx.clip();
+  ctx.strokeStyle = c || '#8b5cf6'; ctx.lineWidth = 2;
+  var i, px, py, first;
+  first = true; ctx.beginPath();
+  for (i = 2; i <= 300; i++) {
+    var xip = i * 0.05;
+    px = ox + xip * step; py = oy - (k / xip) * step;
+    if (first) { ctx.moveTo(px, py); first = false; } else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  first = true; ctx.beginPath();
+  for (i = 2; i <= 300; i++) {
+    var xin = -(i * 0.05);
+    px = ox + xin * step; py = oy - (k / xin) * step;
+    if (first) { ctx.moveTo(px, py); first = false; } else ctx.lineTo(px, py);
+  }
+  ctx.stroke(); ctx.restore();
+}
+
+function grPara(ctx, ox, oy, step, k, w, h, c) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, w, h); ctx.clip();
+  ctx.strokeStyle = c || '#f59e0b'; ctx.lineWidth = 2;
+  var xA = -ox / step, xB = (w - ox) / step;
+  var N = 80, first = true; ctx.beginPath();
+  for (var ip = 0; ip <= N; ip++) {
+    var xv = xA + (xB - xA) * ip / N;
+    var pxv = ox + xv * step, pyv = oy - k * xv * xv * step;
+    if (first) { ctx.moveTo(pxv, pyv); first = false; } else ctx.lineTo(pxv, pyv);
+  }
+  ctx.stroke(); ctx.restore();
+}
+
+function grDot(ctx, ox, oy, step, x, y, c, r) {
+  var px = ox + x * step, py = oy - y * step;
+  r = r || 5;
+  ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2);
+  ctx.fillStyle = c || '#ef4444'; ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+function grMark(ctx, ox, oy, step, mx, my) {
+  var px = ox + mx * step, py = oy - my * step;
+  ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(px, oy); ctx.lineTo(px, py); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, py); ctx.lineTo(px, py); ctx.stroke();
+  ctx.setLineDash([]);
+  grDot(ctx, ox, oy, step, mx, my, '#ef4444', 5);
+  ctx.fillStyle = '#ef4444';
+  ctx.font = 'bold 10px sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  ctx.fillText('' + mx, px, oy + 3);
+  ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+  ctx.fillText('' + my, ox - 3, py);
+}
+
+function grDrawFn(ctx, ox, oy, step, g, w, h, c) {
+  if (g.t === 'line') grLine(ctx, ox, oy, step, g.k, w, h, c);
+  else if (g.t === 'shift') grShift(ctx, ox, oy, step, g.k, g.b, w, h, c);
+  else if (g.t === 'hyp') grHyp(ctx, ox, oy, step, g.k, w, h, c);
+  else if (g.t === 'para') grPara(ctx, ox, oy, step, g.k, w, h, c);
+}
+
+var GR_COLORS = ['#3b82f6', '#8b5cf6', '#ef4444', '#f59e0b'];
+
+function drawPickCv(task, i) {
+  var cv = document.getElementById('grcv' + i);
+  if (!cv) return;
+  var s = grSetup(cv, true);
+  grBg(s.ctx, s.w, s.h);
+  grGrid(s.ctx, s.ox, s.oy, s.step, s.w, s.h);
+  grAxes(s.ctx, s.ox, s.oy, s.step, s.w, s.h, true);
+  grDrawFn(s.ctx, s.ox, s.oy, s.step, task.graphs[i], s.w, s.h, GR_COLORS[i]);
+}
+
+function drawMainCv(task, cp) {
+  var cv = document.getElementById('grMainCv');
+  if (!cv) return;
+  var s = grSetup(cv, false);
+  grBg(s.ctx, s.w, s.h);
+  grGrid(s.ctx, s.ox, s.oy, s.step, s.w, s.h);
+  grAxes(s.ctx, s.ox, s.oy, s.step, s.w, s.h, false);
+  var gdef = { t: task.gt, k: task.k };
+  var col = task.gt === 'hyp' ? '#8b5cf6' : '#3b82f6';
+  grDrawFn(s.ctx, s.ox, s.oy, s.step, gdef, s.w, s.h, col);
+  if (task.mpt) {
+    grDot(s.ctx, s.ox, s.oy, s.step, task.mpt[0], task.mpt[1], '#ef4444', 5);
+    s.ctx.fillStyle = '#ef4444';
+    s.ctx.font = 'bold 10px sans-serif';
+    s.ctx.textAlign = 'left'; s.ctx.textBaseline = 'alphabetic';
+    s.ctx.fillText('(' + task.mpt[0] + '; ' + task.mpt[1] + ')', s.ox + task.mpt[0] * s.step + 7, s.oy - task.mpt[1] * s.step - 5);
+  }
+  if (task.mrkX !== undefined) {
+    var mY = task.gt === 'line' ? task.k * task.mrkX : task.k / task.mrkX;
+    grMark(s.ctx, s.ox, s.oy, s.step, task.mrkX, mY);
+  }
+  if (task.pt) {
+    grDot(s.ctx, s.ox, s.oy, s.step, task.pt[0], task.pt[1], '#f59e0b', 6);
+    s.ctx.fillStyle = '#f59e0b';
+    s.ctx.font = 'bold 10px sans-serif';
+    s.ctx.textAlign = 'left'; s.ctx.textBaseline = 'alphabetic';
+    s.ctx.fillText('(' + task.pt[0] + '; ' + task.pt[1] + ')', s.ox + task.pt[0] * s.step + 8, s.oy - task.pt[1] * s.step - 5);
+  }
+  if (cp) {
+    grDot(s.ctx, s.ox, s.oy, s.step, cp.x, cp.y, '#10b981', 7);
+  }
+  if (task.type === 'click' && grState[grCur].status === 'unanswered') {
+    cv.dataset.ox = '' + s.ox;
+    cv.dataset.oy = '' + s.oy;
+    cv.dataset.step = '' + s.step;
+    setupGrClick(cv, task);
+  }
+}
+
+function setupGrClick(cv, task) {
+  cv.style.cursor = 'crosshair';
+  cv.onclick = function(e) {
+    var rect = cv.getBoundingClientRect();
+    var cx = e.clientX - rect.left;
+    var cy = e.clientY - rect.top;
+    var ox = parseFloat(cv.dataset.ox);
+    var oy = parseFloat(cv.dataset.oy);
+    var step = parseFloat(cv.dataset.step);
+    grClickRes = { x: (cx - ox) / step, y: (oy - cy) / step };
+    drawMainCv(task, grClickRes);
+    var info = document.getElementById('grClickInfo');
+    if (info) info.style.display = '';
+    var cxEl = document.getElementById('grCX');
+    var cyEl = document.getElementById('grCY');
+    if (cxEl) cxEl.textContent = grClickRes.x.toFixed(1);
+    if (cyEl) cyEl.textContent = grClickRes.y.toFixed(1);
+    var btn = document.getElementById('grCheckBtn');
+    if (btn) btn.disabled = false;
+  };
+}
+
+// ---- HTML builders ----
+function grMeta(idx) {
+  return '<div class="task-meta">\u0417\u0430\u0434\u0430\u0447\u0430 ' + (idx + 1) + ' \u0438\u0437 ' + GR_TASKS.length + ' \u00b7 \u0413\u0440\u0430\u0444\u0438\u043a\u0438</div>';
+}
+
+function grFbHtml(idx) {
+  var st = grState[idx].status;
+  if (st === 'unanswered') return '<div class="feedback-box" id="grFb"></div>';
+  var ok = st === 'correct';
+  return '<div class="feedback-box ' + (ok ? 'correct-fb' : 'wrong-fb') + '">'
+    + (ok ? '<strong><i class="fas fa-check-circle"></i> \u0412\u0435\u0440\u043d\u043e!</strong> '
+           : '<strong><i class="fas fa-times-circle"></i> \u041d\u0435\u0432\u0435\u0440\u043d\u043e.</strong> ')
+    + GR_TASKS[idx].ex + '</div>';
+}
+
+function buildPickHtml(task, idx) {
+  var st = grState[idx];
+  var h = grMeta(idx);
+  h += '<div class="task-question">' + task.q + '</div>';
+  h += '<div class="pick-grid">';
+  for (var i = 0; i < 4; i++) {
+    var sel = st.sel === i;
+    var bord = '';
+    if (st.status !== 'unanswered') {
+      if (i === task.correct) bord = ' style="border-color:#059669"';
+      else if (sel) bord = ' style="border-color:#dc2626"';
+    }
+    h += '<div class="pick-item' + (sel && st.status === 'unanswered' ? ' selected' : '') + '"' + bord
+      + ' onclick="grSelPick(' + i + ')" id="grpi' + i + '">';
+    h += '<canvas class="pick-cv" id="grcv' + i + '"></canvas>';
+    h += '<div class="pick-label">' + task.labels[i] + '</div></div>';
+  }
+  h += '</div>';
+  h += grFbHtml(idx);
+  if (st.status === 'unanswered') {
+    h += '<div style="text-align:center;margin-top:0.5rem"><button class="check-btn" onclick="grCheckPick()">\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c</button></div>';
+  }
+  h += '<div class="text-muted" style="margin-top:0.6rem"><i class="fas fa-lightbulb"></i> ' + task.hint + '</div>';
+  return h;
+}
+
+function buildNumHtml(task, idx) {
+  var st = grState[idx];
+  var h = grMeta(idx);
+  h += '<div class="task-question">' + task.q + '</div>';
+  h += '<div class="canvas-wrap"><canvas id="grMainCv"></canvas></div>';
+  var dis = st.status !== 'unanswered' ? ' disabled' : '';
+  var val = st.given !== '' ? ' value="' + st.given + '"' : '';
+  var icls = st.status === 'correct' ? 'gr-num-input correct-input' : (st.status === 'wrong' ? 'gr-num-input wrong-input' : 'gr-num-input');
+  h += '<div class="gr-num-row"><span>' + task.pfx + '</span>';
+  h += '<input type="number" class="' + icls + '" id="grNI"' + val + dis + ' placeholder="?">';
+  if (!dis) h += '<button class="check-btn" onclick="grCheckNum()">\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c</button>';
+  h += '</div>';
+  h += grFbHtml(idx);
+  h += '<div class="text-muted" style="margin-top:0.6rem"><i class="fas fa-lightbulb"></i> ' + task.hint + '</div>';
+  return h;
+}
+
+function buildYNHtml(task, idx) {
+  var st = grState[idx];
+  var h = grMeta(idx);
+  h += '<div class="task-question">' + task.q + '</div>';
+  h += '<div class="canvas-wrap"><canvas id="grMainCv"></canvas></div>';
+  h += grFbHtml(idx);
+  if (st.status === 'unanswered') {
+    h += '<div class="yn-row">';
+    h += '<button class="yn-btn yn-yes" onclick="grCheckYN(\'yes\')">\u0414\u0430</button>';
+    h += '<button class="yn-btn yn-no" onclick="grCheckYN(\'no\')">\u041d\u0435\u0442</button>';
+    h += '</div>';
+  }
+  h += '<div class="text-muted" style="margin-top:0.6rem"><i class="fas fa-lightbulb"></i> ' + task.hint + '</div>';
+  return h;
+}
+
+function buildClickHtml(task, idx) {
+  var st = grState[idx];
+  var h = grMeta(idx);
+  h += '<div class="task-question">' + task.q + '</div>';
+  if (st.status === 'unanswered') h += '<div class="gr-click-hint"><i class="fas fa-crosshairs"></i> \u041d\u0430\u0436\u043c\u0438 \u043d\u0430 \u0442\u043e\u0447\u043a\u0443 \u043d\u0430 \u0433\u0440\u0430\u0444\u0438\u043a\u0435</div>';
+  h += '<div class="canvas-wrap"' + (st.status === 'unanswered' ? ' style="cursor:crosshair"' : '') + '>';
+  h += '<canvas id="grMainCv"></canvas></div>';
+  h += '<div id="grClickInfo" style="display:none;text-align:center;font-size:0.82rem;color:var(--text3);margin:0.3rem 0">';
+  h += '\u0412\u044b\u0431\u0440\u0430\u043d\u0430: (<span id="grCX">?</span>; <span id="grCY">?</span>)</div>';
+  h += grFbHtml(idx);
+  if (st.status === 'unanswered') {
+    h += '<div style="text-align:center;margin-top:0.5rem"><button class="check-btn" id="grCheckBtn" onclick="grCheckClick()" disabled>\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c</button></div>';
+  }
+  h += '<div class="text-muted" style="margin-top:0.6rem"><i class="fas fa-lightbulb"></i> ' + task.hint + '</div>';
+  return h;
+}
+
+// ---- Render ----
+function renderGrTask(idx) {
+  var task = GR_TASKS[idx];
+  var card = document.getElementById('grTaskCard');
+  if (!card) return;
+  var h;
+  if (task.type === 'pick-graph') h = buildPickHtml(task, idx);
+  else if (task.type === 'find-k' || task.type === 'read-value') h = buildNumHtml(task, idx);
+  else if (task.type === 'yn') h = buildYNHtml(task, idx);
+  else h = buildClickHtml(task, idx);
+  card.innerHTML = h;
+  renderGrNav(idx);
+  updateGrScore();
+  requestAnimationFrame(function() {
+    if (task.type === 'pick-graph') {
+      for (var i = 0; i < 4; i++) drawPickCv(task, i);
+    } else {
+      drawMainCv(task, null);
+    }
+    if (window.renderMathInElement) {
+      renderMathInElement(card, {
+        delimiters: [{ left: '$', right: '$', display: false }],
+        throwOnError: false
+      });
+    }
+  });
+}
+
+function renderGrNav(idx) {
+  var d = document.getElementById('grNavDots');
+  if (!d) return;
+  var h = '';
+  for (var i = 0; i < GR_TASKS.length; i++) {
+    var s = grState[i].status;
+    var c = 'nav-dot';
+    if (i === idx) c += ' current';
+    else if (s === 'correct') c += ' correct';
+    else if (s === 'wrong') c += ' wrong';
+    else if (s === 'skipped') c += ' skipped-dot';
+    h += '<button class="' + c + '" onclick="grJump(' + i + ')" title="\u0417\u0430\u0434\u0430\u0447\u0430 ' + (i + 1) + '">' + (i + 1) + '</button>';
+  }
+  d.innerHTML = h;
+  var nb = document.getElementById('grNavBtns');
+  if (!nb) return;
+  var nh = '';
+  if (idx > 0) {
+    nh += '<button class="nav-btn" onclick="grPrev()"><i class="fas fa-chevron-left"></i> \u041d\u0430\u0437\u0430\u0434</button>';
+  }
+  var st = grState[idx].status;
+  if (st === 'unanswered') {
+    nh += '<button class="nav-btn" onclick="grSkip()"><i class="fas fa-forward"></i> \u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c</button>';
+  }
+  if (st !== 'unanswered') {
+    if (idx < GR_TASKS.length - 1) {
+      nh += '<button class="nav-btn next-btn" onclick="grNext()">\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0435 <i class="fas fa-arrow-right"></i></button>';
+    } else {
+      nh += '<button class="nav-btn next-btn" onclick="grFinish()"><i class="fas fa-flag-checkered"></i> \u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044c</button>';
+    }
+  }
+  nb.innerHTML = nh;
+}
+
+function updateGrScore() {
+  var ok = 0, sk = 0;
+  for (var i = 0; i < grState.length; i++) {
+    if (grState[i].status === 'correct') ok++;
+    else if (grState[i].status === 'skipped') sk++;
+  }
+  var ce = document.getElementById('grCntCorrect');
+  var pe = document.getElementById('grCntPos');
+  var se = document.getElementById('grCntSkip');
+  if (ce) ce.textContent = ok;
+  if (pe) pe.textContent = grCur + 1;
+  if (se) se.textContent = sk;
+}
+
+// ---- Check functions ----
+function grSelPick(i) {
+  if (grState[grCur].status !== 'unanswered') return;
+  grState[grCur].sel = i;
+  document.querySelectorAll('.pick-item').forEach(function(el, j) {
+    el.classList.toggle('selected', j === i);
+  });
+}
+
+function grShowFb(ok, ex) {
+  var fb = document.getElementById('grFb');
+  if (!fb) return;
+  fb.className = 'feedback-box ' + (ok ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = (ok ? '<strong><i class="fas fa-check-circle"></i> \u0412\u0435\u0440\u043d\u043e!</strong> '
+                     : '<strong><i class="fas fa-times-circle"></i> \u041d\u0435\u0432\u0435\u0440\u043d\u043e.</strong> ') + ex;
+  if (window.renderMathInElement) {
+    renderMathInElement(fb, { delimiters: [{ left: '$', right: '$', display: false }], throwOnError: false });
+  }
+}
+
+function grCheckPick() {
+  var idx = grCur;
+  var st = grState[idx];
+  if (st.sel === -1) return;
+  var task = GR_TASKS[idx];
+  var ok = st.sel === task.correct;
+  st.status = ok ? 'correct' : 'wrong';
+  grShowFb(ok, task.ex);
+  var btn = document.querySelector('#grTaskCard .check-btn');
+  if (btn && btn.parentNode) btn.parentNode.removeChild(btn);
+  document.querySelectorAll('.pick-item').forEach(function(el, j) {
+    if (j === task.correct) el.style.borderColor = '#059669';
+    else if (j === st.sel && !ok) el.style.borderColor = '#dc2626';
+  });
+  renderGrNav(idx);
+  updateGrScore();
+}
+
+function grCheckNum() {
+  var idx = grCur;
+  var ni = document.getElementById('grNI');
+  if (!ni) return;
+  var val = parseFloat(ni.value);
+  if (isNaN(val)) return;
+  var task = GR_TASKS[idx];
+  var ok = Math.abs(val - task.ans) < 0.01;
+  grState[idx].status = ok ? 'correct' : 'wrong';
+  grState[idx].given = val;
+  ni.disabled = true;
+  ni.className = 'gr-num-input ' + (ok ? 'correct-input' : 'wrong-input');
+  var row = ni.parentNode;
+  var chk = row ? row.querySelector('.check-btn') : null;
+  if (chk) row.removeChild(chk);
+  grShowFb(ok, task.ex);
+  renderGrNav(idx);
+  updateGrScore();
+}
+
+function grCheckYN(ans) {
+  var idx = grCur;
+  var task = GR_TASKS[idx];
+  var ok = ans === task.ans;
+  grState[idx].status = ok ? 'correct' : 'wrong';
+  grShowFb(ok, task.ex);
+  document.querySelectorAll('.yn-btn').forEach(function(b) { b.disabled = true; b.style.opacity = '0.55'; });
+  renderGrNav(idx);
+  updateGrScore();
+}
+
+function grCheckClick() {
+  if (!grClickRes) return;
+  var idx = grCur;
+  var task = GR_TASKS[idx];
+  var dx = Math.abs(grClickRes.x - task.tx);
+  var dy = Math.abs(grClickRes.y - task.ty);
+  var ok = dx <= task.tol && dy <= task.tol;
+  grState[idx].status = ok ? 'correct' : 'wrong';
+  grShowFb(ok, task.ex);
+  var btn = document.getElementById('grCheckBtn');
+  if (btn) btn.disabled = true;
+  renderGrNav(idx);
+  updateGrScore();
+}
+
+// ---- Navigation ----
+function grNext() {
+  if (grCur < GR_TASKS.length - 1) { grCur++; renderGrTask(grCur); }
+}
+function grPrev() {
+  if (grCur > 0) { grCur--; renderGrTask(grCur); }
+}
+function grSkip() {
+  if (grState[grCur].status === 'unanswered') grState[grCur].status = 'skipped';
+  updateGrScore();
+  if (grCur < GR_TASKS.length - 1) { grCur++; renderGrTask(grCur); }
+  else grFinish();
+}
+function grJump(idx) { grCur = idx; renderGrTask(idx); }
+
+function grFinish() {
+  document.getElementById('grTaskCard').style.display = 'none';
+  document.getElementById('grNavBtns').style.display = 'none';
+  var ok = 0;
+  for (var i = 0; i < grState.length; i++) {
+    if (grState[i].status === 'correct') ok++;
+  }
+  var total = GR_TASKS.length;
+  var pct = ok / total;
+  var msg;
+  if (pct >= 0.9) msg = '\u041e\u0442\u043b\u0438\u0447\u043d\u043e! \u0422\u044b \u043e\u0442\u043b\u0438\u0447\u043d\u043e \u0443\u043c\u0435\u0435\u0448\u044c \u0447\u0438\u0442\u0430\u0442\u044c \u0433\u0440\u0430\u0444\u0438\u043a\u0438.';
+  else if (pct >= 0.7) msg = '\u0425\u043e\u0440\u043e\u0448\u043e! \u041d\u0435\u043c\u043d\u043e\u0433\u043e \u043f\u043e\u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0443\u0439\u0441\u044f \u0441 \u0433\u0440\u0430\u0444\u0438\u043a\u0430\u043c\u0438.';
+  else if (pct >= 0.5) msg = '\u041d\u0435\u043f\u043b\u043e\u0445\u043e, \u0441\u0442\u043e\u0438\u0442 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c \u0442\u0435\u043e\u0440\u0438\u044e \u0435\u0449\u0451 \u0440\u0430\u0437.';
+  else msg = '\u041f\u043e\u0432\u0442\u043e\u0440\u0438 \u0440\u0430\u0437\u0434\u0435\u043b \u00ab\u0422\u0435\u043e\u0440\u0438\u044f\u00bb \u0438 \u043f\u043e\u043f\u0440\u043e\u0431\u0443\u0439 \u0441\u043d\u043e\u0432\u0430.';
+  document.getElementById('grScore').textContent = ok + ' / ' + total;
+  document.getElementById('grResultsMsg').textContent = msg;
+  document.getElementById('grResultsPanel').classList.add('visible');
+}
+
+function restartGrTasks() {
+  document.getElementById('grResultsPanel').classList.remove('visible');
+  document.getElementById('grTaskCard').style.display = '';
+  document.getElementById('grNavBtns').style.display = '';
+  buildGrTasks();
+}
+
+function refreshGrCvs() {
+  var tab = document.getElementById('tab-graphs');
+  if (!tab || !tab.classList.contains('active')) return;
+  var task = GR_TASKS[grCur];
+  requestAnimationFrame(function() {
+    if (task.type === 'pick-graph') {
+      for (var i = 0; i < 4; i++) drawPickCv(task, i);
+    } else {
+      drawMainCv(task, grClickRes);
+    }
+  });
+}
+
+function showResults() {
+  document.getElementById('taskCard').style.display = 'none';
+  document.getElementById('taskNav').innerHTML = '';
+  var correct = 0;
+  for (var i = 0; i < taskState.length; i++) {
+    if (taskState[i].status === 'correct') correct++;
+  }
+  var total = TASKS.length;
+  var panel = document.getElementById('resultsPanel');
+  document.getElementById('resultsScore').textContent = correct + ' / ' + total;
+  var pct = correct / total;
+  var msg;
+  if (pct >= 0.93) msg = 'Отличный результат! Ты отлично усвоил тему.';
+  else if (pct >= 0.73) msg = 'Хороший результат. Повтори несколько моментов.';
+  else if (pct >= 0.5) msg = 'Неплохо, но стоит повторить теорию ещё раз.';
+  else msg = 'Рекомендуем внимательно перечитать раздел "Теория".';
+  document.getElementById('resultsMsg').textContent = msg;
+  panel.classList.add('visible');
+}
+</script>
+</body>
+</html>
