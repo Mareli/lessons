@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Итоговое повторение · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 5 → Итоговое повторение</div>
+  <div class="lesson-kicker" data-icon="grid" data-label="Модуль 5 · повторение"></div>
+  <h1 class="lesson-title">Итоговое повторение: карта всего курса</h1>
+  <p class="lesson-sub">Один экран, на котором собран весь год. Держите его под рукой при подготовке к
+     экзамену — здесь всё, что нужно знать наизусть, и рецепты решения типовых задач.</p>
+
+  <h2><span class="block-tag">1</span>Введение и аксиомы</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Аксиомы и задание плоскости</div>
+    <ul style="margin:0">
+      <li>Через $3$ точки (не на одной прямой) — единственная плоскость.</li>
+      <li>Две точки прямой в плоскости ⟹ вся прямая в плоскости.</li>
+      <li>Две плоскости с общей точкой пересекаются по прямой.</li>
+      <li>Плоскость задают: $3$ точки; прямая и точка; две пересекающиеся или две параллельные прямые.</li>
+      <li><b>Сечение</b>: соединяем общие точки граней и секущей плоскости; число сторон ≤ числа граней.</li>
+    </ul>
+  </div>
+
+  <h2><span class="block-tag">2</span>Параллельность</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признаки и свойства</div>
+    <ul style="margin:0">
+      <li>Прямые: пересекающиеся / параллельные / <b>скрещивающиеся</b>.</li>
+      <li>$a\parallel\alpha$, если $a$ параллельна прямой, лежащей в $\alpha$ (и $a\not\subset\alpha$).</li>
+      <li>$\alpha\parallel\beta$, если две пересекающиеся прямые $\alpha$ параллельны двум пересекающимся прямым $\beta$.</li>
+      <li>Линии пересечения параллельных плоскостей третьей — параллельны.</li>
+    </ul>
+  </div>
+
+  <h2><span class="block-tag">3</span>Перпендикулярность — ядро экзамена</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Главные факты</div>
+    <ul style="margin:0">
+      <li><b>Признак</b> $a\perp\alpha$: $a$ перпендикулярна двум <b>пересекающимся</b> прямым $\alpha$.</li>
+      <li>Расстояние от точки до плоскости — длина <b>перпендикуляра</b> ($AM^2=AH^2+HM^2$).</li>
+      <li>Расстояние между скрещивающимися — длина общего перпендикуляра.</li>
+      <li>Угол прямой с плоскостью — угол с её <b>проекцией</b>; $\sin\varphi=\dfrac{\text{перпендикуляр}}{\text{наклонная}}$.</li>
+      <li><b>ТТП</b>: прямая в плоскости ⟂ проекции наклонной ⟺ ⟂ самой наклонной.</li>
+      <li><b>Двугранный угол</b> измеряют <b>линейным</b> углом (лучи ⟂ ребру в обеих гранях).</li>
+      <li>$\alpha\perp\beta$, если $\beta$ проходит через прямую $\perp\alpha$.</li>
+    </ul>
+  </div>
+
+  <h2><span class="block-tag">4</span>Координаты и векторы</h2>
+  <div class="tbl-wrap">
+  <table class="data">
+    <tr><th>Что</th><th>Формула</th></tr>
+    <tr><td>Расстояние $AB$</td><td>$\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$</td></tr>
+    <tr><td>Середина</td><td>$\left(\tfrac{x_A+x_B}{2};\tfrac{y_A+y_B}{2};\tfrac{z_A+z_B}{2}\right)$</td></tr>
+    <tr><td>Длина вектора</td><td>$|\vec a|=\sqrt{x^2+y^2+z^2}$</td></tr>
+    <tr><td>Скалярное произведение</td><td>$\vec a\cdot\vec b=x_1x_2+y_1y_2+z_1z_2$</td></tr>
+    <tr><td>Угол между прямыми</td><td>$\cos\varphi=\dfrac{|\vec a\cdot\vec b|}{|\vec a|\,|\vec b|}$</td></tr>
+    <tr><td>Прямая и плоскость</td><td>$\sin\varphi=\dfrac{|\vec a\cdot\vec n|}{|\vec a|\,|\vec n|}$</td></tr>
+    <tr><td>Между плоскостями</td><td>$\cos\varphi=\dfrac{|\vec N_1\cdot\vec N_2|}{|\vec N_1|\,|\vec N_2|}$</td></tr>
+    <tr><td>Перпендикулярность</td><td>$\vec a\cdot\vec b=0$</td></tr>
+  </table>
+  </div>
+
+  <h2><span class="block-tag">5</span>Знать наизусть про куб (ребро $a$)</h2>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Куб — король задач</div>
+    <ul style="margin:0">
+      <li>Диагональ грани: $a\sqrt2$; диагональ куба: $a\sqrt3$.</li>
+      <li>Угол диагонали грани с основанием: $45^\circ$.</li>
+      <li>Угол между диагоналями соседних граней (типа $AB_1$ и $BC_1$): $60^\circ$.</li>
+      <li>Диагональ основания $\perp$ диагональной плоскости ($AC\perp BB_1D_1D$).</li>
+    </ul>
+  </div>
+
+  <h2><span class="block-tag">6</span>Рецепты решения</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Как найти угол между скрещивающимися прямыми</div>
+    <b>Геометрически:</b> параллельно перенести одну прямую к другой, найти угол в треугольнике
+    (Пифагор / теорема косинусов). <b>Координатами:</b> направляющие векторы →
+    $\cos\varphi=\dfrac{|\vec a\cdot\vec b|}{|\vec a||\vec b|}$.
+  </div>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Как найти двугранный угол</div>
+    Ребро → построить линейный угол (перпендикуляры к ребру в обеих гранях, часто через <b>ТТП</b>) →
+    посчитать в прямоугольном треугольнике. Либо координатами через нормали плоскостей.
+  </div>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Как найти расстояние от точки до плоскости</div>
+    Опустить перпендикуляр (найти его основание), посчитать длину. Либо метод объёмов
+    ($V=\tfrac13 S\cdot h$) в 11 классе. Координатами — через нормаль плоскости.
+  </div>
+
+  <h2>Быстрая разминка перед экзаменом</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m5-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m5-l1');
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Аксиомы',
+      prompt:'Сколько плоскостей проходит через прямую и точку вне её?',
+      options:[ {html:'Одна', correct:true}, {html:'Ни одной'}, {html:'Две'}, {html:'Бесконечно много'} ],
+      explain:'Через прямую и точку вне её проходит единственная плоскость.' },
+    { type:'choice', tag:'Признак ⟂',
+      prompt:'Чтобы доказать $a\\perp\\alpha$, надо показать, что $a$ перпендикулярна…',
+      options:[ {html:'двум пересекающимся прямым $\\alpha$', correct:true}, {html:'одной прямой $\\alpha$'}, {html:'двум параллельным прямым $\\alpha$'}, {html:'всем прямым $\\alpha$ по очереди'} ],
+      explain:'Признак: перпендикулярность двум <b>пересекающимся</b> прямым плоскости.' },
+    { type:'numeric', tag:'Куб', answer:60, tol:0.01,
+      prompt:'Угол (°) между диагоналями соседних граней куба (например $AB_1$ и $BC_1$)?',
+      explain:'$60^\\circ$ — равносторонний треугольник $BDC_1$ (или через векторы $\\cos\\varphi=\\tfrac12$).' },
+    { type:'numeric', tag:'Векторы', answer:0, tol:0.001,
+      prompt:'Скалярное произведение $\\vec a\\cdot\\vec b$ для $\\vec a=(1;2;-1)$, $\\vec b=(3;-1;1)$?',
+      explain:'$3-2-1=0$ — векторы перпендикулярны.' },
+    { type:'numeric', tag:'Расстояние', answer:9, tol:0.01,
+      prompt:'Перпендикуляр к плоскости равен $\\sqrt{17}$, проекция наклонной равна $8$. Найдите наклонную.',
+      explain:'$AM=\\sqrt{(\\sqrt{17})^2+8^2}=\\sqrt{17+64}=\\sqrt{81}=9$.' }
+  ]);
+</script>
+</body>
+</html>

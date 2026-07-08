@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Планиметрический фундамент · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 0 → Планиметрический фундамент</div>
+  <div class="lesson-kicker" data-icon="recall" data-label="Модуль 0 · Повторение"></div>
+  <h1 class="lesson-title">Планиметрический фундамент</h1>
+  <p class="lesson-sub">Пять вещей, без которых стереометрия не пойдёт. Всё, что будет ниже, вы уже
+     видели в 7–9 классах — сейчас соберём это в один рабочий инструмент.</p>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Зачем это здесь</div>
+    В любой пространственной задаче наступает момент, когда нужно «спуститься» в какой-нибудь треугольник
+    и там что-то посчитать: длину, угол, высоту. Считать вы будете <b>планиметрией</b>. Поэтому пробел
+    в этих пяти темах превращается в пробел во всей стереометрии.
+  </div>
+
+  <h2>1. Теорема Пифагора</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема Пифагора</div>
+    В прямоугольном треугольнике квадрат гипотенузы равен сумме квадратов катетов:
+    $$c^2=a^2+b^2.$$
+    Отсюда гипотенуза $c=\sqrt{a^2+b^2}$, а катет $a=\sqrt{c^2-b^2}$.
+  </div>
+  <p>Это — главный «измеритель длин». В пространстве им находят рёбра, диагонали, высоты. Например,
+     <b>диагональ прямоугольника</b> со сторонами $a$ и $b$ равна $\sqrt{a^2+b^2}$.</p>
+
+  <h2>2. Особые прямоугольные треугольники</h2>
+  <p>Их стоит помнить наизусть — они встречаются в каждой второй задаче.</p>
+
+  <div class="viz" style="background:#fff">
+    <div class="viz-head"><span class="viz-title">Два треугольника, которые надо знать наизусть</span></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;padding:18px">
+      <svg width="260" height="180" viewBox="0 0 260 180" aria-label="Треугольник 45-45-90">
+        <polygon points="40,150 200,150 40,40" fill="#eeecff" stroke="#5346e0" stroke-width="2"/>
+        <path d="M40 130 L60 130 L60 150" fill="none" stroke="#4a5266" stroke-width="1.3"/>
+        <text x="115" y="168" text-anchor="middle" font-size="14" fill="#1c2333">a</text>
+        <text x="26" y="98" text-anchor="middle" font-size="14" fill="#1c2333">a</text>
+        <text x="128" y="88" text-anchor="middle" font-size="14" fill="#5346e0">a√2</text>
+        <text x="182" y="145" text-anchor="middle" font-size="12" fill="#4a5266">45°</text>
+        <text x="58" y="58" text-anchor="middle" font-size="12" fill="#4a5266">45°</text>
+      </svg>
+      <svg width="260" height="180" viewBox="0 0 260 180" aria-label="Треугольник 30-60-90">
+        <polygon points="40,150 210,150 40,50" fill="#e2f5fa" stroke="#0a7d95" stroke-width="2"/>
+        <path d="M40 132 L58 132 L58 150" fill="none" stroke="#4a5266" stroke-width="1.3"/>
+        <text x="125" y="168" text-anchor="middle" font-size="14" fill="#1c2333">a√3</text>
+        <text x="26" y="103" text-anchor="middle" font-size="14" fill="#1c2333">a</text>
+        <text x="132" y="92" text-anchor="middle" font-size="14" fill="#0a7d95">2a</text>
+        <text x="188" y="145" text-anchor="middle" font-size="12" fill="#4a5266">30°</text>
+        <text x="60" y="70" text-anchor="middle" font-size="12" fill="#4a5266">60°</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+  <table class="data">
+    <tr><th>Треугольник</th><th>Стороны</th><th>Где берётся</th></tr>
+    <tr><td>Прямоугольный равнобедренный (45°–45°–90°)</td><td>$a\,:\,a\,:\,a\sqrt2$</td><td>половина квадрата, диагональ квадрата</td></tr>
+    <tr><td>Со стороной под 30° и 60° (30°–60°–90°)</td><td>$a\,:\,a\sqrt3\,:\,2a$</td><td>половина равностороннего треугольника</td></tr>
+    <tr><td>Равносторонний со стороной $a$</td><td>высота $\dfrac{a\sqrt3}{2}$, площадь $\dfrac{a^2\sqrt3}{4}$</td><td>основания правильных пирамид/призм</td></tr>
+    <tr><td>Квадрат со стороной $a$</td><td>диагональ $a\sqrt2$</td><td>грани куба, основания</td></tr>
+  </table>
+  </div>
+
+  <h2>3. Тригонометрия прямоугольного треугольника</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Синус, косинус, тангенс острого угла</div>
+    Для острого угла $\alpha$ прямоугольного треугольника:
+    $$\sin\alpha=\frac{\text{противолежащий катет}}{\text{гипотенуза}},\quad
+      \cos\alpha=\frac{\text{прилежащий катет}}{\text{гипотенуза}},\quad
+      \tan\alpha=\frac{\text{противолежащий}}{\text{прилежащий}}.$$
+  </div>
+  <div class="tbl-wrap">
+  <table class="data">
+    <tr><th>$\alpha$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th></tr>
+    <tr><td>$\sin\alpha$</td><td>$\dfrac12$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$1$</td></tr>
+    <tr><td>$\cos\alpha$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac12$</td><td>$0$</td></tr>
+    <tr><td>$\tan\alpha$</td><td>$\dfrac{\sqrt3}{3}$</td><td>$1$</td><td>$\sqrt3$</td><td>—</td></tr>
+  </table>
+  </div>
+  <p>В стереометрии именно так находят <b>углы</b>: угол между прямой и плоскостью, двугранный угол —
+     всё сводится к острому углу в подходящем прямоугольном треугольнике.</p>
+
+  <h2>4. Теорема косинусов</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема косинусов</div>
+    В произвольном треугольнике со сторонами $a$, $b$, $c$ и углом $\gamma$ против стороны $c$:
+    $$c^2=a^2+b^2-2ab\cos\gamma.$$
+    Это обобщение Пифагора (при $\gamma=90^\circ$ косинус равен $0$).
+  </div>
+  <p>Понадобится, когда треугольник <b>не</b> прямоугольный — например, чтобы найти угол между
+     скрещивающимися прямыми через треугольник, достроенный параллельным переносом.</p>
+
+  <h2>5. Площади и подобие</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Площади</div>
+    <ul style="margin:0">
+      <li>Треугольник: $S=\tfrac12 a h$ или $S=\tfrac12 ab\sin\gamma$;</li>
+      <li>Прямоугольник: $S=ab$; квадрат: $S=a^2$;</li>
+      <li>Параллелограмм: $S=a h$; трапеция: $S=\dfrac{a+b}{2}\,h$.</li>
+    </ul>
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Подобие</div>
+    У подобных фигур соответственные стороны пропорциональны с коэффициентом $k$, а
+    <b>площади относятся как</b> $k^2$. (В 11 классе объёмы подобных тел будут относиться как $k^3$.)
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор. Диагональ прямоугольного параллелепипеда «на будущее»</header>
+    <div class="example-body">
+      <p>Забежим вперёд: у «коробки» с рёбрами $a$, $b$, $c$ диагональ равна $d=\sqrt{a^2+b^2+c^2}$.
+         Откуда это? Дважды применим Пифагора.</p>
+      <div class="solution-step">Сначала диагональ основания (прямоугольника $a\times b$):
+        $d_1=\sqrt{a^2+b^2}$.</div>
+      <div class="solution-step">Теперь диагональ коробки — гипотенуза прямоугольного треугольника с
+        катетами $d_1$ и высотой $c$: $d=\sqrt{d_1^2+c^2}=\sqrt{a^2+b^2+c^2}$.</div>
+      <p class="muted">Запомните этот приём «спуститься в прямоугольный треугольник и применить Пифагора» —
+         это половина всех вычислений в курсе.</p>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <p class="lead">Пять задач на фундамент. Если решаются легко — вы готовы к стереометрии.</p>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m0-l2">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m0-l2');
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Диагональ коробки', answer:13, tol:0.01,
+      prompt:'Рёбра прямоугольного параллелепипеда равны $3$, $4$ и $12$. Найдите его диагональ.',
+      explain:'$d=\\sqrt{3^2+4^2+12^2}=\\sqrt{9+16+144}=\\sqrt{169}=13$.' },
+    { type:'choice', tag:'Диагональ куба',
+      prompt:'Диагональ куба с ребром $a$ равна…',
+      options:[ {html:'$a\\sqrt3$', correct:true}, {html:'$a\\sqrt2$'}, {html:'$2a$'}, {html:'$3a$'} ],
+      explain:'$d=\\sqrt{a^2+a^2+a^2}=a\\sqrt3$. Полезнейшая формула — запомните её.' },
+    { type:'numeric', tag:'Высота', answer:5.196, tol:0.02,
+      prompt:'Высота равностороннего треугольника со стороной $6$ (до тысячных)?',
+      explain:'$h=\\dfrac{a\\sqrt3}{2}=\\dfrac{6\\sqrt3}{2}=3\\sqrt3\\approx5{,}196$.' },
+    { type:'numeric', tag:'Косинусов', answer:7, tol:0.01,
+      prompt:'В треугольнике $a=5$, $b=8$, угол между ними $60^\\circ$. Найдите третью сторону $c$.',
+      explain:'$c^2=5^2+8^2-2\\cdot5\\cdot8\\cos60^\\circ=25+64-80\\cdot\\tfrac12=49$, значит $c=7$.' },
+    { type:'numeric', tag:'Подобие/площади', answer:36, tol:0.01,
+      prompt:'Площадь треугольника $4$. Его увеличили в $3$ раза (подобие, $k=3$). Какова площадь нового?',
+      explain:'Площади относятся как $k^2$: $S\\,'+String.fromCharCode(39)+'=4\\cdot3^2=4\\cdot9=36$.' }
+  ], { });
+</script>
+</body>
+</html>

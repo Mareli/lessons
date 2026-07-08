@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пробный экзамен · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 5 → Пробный экзамен</div>
+  <div class="lesson-kicker" data-icon="target" data-label="Модуль 5 · итоговый контроль"></div>
+  <h1 class="lesson-title">Пробный экзамен по стереометрии</h1>
+  <p class="lesson-sub">12 задач по всему курсу. Решайте на бумаге, ответы вводите/выбирайте здесь.
+     Порог — <b>75%</b> (9 из 12). Не набрали — вернитесь к слабым модулям и пройдите снова.</p>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как проходить</div>
+    Засеките <b>45 минут</b>. Сначала решите всё сами, потом проверяйте — у каждой задачи есть полный
+    разбор. Результат посчитается автоматически внизу.
+  </div>
+
+  <div id="quiz-host"></div>
+
+  <div class="box" id="verdict" style="display:none">
+    <div class="box-title" data-icon="target">Результат пробного экзамена</div>
+    <p id="verdict-text"></p>
+    <p id="verdict-cta"></p>
+  </div>
+
+  <div class="complete-bar" data-lesson="m5-l2">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m5-l2');
+
+  var host = document.getElementById('quiz-host');
+  var items = [
+    { type:'choice', tag:'№1 · Введение',
+      prompt:'Диагональ куба с ребром $4$ равна…',
+      options:[ {html:'$4\\sqrt3$', correct:true}, {html:'$4\\sqrt2$'}, {html:'$8$'}, {html:'$4\\sqrt5$'} ],
+      explain:'Диагональ куба $=a\\sqrt3=4\\sqrt3$.' },
+    { type:'numeric', tag:'№2 · Сечения', answer:5, tol:0.001,
+      prompt:'Наибольшее число сторон сечения треугольной призмы плоскостью?',
+      explain:'У треугольной призмы $5$ граней ($2$ треугольника $+3$ прямоугольника), значит максимум — пятиугольник ($5$ сторон).' },
+    { type:'choice', tag:'№3 · Параллельность',
+      prompt:'Плоскости $\\alpha$ и $\\beta$ параллельны, если…',
+      options:[
+        {html:'две пересекающиеся прямые $\\alpha$ параллельны двум пересекающимся прямым $\\beta$', correct:true},
+        {html:'в $\\alpha$ есть прямая, параллельная $\\beta$'},
+        {html:'одна прямая $\\alpha$ параллельна одной прямой $\\beta$'},
+        {html:'$\\alpha$ и $\\beta$ не имеют общих прямых'} ],
+      explain:'Признак параллельности плоскостей требует двух <b>пересекающихся</b> пар параллельных прямых.' },
+    { type:'numeric', tag:'№4 · Скрещивающиеся', answer:90, tol:0.01,
+      prompt:'Угол (°) между скрещивающимися рёбрами $AA_1$ и $BC$ куба?',
+      explain:'$AA_1\\perp$ основанию, значит $AA_1\\perp BC$. Угол $90^\\circ$.' },
+    { type:'choice', tag:'№5 · Перпендикулярность',
+      prompt:'Прямая $a$ перпендикулярна плоскости $\\alpha$. Тогда $a$ перпендикулярна…',
+      options:[ {html:'каждой прямой плоскости $\\alpha$', correct:true}, {html:'только двум прямым $\\alpha$'}, {html:'только прямым, проходящим через основание перпендикуляра'}, {html:'диагоналям $\\alpha$'} ],
+      explain:'По определению перпендикуляр к плоскости перпендикулярен <b>каждой</b> прямой этой плоскости.' },
+    { type:'numeric', tag:'№6 · Расстояние', answer:7, tol:0.01,
+      prompt:'Наклонная к плоскости равна $25$, её проекция $24$. Найдите расстояние от точки до плоскости.',
+      explain:'Перпендикуляр $=\\sqrt{25^2-24^2}=\\sqrt{625-576}=\\sqrt{49}=7$.' },
+    { type:'numeric', tag:'№7 · Угол', answer:30, tol:0.01,
+      prompt:'Наклонная к плоскости равна $8$, перпендикуляр (расстояние до плоскости) равен $4$. Найдите угол (°) между наклонной и плоскостью.',
+      explain:'$\\sin\\varphi=\\dfrac{4}{8}=\\dfrac12$ ⟹ $\\varphi=30^\\circ$.' },
+    { type:'choice', tag:'№8 · ТТП',
+      prompt:'Наклонная и её проекция построены. Прямая плоскости перпендикулярна наклонной. По ТТП она перпендикулярна…',
+      options:[ {html:'проекции наклонной', correct:true}, {html:'перпендикуляру к плоскости'}, {html:'самой плоскости'}, {html:'ничему' } ],
+      explain:'ТТП работает в обе стороны: ⟂ наклонной ⟺ ⟂ её проекции.' },
+    { type:'numeric', tag:'№9 · Двугранный угол', answer:45, tol:0.01,
+      prompt:'Правильная 4-угольная пирамида: сторона основания $4$, высота $SO=2$. Двугранный угол при основании (°)?',
+      explain:'$OM=\\dfrac{4}{2}=2$, $\\tan\\angle SMO=\\dfrac{SO}{OM}=\\dfrac{2}{2}=1$ ⟹ $45^\\circ$.' },
+    { type:'numeric', tag:'№10 · Координаты', answer:7, tol:0.01,
+      prompt:'Найдите расстояние от $O(0;0;0)$ до точки $M(2;3;6)$.',
+      explain:'$OM=\\sqrt{2^2+3^2+6^2}=\\sqrt{4+9+36}=\\sqrt{49}=7$.' },
+    { type:'numeric', tag:'№11 · Векторы', answer:60, tol:0.01,
+      prompt:'Угол (°) между векторами $\\vec a=(1;1;0)$ и $\\vec b=(1;0;1)$?',
+      explain:'$\\vec a\\cdot\\vec b=1$, $|\\vec a|=|\\vec b|=\\sqrt2$, $\\cos\\varphi=\\dfrac{1}{2}$ ⟹ $60^\\circ$.' },
+    { type:'numeric', tag:'№12 · Комплексная', answer:6, tol:0.01,
+      prompt:'В кубе с ребром $6$ найдите расстояние между скрещивающимися рёбрами $AB$ и $CC_1$.',
+      explain:'Общий перпендикуляр — ребро $BC$, его длина равна ребру куба $=6$.' }
+  ];
+
+  var total = items.length, answered = 0, correct = 0;
+  items.forEach(function(d,i){
+    d.num = i+1;
+    var el = Quiz.render(host, d);
+    var obs = new MutationObserver(function(){
+      var fb = el.querySelector('.q-feedback.show .fb');
+      if(fb && !el._counted){
+        el._counted = true; answered++;
+        if(fb.classList.contains('ok')) correct++;
+        updateVerdict();
+      }
+    });
+    obs.observe(el, { subtree:true, attributes:true, attributeFilter:['class'] });
+  });
+
+  function updateVerdict(){
+    if(answered < total) return;
+    var v = document.getElementById('verdict');
+    var t = document.getElementById('verdict-text');
+    var c = document.getElementById('verdict-cta');
+    v.style.display='block';
+    var pct = Math.round(correct/total*100);
+    t.innerHTML = 'Вы верно решили <b>'+correct+' из '+total+'</b> ('+pct+'%).';
+    if(pct >= 75){
+      c.innerHTML = '<b>Порог пройден!</b> Курс стереометрии 10 класса закрыт. Вы готовы к 11 классу — ' +
+                    'там на этой базе строятся объёмы и площади поверхностей тел. Отметьте урок пройденным.';
+      v.style.borderLeft='4px solid var(--green)'; v.style.background='var(--green-soft)';
+    } else {
+      c.innerHTML = 'Порог (<b>75%</b>) пока не взят. Посмотрите, в каких задачах ошиблись, и вернитесь к ' +
+                    'соответствующим модулям: №1–2 — Модуль 1, №3–4 — Модуль 2, №5–9 — Модуль 3, ' +
+                    '№10–12 — Модуль 4. Затем пройдите экзамен снова.';
+      v.style.borderLeft='4px solid var(--amber)'; v.style.background='var(--amber-soft)';
+    }
+    v.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+</script>
+</body>
+</html>

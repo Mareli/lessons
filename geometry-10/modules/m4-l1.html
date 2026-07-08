@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Координаты в пространстве · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 4 → Координаты в пространстве</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 4 · §11"></div>
+  <h1 class="lesson-title">Координаты в пространстве</h1>
+  <p class="lesson-sub">Добавляем к плоскости третью ось — и любая точка пространства получает адрес из
+     трёх чисел. Это фундамент «метода координат», который на экзамене решает самые тяжёлые задачи.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Прямоугольная система координат $Oxyz$</div>
+    Выберем точку $O$ (начало) и три взаимно перпендикулярные оси $Ox$, $Oy$, $Oz$ с общим масштабом.
+    Тогда каждой точке $M$ соответствует упорядоченная тройка чисел $(x;\,y;\,z)$ — её координаты
+    (абсцисса, ордината, аппликата).
+  </div>
+  <p>Поверните систему координат. Синий вектор — точка $M$; зелёная «лесенка» показывает, как из
+     координат $x$, $y$, $z$ добраться до $M$.</p>
+  <div id="viz-axes"></div>
+
+  <h2><span class="block-tag">А</span>Две главные формулы</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Расстояние между точками</div>
+    Для $A(x_A;y_A;z_A)$ и $B(x_B;y_B;z_B)$:
+    $$AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}.$$
+    Это теорема Пифагора, применённая дважды — прямое обобщение плоского случая.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Координаты середины отрезка</div>
+    Середина $C$ отрезка $AB$ имеет координаты — средние арифметические координат концов:
+    $$C\left(\frac{x_A+x_B}{2};\ \frac{y_A+y_B}{2};\ \frac{z_A+z_B}{2}\right).$$
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Расстояние между точками</header>
+    <div class="example-body">
+      <p>Найдём расстояние между $A(1;\,2;\,2)$ и $B(3;\,4;\,4)$.</p>
+      <div class="solution-step">$AB=\sqrt{(3-1)^2+(4-2)^2+(4-2)^2}=\sqrt{4+4+4}=\sqrt{12}=2\sqrt3.$</div>
+      <div class="answer-pill">$AB=2\sqrt3$</div>
+    </div>
+  </div>
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Середина отрезка</header>
+    <div class="example-body">
+      <p>Найдём середину $C$ отрезка с концами $A(-2;\,0;\,6)$ и $B(4;\,8;\,2)$.</p>
+      <div class="solution-step">$C\left(\dfrac{-2+4}{2};\ \dfrac{0+8}{2};\ \dfrac{6+2}{2}\right)=C(1;\,4;\,4).$</div>
+      <div class="answer-pill">$C(1;\,4;\,4)$</div>
+    </div>
+  </div>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как «посадить» фигуру в координаты</div>
+    Куб с ребром $a$ удобно поставить так: $A(0;0;0)$, $B(a;0;0)$, $D(0;a;0)$, $A_1(0;0;a)$ — тогда
+    остальные вершины получаются сложением. Правильный выбор системы координат превращает
+    геометрическую задачу в вычисление по формулам (об этом — урок 4.4).
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m4-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m4-l1');
+
+  (function(){
+    var L=1.7;
+    var M=[0.85,1.25,1.05]; // engine coords: x вправо, вверх=z, глубина=y
+    var spec = {
+      vertices: {
+        'O':[0,0,0], 'x':[L,0,0], 'y':[0,0,L], 'z':[0,L,0], 'M':M,
+        'Mx':[M[0],0,0], 'Mxy':[M[0],0,M[2]]
+      },
+      edges: [],
+      faces: [],
+      hideLabels:['Mx','Mxy'],
+      highlights:{
+        segments:[
+          {a:'O',b:'x',color:'#8791a6',width:1.6},
+          {a:'O',b:'y',color:'#8791a6',width:1.6},
+          {a:'O',b:'z',color:'#8791a6',width:1.6},
+          {a:'O',b:'Mx',color:'#14a06b',dashed:true,width:1.6},
+          {a:'Mx',b:'Mxy',color:'#14a06b',dashed:true,width:1.6},
+          {a:'Mxy',b:'M',color:'#14a06b',dashed:true,width:1.6},
+          {a:'O',b:'M',color:'#6a5cff',width:3}
+        ],
+        points:['O','M']
+      },
+      yaw:0.7, pitch:-0.25
+    };
+    Figure3D.panel('#viz-axes', { title:'Система координат Oxyz и точка M(x; y; z)', spec: spec });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Расстояние', answer:7, tol:0.01,
+      prompt:'Найдите расстояние между точками $A(1;2;3)$ и $B(3;4;9)$.',
+      explain:'$AB=\\sqrt{(3-1)^2+(4-2)^2+(9-3)^2}=\\sqrt{4+4+36}=\\sqrt{49}=7$.' },
+    { type:'numeric', tag:'Длина', answer:13, tol:0.01,
+      prompt:'Найдите расстояние от начала координат $O(0;0;0)$ до точки $M(3;4;12)$.',
+      explain:'$OM=\\sqrt{3^2+4^2+12^2}=\\sqrt{9+16+144}=\\sqrt{169}=13$.' },
+    { type:'text', tag:'Середина', accept:['(2;3;4)','2;3;4','(2; 3; 4)','2,3,4'],
+      prompt:'Найдите координаты середины отрезка $A(0;2;1)$ и $B(4;4;7)$. Запишите в виде $(x;y;z)$.',
+      explain:'$\\left(\\dfrac{0+4}{2};\\dfrac{2+4}{2};\\dfrac{1+7}{2}\\right)=(2;3;4)$.' },
+    { type:'choice', tag:'Понимание',
+      prompt:'Точка лежит на оси $Oy$. Какие её координаты $x$ и $z$?',
+      options:[ {html:'$x=0$ и $z=0$', correct:true}, {html:'$x=0$, $z$ — любое'}, {html:'$y=0$'}, {html:'все три нулевые'} ],
+      explain:'На оси $Oy$ отклонения по $x$ и $z$ нулевые: точка имеет вид $(0;\\,y;\\,0)$.' }
+  ]);
+</script>
+</body>
+</html>

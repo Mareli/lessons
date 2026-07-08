@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диагностика · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 0 → Диагностика</div>
+  <div class="lesson-kicker" data-icon="target" data-label="Модуль 0 · Диагностика"></div>
+  <h1 class="lesson-title">С чего начать: диагностика</h1>
+  <p class="lesson-sub">Стереометрия целиком стоит на планиметрии. Прежде чем строить пространство —
+     проверим фундамент. Это займёт 15–20 минут.</p>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как это работает</div>
+    Ниже 10 коротких задач по планиметрии 7–9 классов. Решайте честно, без калькулятора формул.
+    В конце — вывод: можно ли идти дальше или стоит сначала пройти урок «Планиметрический фундамент».
+    Ответы вида «корень из числа» выбирайте из вариантов; числовые — вводите (запятая или точка).
+  </div>
+
+  <div id="quiz-host"></div>
+
+  <div class="box" id="verdict" style="display:none">
+    <div class="box-title" data-icon="target">Итог диагностики</div>
+    <p id="verdict-text"></p>
+    <p id="verdict-cta"></p>
+  </div>
+
+  <div class="complete-bar" data-lesson="m0-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m0-l1');
+
+  var host = document.getElementById('quiz-host');
+  var items = [
+    { type:'numeric', tag:'Пифагор', answer:5, tol:0.001,
+      prompt:'Катеты прямоугольного треугольника равны $3$ и $4$. Чему равна гипотенуза?',
+      explain:'По теореме Пифагора $c=\\sqrt{3^2+4^2}=\\sqrt{25}=5$.' },
+
+    { type:'choice', tag:'Квадрат',
+      prompt:'Диагональ квадрата со стороной $6$ равна…',
+      options:[ {html:'$6\\sqrt{2}$', correct:true}, {html:'$6\\sqrt{3}$'}, {html:'$12$'}, {html:'$36$'} ],
+      explain:'Диагональ квадрата $d=a\\sqrt{2}=6\\sqrt{2}$. Это следствие Пифагора: $d=\\sqrt{a^2+a^2}$.' },
+
+    { type:'numeric', tag:'Площадь', answer:20, tol:0.001,
+      prompt:'Площадь треугольника с основанием $8$ и высотой $5$?',
+      explain:'$S=\\tfrac12\\,a\\,h=\\tfrac12\\cdot 8\\cdot 5=20$.' },
+
+    { type:'numeric', tag:'Угол 30°', answer:5, tol:0.001,
+      prompt:'В прямоугольном треугольнике острый угол $30^\\circ$, гипотенуза $10$. Найдите катет, лежащий против угла $30^\\circ$.',
+      explain:'Катет против угла $30^\\circ$ равен половине гипотенузы: $10:2=5$.' },
+
+    { type:'choice', tag:'Равносторонний',
+      prompt:'Высота равностороннего треугольника со стороной $4$ равна…',
+      options:[ {html:'$2\\sqrt{3}$', correct:true}, {html:'$4\\sqrt{3}$'}, {html:'$2\\sqrt{2}$'}, {html:'$4$'} ],
+      explain:'Высота равностороннего треугольника $h=\\dfrac{a\\sqrt3}{2}=\\dfrac{4\\sqrt3}{2}=2\\sqrt3$.' },
+
+    { type:'numeric', tag:'Подобие', answer:15, tol:0.001,
+      prompt:'Треугольники подобны с коэффициентом $3$. Сторона меньшего равна $5$. Найдите соответствующую сторону большего.',
+      explain:'Соответственные стороны подобных треугольников относятся как коэффициент подобия: $5\\cdot 3=15$.' },
+
+    { type:'choice', tag:'Тригонометрия',
+      prompt:'Чему равен $\\sin 45^\\circ$?',
+      options:[ {html:'$\\dfrac{\\sqrt2}{2}$', correct:true}, {html:'$\\dfrac{\\sqrt3}{2}$'}, {html:'$\\dfrac12$'}, {html:'$1$'} ],
+      explain:'Табличное значение: $\\sin 45^\\circ=\\cos 45^\\circ=\\dfrac{\\sqrt2}{2}\\approx0{,}707$.' },
+
+    { type:'numeric', tag:'Диагональ', answer:32, tol:0.001,
+      prompt:'Диагональ квадрата равна $8$. Найдите его площадь.',
+      explain:'Через диагональ: $S=\\dfrac{d^2}{2}=\\dfrac{64}{2}=32$.' },
+
+    { type:'numeric', tag:'Косинус', answer:0.8, tol:0.01,
+      prompt:'В прямоугольном треугольнике прилежащий к острому углу катет равен $8$, гипотенуза $10$. Найдите косинус этого угла.',
+      explain:'$\\cos\\alpha=\\dfrac{\\text{прилежащий катет}}{\\text{гипотенуза}}=\\dfrac{8}{10}=0{,}8$.' },
+
+    { type:'numeric', tag:'Площадь', answer:1.732, tol:0.02,
+      prompt:'Площадь равностороннего треугольника со стороной $2$ (ответ округлите до сотых)?',
+      explain:'$S=\\dfrac{a^2\\sqrt3}{4}=\\dfrac{4\\sqrt3}{4}=\\sqrt3\\approx1{,}73$.' }
+  ];
+
+  var total = items.length, answered = 0, correct = 0;
+  // Обёртка проверки, чтобы посчитать результат для вердикта
+  items.forEach(function(d,i){
+    d.num = i+1;
+    var el = Quiz.render(host, d);
+    // Наблюдаем появление фидбэка
+    var obs = new MutationObserver(function(){
+      var fb = el.querySelector('.q-feedback.show .fb');
+      if(fb && !el._counted){
+        el._counted = true; answered++;
+        if(fb.classList.contains('ok')) correct++;
+        updateVerdict();
+      }
+    });
+    obs.observe(el, { subtree:true, attributes:true, attributeFilter:['class'] });
+  });
+
+  function updateVerdict(){
+    if(answered < total) return;
+    var v = document.getElementById('verdict');
+    var t = document.getElementById('verdict-text');
+    var c = document.getElementById('verdict-cta');
+    v.style.display='block';
+    var pct = Math.round(correct/total*100);
+    t.innerHTML = 'Вы верно решили <b>'+correct+' из '+total+'</b> ('+pct+'%).';
+    if(pct >= 80){
+      c.innerHTML = 'Фундамент крепкий — можно сразу переходить к <a href="m1-l1.html">Модулю 1</a>. ' +
+                    'Урок «Планиметрический фундамент» пробегите по диагонали для повторения.';
+    } else if(pct >= 60){
+      c.innerHTML = 'Основа есть, но есть пробелы. Пройдите урок <a href="m0-l2.html">«Планиметрический фундамент»</a> — ' +
+                    'закрепите слабые места, затем идите дальше.';
+    } else {
+      c.innerHTML = '<b>Обязательно</b> пройдите урок <a href="m0-l2.html">«Планиметрический фундамент»</a> ' +
+                    'целиком, прежде чем начинать стереометрию — иначе будет тяжело.';
+    }
+    v.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Расстояния в пространстве · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 3 → Расстояния</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 3 · §8"></div>
+  <h1 class="lesson-title">Расстояния в пространстве</h1>
+  <p class="lesson-sub">«Расстояние» — это всегда <b>кратчайший</b> путь, то есть перпендикуляр.
+     Разберём четыре вида расстояний, которые спрашивают на экзамене.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Перпендикуляр, наклонная, проекция</div>
+    Из точки $A$ вне плоскости опустим на неё <b>перпендикуляр</b> $AH$ (точка $H$ — его основание) и
+    проведём <b>наклонную</b> $AM$ (в точку $M$ плоскости). Отрезок $HM$ — <b>проекция</b> наклонной на
+    плоскость. Прямоугольный треугольник $AHM$ связывает их: $AM^2=AH^2+HM^2$.
+  </div>
+  <div id="viz-obl"></div>
+
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 5 (перпендикуляр — кратчайший)</div>
+    Перпендикуляр, опущенный из точки на плоскость, <b>короче</b> любой наклонной из той же точки.
+    Поэтому <b>расстоянием от точки до плоскости</b> называют длину перпендикуляра. Равные наклонные
+    имеют равные проекции; большей наклонной соответствует большая проекция.
+  </div>
+
+  <h2><span class="block-tag">А</span>Четыре вида расстояний</h2>
+  <div class="tbl-wrap">
+  <table class="data">
+    <tr><th>Расстояние между…</th><th>Как измеряется</th></tr>
+    <tr><td>точкой и плоскостью</td><td>длина перпендикуляра из точки на плоскость</td></tr>
+    <tr><td>прямой $\parallel$ плоскости и плоскостью</td><td>перпендикуляр из любой точки прямой (одинаков — теорема 7)</td></tr>
+    <tr><td>двумя параллельными плоскостями</td><td>перпендикуляр из любой точки одной на другую (одинаков — теорема 6)</td></tr>
+    <tr><td>скрещивающимися прямыми</td><td>длина их <b>общего перпендикуляра</b> (теорема 8)</td></tr>
+  </table>
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 8 (общий перпендикуляр)</div>
+    Две скрещивающиеся прямые имеют <b>единственный</b> общий перпендикуляр. Его длина и есть расстояние
+    между ними.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Наклонная через перпендикуляр и проекцию</header>
+    <div class="example-body">
+      <p>Из точки $A$ к плоскости проведён перпендикуляр $AH=8$ и наклонная, проекция которой равна
+         $HM=6$. Найдём длину наклонной $AM$.</p>
+      <div class="solution-step">Треугольник $AHM$ прямоугольный (угол при $H$ прямой):
+        $AM=\sqrt{AH^2+HM^2}=\sqrt{8^2+6^2}=\sqrt{100}=10$.</div>
+      <div class="answer-pill">$AM=10$</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Расстояние между скрещивающимися рёбрами куба</header>
+    <div class="example-body">
+      <p>Найдём расстояние между скрещивающимися рёбрами $AB$ и $CC_1$ куба с ребром $a$.</p>
+      <div class="solution-step">Возьмём отрезок $BC$. Он соединяет точку $B$ (на прямой $AB$) с точкой
+        $C$ (на прямой $CC_1$).</div>
+      <div class="solution-step">$BC\perp AB$ (стороны квадрата $ABCD$) и $BC\perp CC_1$ (ребро $CC_1$
+        перпендикулярно основанию, значит любой прямой основания). Значит, $BC$ — <b>общий
+        перпендикуляр</b> скрещивающихся прямых.</div>
+      <div class="answer-pill">Расстояние равно $BC=a$</div>
+    </div>
+  </div>
+  <div id="viz-skew"></div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m3-l2">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m3-l2');
+
+  /* Перпендикуляр / наклонная / проекция на пирамиде */
+  (function(){
+    var spec = Figure3D.Solids.pyramid(4, 1.15, 1.7);
+    spec.vertices.O = [0, -0.85, 0];
+    spec.hideLabels = ['O'];
+    spec.highlights = {
+      segments:[
+        {a:'S', b:'O', color:'#d6559b', width:3, right:'A'},   // перпендикуляр (высота)
+        {a:'S', b:'A', color:'#6a5cff', width:3},              // наклонная
+        {a:'O', b:'A', color:'#14a06b', dashed:true, width:2.5}// проекция
+      ],
+      points:['O']
+    };
+    Figure3D.panel('#viz-obl', {
+      title:'SO — перпендикуляр, SA — наклонная, OA — проекция',
+      spec: spec
+    });
+  })();
+
+  /* Скрещивающиеся рёбра куба и общий перпендикуляр */
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      segments:[
+        {a:'A', b:'B', color:'#6a5cff', width:3},
+        {a:'C', b:'C1', color:'#d6559b', width:3},
+        {a:'C', b:'B', color:'#14a06b', width:3, right:'A'}
+      ]
+    };
+    Figure3D.panel('#viz-skew', {
+      title:'AB и CC₁ скрещиваются; BC — их общий перпендикуляр',
+      spec: spec
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Наклонная', answer:13, tol:0.01,
+      prompt:'Перпендикуляр из точки к плоскости равен $12$, проекция наклонной равна $5$. Найдите длину наклонной.',
+      explain:'$AM=\\sqrt{12^2+5^2}=\\sqrt{169}=13$ (прямоугольный треугольник «перпендикуляр–проекция–наклонная»).' },
+    { type:'numeric', tag:'Расстояние', answer:8, tol:0.01,
+      prompt:'Наклонная равна $17$, её проекция на плоскость равна $15$. Найдите расстояние от точки до плоскости (длину перпендикуляра).',
+      explain:'$AH=\\sqrt{17^2-15^2}=\\sqrt{289-225}=\\sqrt{64}=8$.' },
+    { type:'choice', tag:'Скрещивающиеся',
+      prompt:'Чем измеряется расстояние между скрещивающимися прямыми?',
+      options:[
+        {html:'Длиной их общего перпендикуляра', correct:true},
+        {html:'Длиной любого отрезка между ними'},
+        {html:'Расстоянием между их серединами'},
+        {html:'Оно всегда равно нулю'} ],
+      explain:'Теорема 8: у скрещивающихся прямых есть единственный общий перпендикуляр; его длина — расстояние между ними.' },
+    { type:'numeric', tag:'Куб', answer:5, tol:0.01,
+      prompt:'В кубе с ребром $5$ найдите расстояние между скрещивающимися рёбрами $AB$ и $CC_1$.',
+      explain:'Общий перпендикуляр — ребро $BC$, его длина равна ребру куба: $5$.' }
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сечения многогранников · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 1 → Сечения многогранников</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 1 · §3"></div>
+  <h1 class="lesson-title">Построение сечений многогранников</h1>
+  <p class="lesson-sub">Сечение — это «след» плоскости на теле. Научимся строить его по трём точкам —
+     это классическая экзаменационная задача и лучшая тренировка пространственного мышления.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Сечение и секущая плоскость</div>
+    <b>Сечение</b> многогранника плоскостью — это многоугольник, состоящий из точек, общих для тела
+    и плоскости. Сама плоскость называется <b>секущей</b>. Секущая плоскость пересекает поверхность
+    по отрезкам, а сечением является один или несколько многоугольников.
+  </div>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Главный принцип</div>
+    Чтобы построить сечение, достаточно найти <b>общие точки граней тела и секущей плоскости</b> и
+    соединить их отрезками, лежащими в одной грани. Работают всё те же аксиомы: «две точки в одной
+    грани → отрезок между ними лежит в этой грани».
+  </div>
+
+  <p>Поверните куб и переключайте вид сечения. Одна и та же фигура (куб!) может быть рассечена в
+     треугольник, прямоугольник или даже <b>правильный шестиугольник</b>.</p>
+  <div id="viz-sec"></div>
+  <div class="box note" style="margin-top:-6px">
+    <div class="box-title" data-icon="bulb">Сколько сторон может быть у сечения</div>
+    Число сторон сечения не больше числа граней тела. У куба <b>6</b> граней → максимум
+    <b>шестиугольник</b>. Треугольного «седьмого» ребра взяться неоткуда.
+  </div>
+
+  <h2><span class="block-tag">А</span>Самый простой случай: три точки на рёбрах из одной вершины</h2>
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Сечение пирамиды — треугольник</header>
+    <div class="example-body">
+      <p>В пирамиде $SABC$ точки $M$, $N$, $K$ лежат на рёбрах $SA$, $SB$, $SC$. Построим сечение
+         плоскостью $MNK$.</p>
+      <div class="solution-step">$M$ и $N$ — общие точки секущей плоскости и грани $SAB$ ⟹ отрезок $MN$
+         лежит в грани $SAB$ (это линия пересечения).</div>
+      <div class="solution-step">Аналогично: $MK$ — в грани $SAC$, $NK$ — в грани $SBC$.</div>
+      <div class="answer-pill">Сечение — треугольник $MNK$</div>
+      <p class="muted">Когда все три точки на рёбрах, выходящих из одной вершины, сечение получается
+         сразу — просто соединяем точки.</p>
+    </div>
+  </div>
+
+  <h2><span class="block-tag">Б</span>Метод следов</h2>
+  <p>Когда точки лежат «вразброс» и соединить их напрямую нельзя (они в разных гранях), используют
+     <b>след</b> секущей плоскости.</p>
+  <div class="box def">
+    <div class="box-title" data-icon="def">След секущей плоскости</div>
+    <b>Следом</b> секущей плоскости на некоторой плоскости (чаще — на плоскости основания) называют
+    прямую их пересечения. Построив след на основании, легко «дотянуться» до нужных рёбер.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Сечение призмы методом следов</header>
+    <div class="example-body">
+      <p>Точки $A$, $B$, $C$ лежат на разных боковых рёбрах призмы (не выходящих из одной вершины).
+         Как построить сечение?</p>
+      <div class="solution-step"><b>Шаг 1. След на основании.</b> Прямые $AB$ и $BC$ лежат в секущей
+        плоскости. Продолжаем их до пересечения с плоскостью нижнего основания — получаем точки $M$ и
+        $N$. Прямая $MN$ — след секущей плоскости на основании.</div>
+      <div class="solution-step"><b>Шаг 2. Выход на грани.</b> Точка $P$ пересечения следа $MN$ с ребром
+        основания принадлежит и секущей плоскости, и боковой грани. Через $P$ и уже имеющуюся вершину
+        (например $A$) проводим отрезок — это линия пересечения секущей плоскости с гранью.</div>
+      <div class="solution-step"><b>Шаг 3. Замыкаем контур.</b> Последовательно, от грани к грани,
+        достраиваем отрезки, пока многоугольник сечения не замкнётся.</div>
+      <p class="muted">В зависимости от положения точек сечение призмы получается четырёх-, пяти- или
+        шестиугольником — но метод один и тот же.</p>
+    </div>
+  </div>
+
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Полезное свойство параллельных граней</div>
+    Если секущая плоскость пересекает две <b>параллельные</b> грани, то линии пересечения (стороны
+    сечения) на этих гранях <b>параллельны</b>. Это ускоряет построение: нашли отрезок на одной грани —
+    на противоположной проводим ему параллельный. (Докажем это в Модуле 2.)
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m1-l3">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m1-l3');
+
+  (function(){
+    var s = 1.8, h = s/2;
+    var spec = Figure3D.Solids.cube(s);
+    function mid(p,q){ return [(p[0]+q[0])/2,(p[1]+q[1])/2,(p[2]+q[2])/2]; }
+    var V = spec.vertices;
+    // Треугольник: отсекаем угол A (середины AB, AD, AA1)
+    var tri = [ mid(V.A,V.B), mid(V.A,V.D), mid(V.A,V.A1) ];
+    // Прямоугольник (диагональное сечение) ABC1D1
+    var rect = [ V.A, V.B, V.C1, V.D1 ];
+    // Правильный шестиугольник — середины 6 рёбер
+    var hex = [ mid(V.B,V.C), mid(V.B,V.B1), mid(V.A1,V.B1), mid(V.D1,V.A1), mid(V.D,V.D1), mid(V.C,V.D) ];
+
+    var SEC = {
+      tri:  { pts:tri,  fill:'rgba(214,85,155,0.18)',  color:'#d6559b' },
+      rect: { pts:rect, fill:'rgba(16,165,196,0.16)',  color:'#10a5c4' },
+      hex:  { pts:hex,  fill:'rgba(106,92,255,0.16)',  color:'#6a5cff' }
+    };
+    var cur = 'tri';
+    var fig = Figure3D.panel('#viz-sec', { title:'Сечения куба', spec: spec });
+    fig.highlight({ planes:[ SEC.tri ] });
+
+    // Заменим стандартные чипы своими переключателями секций
+    var head = document.querySelector('#viz-sec .viz-head');
+    var wrap = document.createElement('span'); wrap.style.display='inline-flex'; wrap.style.gap='6px';
+    [['tri','Треугольник'],['rect','Прямоугольник'],['hex','Шестиугольник']].forEach(function(o){
+      var c=document.createElement('button'); c.className='chip'+(o[0]==='tri'?' on':''); c.textContent=o[1];
+      c.addEventListener('click', function(){
+        cur=o[0];
+        wrap.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+        c.classList.add('on');
+        fig.highlight({ planes:[ SEC[cur] ] });
+      });
+      wrap.appendChild(c);
+    });
+    head.appendChild(wrap);
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Форма сечения',
+      prompt:'Какой многоугольник <b>не может</b> получиться в сечении куба плоскостью?',
+      options:[ {html:'Семиугольник', correct:true}, {html:'Треугольник'}, {html:'Пятиугольник'}, {html:'Шестиугольник'} ],
+      explain:'Число сторон сечения не превосходит числа граней. У куба $6$ граней → максимум шестиугольник; семиугольник невозможен.' },
+    { type:'choice', tag:'Метод',
+      prompt:'Что называют «следом» секущей плоскости?',
+      options:[
+        {html:'Прямую пересечения секущей плоскости с плоскостью основания', correct:true},
+        {html:'Любую сторону сечения'},
+        {html:'Диагональ основания'},
+        {html:'Проекцию вершины на основание'} ],
+      explain:'След — это прямая пересечения секущей плоскости с другой плоскостью (обычно основания). По следу «дотягиваются» до нужных рёбер.' },
+    { type:'choice', tag:'Параллельные грани',
+      prompt:'Секущая плоскость пересекла две параллельные грани куба. Что верно для соответствующих сторон сечения?',
+      options:[
+        {html:'Они параллельны', correct:true},
+        {html:'Они перпендикулярны'},
+        {html:'Они равны'},
+        {html:'Они пересекаются' } ],
+      explain:'Линии пересечения секущей плоскости с двумя параллельными плоскостями параллельны между собой.' },
+    { type:'numeric', tag:'Диагональное сечение', answer:8.485, tol:0.03,
+      prompt:'Куб с ребром $6$ рассекли по прямоугольнику $ABC_1D_1$ (диагональное сечение). Найдите длину его большей стороны $BC_1$ (до тысячных).',
+      explain:'$BC_1$ — диагональ боковой грани $BCC_1B_1$ (квадрат $6\\times6$): $BC_1=6\\sqrt2\\approx8{,}485$.' }
+  ]);
+</script>
+</body>
+</html>

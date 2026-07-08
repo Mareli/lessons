@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пространственные фигуры · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 1 → Пространственные фигуры</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 1 · §1"></div>
+  <h1 class="lesson-title">Пространственные фигуры</h1>
+  <p class="lesson-sub">Стереометрия — геометрия пространства. Научимся различать основные тела, называть
+     их части и, главное, <b>правильно их изображать на плоскости</b>.</p>
+
+  <div class="box recall">
+    <div class="box-title" data-icon="recall">От планиметрии к стереометрии</div>
+    В <b>планиметрии</b> все точки фигуры лежат в одной плоскости (треугольник, квадрат, окружность).
+    В <b>стереометрии</b> к точке и прямой добавляется <b>плоскость</b>, и появляются фигуры с тремя
+    измерениями — <b>тела</b>: призма, пирамида, цилиндр, конус, шар.
+  </div>
+
+  <h2><span class="block-tag">А</span>Многогранники и их части</h2>
+  <p>Тело, поверхность которого составлена из многоугольников, называют <b>многогранником</b>. Его части:</p>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Грани, рёбра, вершины</div>
+    <ul style="margin:0">
+      <li><b>Грани</b> — многоугольники, из которых составлена поверхность;</li>
+      <li><b>Рёбра</b> — стороны граней (отрезки, по которым грани сходятся);</li>
+      <li><b>Вершины</b> — концы рёбер (точки, где сходятся рёбра).</li>
+    </ul>
+  </div>
+
+  <p>Поверните куб мышью. Обратите внимание: невидимые рёбра показаны <b>штрихом</b> — так принято
+     изображать пространственные фигуры.</p>
+  <div id="viz-cube"></div>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Куб <span style="font-weight:400">$ABCDA_1B_1C_1D_1$</span></div>
+    У куба <b>8 вершин</b>, <b>12 рёбер</b>, <b>6 граней</b> (все — равные квадраты). Нижнее основание
+    $ABCD$, верхнее $A_1B_1C_1D_1$; боковые рёбра $AA_1$, $BB_1$, $CC_1$, $DD_1$ вертикальны и равны.
+  </div>
+
+  <h2><span class="block-tag">Б</span>Призма и пирамида</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Призма</div>
+    У <b>призмы</b> два равных параллельных основания (многоугольники), а боковые грани —
+    параллелограммы. Если боковые рёбра перпендикулярны основаниям — призма <b>прямая</b>; если при этом
+    в основании правильный многоугольник — призма <b>правильная</b>. Параллелепипед — призма, все грани
+    которой параллелограммы; прямоугольный параллелепипед — «коробка».
+  </div>
+  <div id="viz-prism"></div>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Пирамида</div>
+    У <b>пирамиды</b> одно основание (многоугольник) и одна <b>вершина</b>, не лежащая в плоскости
+    основания; боковые грани — треугольники с общей вершиной. Пирамида <b>правильная</b>, если в
+    основании правильный многоугольник, а вершина проектируется в его центр. Отрезок от вершины
+    перпендикулярно основанию — <b>высота</b> пирамиды.
+  </div>
+  <div id="viz-pyr"></div>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Виды пирамид</div>
+    Пирамиды различают <b>по основанию</b>: треугольная (её называют <b>тетраэдром</b>),
+    четырёхугольная, пятиугольная, шестиугольная и т. д. Пирамида <b>правильная</b>, если в основании
+    лежит правильный многоугольник, а вершина проектируется в его центр — тогда все боковые рёбра равны,
+    а боковые грани — равные равнобедренные треугольники. Если же вершина смещена и не проектируется в
+    центр основания, пирамиду называют <b>наклонной</b>.
+  </div>
+  <p>Переключайте вид пирамиды и вращайте каждую модель мышью — сравните форму и число граней.</p>
+  <div id="viz-pyr-types"></div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор. Считаем вершины, рёбра и грани</header>
+    <div class="example-body">
+      <p>Сколько вершин, рёбер и граней у правильной шестиугольной пирамиды?</p>
+      <div class="solution-step"><b>Вершины.</b> В основании шестиугольник — $6$ вершин, плюс вершина
+        пирамиды. Итого $6+1=7$.</div>
+      <div class="solution-step"><b>Рёбра.</b> Стороны основания — $6$, боковых рёбер (к вершине) — $6$.
+        Итого $6+6=12$.</div>
+      <div class="solution-step"><b>Грани.</b> Одно основание и $6$ боковых треугольников. Итого $1+6=7$.</div>
+      <div class="answer-pill">$7$ вершин, $12$ рёбер, $7$ граней</div>
+    </div>
+  </div>
+
+  <h2><span class="block-tag">В</span>Как правильно изображать фигуры</h2>
+  <p>Изображение строят <b>параллельным проектированием</b> — как тень при параллельных лучах. У него
+     есть простые правила, которые надо соблюдать, чтобы рисунок «читался».</p>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Правила изображения (параллельное проектирование)</div>
+    <ul style="margin:0">
+      <li>прямая изображается прямой, отрезок — отрезком;</li>
+      <li><b>параллельные</b> отрезки остаются параллельными;</li>
+      <li>сохраняется отношение длин отрезков одной прямой (в частности, <b>середина</b> переходит в середину);</li>
+      <li><b>невидимые</b> линии проводят штрихом.</li>
+    </ul>
+  </div>
+  <div class="box warn">
+    <div class="box-title" data-icon="warn">Чего ждать не стоит</div>
+    Углы и длины <b>в общем случае не сохраняются</b>: прямой угол может выглядеть острым/тупым, а
+    окружность в основании цилиндра рисуется <b>эллипсом</b>. Поэтому «на глаз» из рисунка длины и углы
+    не берут — их вычисляют.
+  </div>
+
+  <p>Чтобы нарисовать призму: строят основание, из его вершин проводят <b>параллельные равные</b> отрезки
+     и соединяют их концы. Чтобы нарисовать пирамиду: строят основание, ставят точку-вершину и соединяют
+     её с вершинами основания.</p>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m1-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m1-l1');
+
+  /* ---- Куб с подсветкой основания и боковых рёбер ---- */
+  (function(){
+    var spec = Figure3D.Solids.cube(1.6);
+    var base = [['A','B'],['B','C'],['C','D'],['D','A']];
+    var side = [['A','A1'],['B','B1'],['C','C1'],['D','D1']];
+    var cur = { base:false, side:false };
+    function recompute(fig){
+      var e=[]; if(cur.base)e=e.concat(base); if(cur.side)e=e.concat(side);
+      fig.highlight({edges:e});
+    }
+    Figure3D.panel('#viz-cube', {
+      title:'Куб — покрутите мышью',
+      spec: spec,
+      toggles:[
+        { label:'Основание ABCD', apply:function(fig,on){ cur.base=on; recompute(fig); } },
+        { label:'Боковые рёбра',  apply:function(fig,on){ cur.side=on; recompute(fig); } }
+      ]
+    });
+  })();
+
+  /* ---- Треугольная призма ---- */
+  (function(){
+    var spec = Figure3D.Solids.prism(3, 1.05, 1.7);
+    Figure3D.panel('#viz-prism', {
+      title:'Правильная треугольная призма',
+      spec: spec,
+      toggles:[
+        { label:'Основания', apply:function(fig,on){
+            fig.highlight(on?{edges:[['A','B'],['B','C'],['C','A'],['A1','B1'],['B1','C1'],['C1','A1']]}:{}); } }
+      ]
+    });
+  })();
+
+  /* ---- Правильная четырёхугольная пирамида с высотой ---- */
+  (function(){
+    var spec = Figure3D.Solids.pyramid(4, 1.15, 1.7);
+    // центр основания O для показа высоты
+    spec.vertices.O = [0, -0.85, 0];
+    spec.hideLabels = ['O'];
+    Figure3D.panel('#viz-pyr', {
+      title:'Правильная четырёхугольная пирамида',
+      spec: spec,
+      toggles:[
+        { label:'Высота SO', apply:function(fig,on){
+            fig.highlight(on?{segments:[{a:'S', b:'O', color:'#d98a1a', dashed:true, right:'A'}], points:['O']}:{}); } },
+        { label:'Боковое ребро', apply:function(fig,on){
+            fig.highlight(on?{edges:[['S','A']]}:{}); } }
+      ]
+    });
+  })();
+
+  /* ---- Виды пирамид: переключатель основания + наклонная ---- */
+  (function(){
+    function oblique(){
+      var s = Figure3D.Solids.pyramid(4, 1.15, 1.7);
+      s.vertices.S = [0.85, 0.85, 0.45]; // вершина смещена — пирамида наклонная
+      return s;
+    }
+    var SPECS = {
+      tetra: { spec: Figure3D.Solids.pyramid(3, 1.15, 1.7), label:'Треугольная (тетраэдр) — 4 грани' },
+      quad:  { spec: Figure3D.Solids.pyramid(4, 1.15, 1.7), label:'Четырёхугольная — 5 граней' },
+      penta: { spec: Figure3D.Solids.pyramid(5, 1.2, 1.6),  label:'Пятиугольная — 6 граней' },
+      hexa:  { spec: Figure3D.Solids.pyramid(6, 1.25, 1.55),label:'Шестиугольная — 7 граней' },
+      obliq: { spec: oblique(),                              label:'Наклонная: вершина не над центром' }
+    };
+    var fig = Figure3D.panel('#viz-pyr-types', { title:'Виды пирамид', spec: SPECS.tetra.spec });
+    var head = document.querySelector('#viz-pyr-types .viz-head');
+    var wrap = document.createElement('span');
+    wrap.style.display='inline-flex'; wrap.style.gap='6px'; wrap.style.flexWrap='wrap';
+    var cap = document.createElement('div');
+    cap.className='viz-title'; cap.style.color='#5346e0'; cap.style.padding='0 14px 10px';
+    cap.textContent = SPECS.tetra.label;
+    [['tetra','Треугольная'],['quad','Четырёхугольная'],['penta','Пятиугольная'],
+     ['hexa','Шестиугольная'],['obliq','Наклонная']].forEach(function(o,i){
+      var c=document.createElement('button'); c.className='chip'+(i===0?' on':''); c.textContent=o[1];
+      c.addEventListener('click', function(){
+        wrap.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+        c.classList.add('on');
+        fig.setSpec(SPECS[o[0]].spec);
+        cap.textContent = SPECS[o[0]].label;
+      });
+      wrap.appendChild(c);
+    });
+    head.appendChild(wrap);
+    // подпись под панелью
+    var viz = document.querySelector('#viz-pyr-types .viz');
+    viz.appendChild(cap);
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Счёт элементов', answer:8, tol:0.001,
+      prompt:'Сколько рёбер у четырёхугольной пирамиды?',
+      explain:'В основании $4$ стороны, к вершине идут ещё $4$ боковых ребра: $4+4=8$. Вообще у $n$-угольной пирамиды рёбер $2n$.' },
+    { type:'choice', tag:'Изображение',
+      prompt:'Что из перечисленного <b>сохраняется</b> при изображении фигуры (параллельном проектировании)?',
+      options:[
+        {html:'Параллельность отрезков', correct:true},
+        {html:'Величины углов'},
+        {html:'Длины отрезков'},
+        {html:'Форма окружности (остаётся окружностью)'} ],
+      explain:'Сохраняются параллельность и отношение длин на одной прямой. Углы и длины в общем случае — нет; окружность становится эллипсом.' },
+    { type:'choice', tag:'Куб',
+      prompt:'Сколько у куба граней, рёбер и вершин соответственно?',
+      options:[
+        {html:'$6$, $12$, $8$', correct:true},
+        {html:'$8$, $12$, $6$'},
+        {html:'$6$, $8$, $12$'},
+        {html:'$12$, $6$, $8$'} ],
+      explain:'У куба $6$ граней (квадраты), $12$ рёбер, $8$ вершин.' },
+    { type:'numeric', tag:'Призма', answer:18, tol:0.001,
+      prompt:'Сколько рёбер у шестиугольной призмы?',
+      explain:'Два основания по $6$ сторон ($12$) плюс $6$ боковых рёбер: $12+6=18$.' }
+  ]);
+</script>
+</body>
+</html>

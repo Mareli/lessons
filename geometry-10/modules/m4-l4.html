@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Метод координат в задачах · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 4 → Метод координат</div>
+  <div class="lesson-kicker" data-icon="star" data-label="Модуль 4 · §14 · силовой приём"></div>
+  <h1 class="lesson-title">Метод координат в задачах</h1>
+  <p class="lesson-sub">Собираем всё вместе. Когда «геометрически» угол найти тяжело — сажаем фигуру в
+     координаты и считаем по формулам. На экзамене это часто самый надёжный путь.</p>
+
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Алгоритм метода координат</div>
+    <ol style="margin:0">
+      <li>Выберите удобную систему координат (обычно вдоль рёбер, начало — в вершине).</li>
+      <li>Выпишите координаты нужных точек.</li>
+      <li>Составьте векторы (направляющие прямых, нормали плоскостей).</li>
+      <li>Примените формулу угла/расстояния и вычислите.</li>
+    </ol>
+  </div>
+
+  <h2><span class="block-tag">А</span>Три формулы для углов</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Угол между прямыми</div>
+    По направляющим векторам $\vec a$, $\vec b$ (модуль — потому что угол между прямыми не больше $90^\circ$):
+    $$\cos\varphi=\frac{|\vec a\cdot\vec b|}{|\vec a|\,|\vec b|}.$$
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Угол между прямой и плоскостью</div>
+    По направляющему вектору прямой $\vec a$ и нормали плоскости $\vec n$:
+    $$\sin\varphi=\frac{|\vec a\cdot\vec n|}{|\vec a|\,|\vec n|}.$$
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Угол между плоскостями (двугранный)</div>
+    По нормалям $\vec N_1$, $\vec N_2$:
+    $$\cos\varphi=\frac{|\vec N_1\cdot\vec N_2|}{|\vec N_1|\,|\vec N_2|}.$$
+  </div>
+
+  <div id="viz-cube"></div>
+
+  <h2><span class="block-tag">Б</span>Метод в деле</h2>
+  <p class="muted">Поставим куб с ребром $1$ в координаты: $A(0;0;0)$, $B(1;0;0)$, $C(1;1;0)$, $D(0;1;0)$
+     и верхние $A_1(0;0;1)$, $B_1(1;0;1)$, $C_1(1;1;1)$, $D_1(0;1;1)$.</p>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Угол между диагоналями граней (сравните с Модулем 2!)</header>
+    <div class="example-body">
+      <p>Найдём угол между скрещивающимися прямыми $AB_1$ и $BC_1$.</p>
+      <div class="solution-step">Направляющие векторы: $\vec{AB_1}=(1;0;1)$, $\vec{BC_1}=(0;1;1)$.</div>
+      <div class="solution-step">$\vec{AB_1}\cdot\vec{BC_1}=1\cdot0+0\cdot1+1\cdot1=1$;
+        $|\vec{AB_1}|=|\vec{BC_1}|=\sqrt2$.</div>
+      <div class="solution-step">$\cos\varphi=\dfrac{|1|}{\sqrt2\cdot\sqrt2}=\dfrac12$, значит
+        $\varphi=60^\circ$.</div>
+      <div class="answer-pill">$60^\circ$ — тот же ответ, что мы получили геометрически в уроке 2.1</div>
+      <p class="muted">Разница в подходе: там мы искали равносторонний треугольник, здесь — просто
+        посчитали. Метод координат не требует «догадки».</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Угол между диагональю грани и основанием</header>
+    <div class="example-body">
+      <p>Найдём угол между $AB_1$ и плоскостью основания $ABCD$.</p>
+      <div class="solution-step">Направляющий вектор прямой: $\vec{AB_1}=(1;0;1)$. Нормаль к основанию
+        (плоскость $z=0$): $\vec n=(0;0;1)$.</div>
+      <div class="solution-step">$\sin\varphi=\dfrac{|\vec{AB_1}\cdot\vec n|}{|\vec{AB_1}|\,|\vec n|}
+        =\dfrac{|1|}{\sqrt2\cdot1}=\dfrac{1}{\sqrt2}$.</div>
+      <div class="solution-step">$\sin\varphi=\dfrac{1}{\sqrt2}$ ⟹ $\varphi=45^\circ$.</div>
+      <div class="answer-pill">$45^\circ$ — снова совпадает с «геометрическим» ответом урока 3.3</div>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="box note" style="border-left-color:var(--violet);background:var(--violet-soft)">
+    <div class="box-title" data-icon="target" style="color:var(--violet-d)">Контрольная точка К4 — Координаты и векторы</div>
+    Проверьте, что умеете: (1) находить расстояние и середину по координатам; (2) находить длину вектора,
+    складывать и умножать на число; (3) считать скалярное произведение, угол между векторами и проверять
+    перпендикулярность; (4) применять <b>метод координат</b> для угла между прямыми и между прямой и
+    плоскостью. Порог — <b>70%</b>.
+  </div>
+
+  <div class="complete-bar" data-lesson="m4-l4">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m4-l4');
+
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      segments:[
+        {a:'A', b:'B1', color:'#6a5cff', width:3},
+        {a:'B', b:'C1', color:'#d6559b', width:3}
+      ]
+    };
+    Figure3D.panel('#viz-cube', {
+      title:'Куб в координатах: диагонали граней AB₁ и BC₁',
+      spec: spec
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Угол прямых', answer:90, tol:0.01,
+      prompt:'Направляющие векторы двух прямых: $\\vec a=(1;0;1)$ и $\\vec b=(1;0;-1)$. Найдите угол между прямыми (в градусах).',
+      explain:'$\\vec a\\cdot\\vec b=1-1=0$ ⟹ $\\cos\\varphi=0$ ⟹ $\\varphi=90^\\circ$.' },
+    { type:'numeric', tag:'Косинус', answer:0.5, tol:0.01,
+      prompt:'Найдите $\\cos$ угла между прямыми с направляющими $\\vec a=(1;1;0)$ и $\\vec b=(0;1;1)$ (десятичной дробью).',
+      explain:'$\\cos\\varphi=\\dfrac{|0+1+0|}{\\sqrt2\\cdot\\sqrt2}=\\dfrac12=0{,}5$ (угол $60^\\circ$).' },
+    { type:'numeric', tag:'Прямая и плоскость', answer:45, tol:0.01,
+      prompt:'Направляющий вектор прямой $\\vec a=(0;1;1)$, нормаль плоскости $\\vec n=(0;0;1)$. Найдите угол (в градусах) между прямой и плоскостью.',
+      explain:'$\\vec a\\cdot\\vec n=1$, $|\\vec a|=\\sqrt2$, $|\\vec n|=1$, поэтому $\\sin\\varphi=\\dfrac{1}{\\sqrt2}$, откуда $\\varphi=45^\\circ$.' },
+    { type:'choice', tag:'Стратегия',
+      prompt:'Почему в формуле угла между прямыми стоит модуль $|\\vec a\\cdot\\vec b|$?',
+      options:[
+        {html:'Угол между прямыми не превышает $90^\\circ$, косинус должен быть неотрицательным', correct:true},
+        {html:'Так короче записывать'},
+        {html:'Чтобы всегда получался острый вектор'},
+        {html:'Модуль тут не нужен'} ],
+      explain:'Угол между <b>прямыми</b> берут не больше $90^\\circ$, поэтому косинус неотрицателен — отсюда модуль. Для векторов (с направлением) модуль не ставят.' }
+  ]);
+</script>
+</body>
+</html>

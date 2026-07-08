@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прямая и плоскость · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 2 → Прямая и плоскость</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 2 · §5"></div>
+  <h1 class="lesson-title">Параллельность прямой и плоскости</h1>
+  <p class="lesson-sub">Как доказать, что прямая не пересечёт плоскость, даже если продолжить их обе
+     бесконечно? Ответ — один короткий признак.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Три случая для прямой и плоскости</div>
+    <ul style="margin:0">
+      <li>прямая <b>лежит</b> в плоскости (все точки общие);</li>
+      <li>прямая <b>пересекает</b> плоскость (ровно одна общая точка);</li>
+      <li>прямая <b>параллельна</b> плоскости — общих точек нет ($a\parallel\alpha$).</li>
+    </ul>
+  </div>
+
+  <h2><span class="block-tag">А</span>Признак параллельности</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признак (Теорема 7)</div>
+    Если прямая, <b>не лежащая</b> в плоскости, параллельна <b>какой-либо прямой</b> этой плоскости,
+    то она параллельна плоскости.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как этим пользоваться</div>
+    Чтобы доказать «$a\parallel\alpha$», достаточно найти <b>в плоскости</b> $\alpha$ хотя бы одну прямую,
+    параллельную $a$. Одна такая прямая — и дело сделано. Обычно её ищут как сторону грани, среднюю
+    линию треугольника или диагональ.
+  </div>
+
+  <p>Ребро $A_1B_1$ куба параллельно плоскости нижнего основания $ABCD$. Почему? Потому что в этой
+     плоскости лежит параллельное ему ребро $AB$. Поверните и убедитесь.</p>
+  <div id="viz-par"></div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Доказываем параллельность по признаку</header>
+    <div class="example-body">
+      <p>Докажем, что ребро $A_1B_1$ куба $ABCDA_1B_1C_1D_1$ параллельно плоскости $ABCD$.</p>
+      <div class="solution-step">Грань $ABB_1A_1$ — квадрат, поэтому $A_1B_1\parallel AB$.</div>
+      <div class="solution-step">Прямая $AB$ лежит в плоскости $ABCD$, а $A_1B_1$ в ней не лежит.</div>
+      <div class="solution-step">По признаку (теорема 7): $A_1B_1\parallel$ плоскости $ABCD$.</div>
+      <div class="answer-pill">$A_1B_1\parallel (ABC)$</div>
+    </div>
+  </div>
+
+  <h2><span class="block-tag">Б</span>Свойство прямой, параллельной плоскости</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Свойство (Теорема 8)</div>
+    Если плоскость проходит через прямую, параллельную другой плоскости, и пересекает эту плоскость,
+    то <b>линия пересечения параллельна</b> данной прямой.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Где это работает</div>
+    Именно это свойство мы использовали в сечениях: если секущая плоскость проходит через прямую,
+    параллельную грани, то она пересекает эту грань по отрезку, <b>параллельному</b> данной прямой.
+    Так строится «параллельная» сторона сечения без лишних вычислений.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Средняя линия и плоскость</header>
+    <div class="example-body">
+      <p>В тетраэдре $SABC$ точки $M$ и $N$ — середины рёбер $SA$ и $SB$. Докажем, что $MN\parallel(ABC)$.</p>
+      <div class="solution-step">$MN$ — средняя линия треугольника $SAB$, поэтому $MN\parallel AB$.</div>
+      <div class="solution-step">$AB\subset(ABC)$, а $MN$ не лежит в этой плоскости.</div>
+      <div class="solution-step">По признаку: $MN\parallel(ABC)$.</div>
+      <p class="muted">Средняя линия — самый частый «поставщик» параллельной прямой в плоскости.</p>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m2-l2">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m2-l2');
+
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      planes:[ {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.15)', color:'#10a5c4'} ],
+      edges:[ ['A1','B1'] ]
+    };
+    Figure3D.panel('#viz-par', {
+      title:'A₁B₁ ∥ плоскости ABCD',
+      spec: spec,
+      toggles:[
+        { label:'Параллельная прямая AB в плоскости', apply:function(fig,on){
+            fig.highlight(on
+              ? { planes:[{pts:['A','B','C','D'], fill:'rgba(16,165,196,0.15)', color:'#10a5c4'}], edges:[['A1','B1'],['A','B']] }
+              : { planes:[{pts:['A','B','C','D'], fill:'rgba(16,165,196,0.15)', color:'#10a5c4'}], edges:[['A1','B1']] }); } }
+      ]
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Признак',
+      prompt:'Что <b>достаточно</b> установить, чтобы доказать $a\\parallel\\alpha$ (прямая параллельна плоскости)?',
+      options:[
+        {html:'$a$ параллельна некоторой прямой, лежащей в $\\alpha$, и $a\\not\\subset\\alpha$', correct:true},
+        {html:'$a$ не пересекает одну из прямых плоскости $\\alpha$'},
+        {html:'$a$ параллельна плоскости $\\beta$, пересекающей $\\alpha$'},
+        {html:'$a$ перпендикулярна $\\alpha$'} ],
+      explain:'Признак (теорема 7): прямая параллельна плоскости, если она параллельна какой-либо прямой этой плоскости и сама в ней не лежит.' },
+    { type:'choice', tag:'Свойство',
+      prompt:'Прямая $a\\parallel\\alpha$ лежит в плоскости $\\beta$, которая пересекает $\\alpha$ по прямой $b$. Тогда…',
+      options:[ {html:'$b\\parallel a$', correct:true}, {html:'$b\\perp a$'}, {html:'$b$ пересекает $a$'}, {html:'$b=a$'} ],
+      explain:'Теорема 8: линия пересечения параллельна прямой $a$, то есть $b\\parallel a$.' },
+    { type:'choice', tag:'Модель',
+      prompt:'Сколько прямых, лежащих в плоскости $\\alpha$ и параллельных данной прямой $a\\parallel\\alpha$, можно провести?',
+      options:[ {html:'Бесконечно много', correct:true}, {html:'Ровно одна'}, {html:'Ни одной'}, {html:'Ровно две'} ],
+      explain:'Все прямые плоскости $\\alpha$, параллельные $a$, параллельны между собой; их бесконечно много (целое «семейство»).' }
+  ]);
+</script>
+</body>
+</html>

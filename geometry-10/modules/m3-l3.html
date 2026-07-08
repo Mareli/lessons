@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Угол и три перпендикуляра · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 3 → Угол и три перпендикуляра</div>
+  <div class="lesson-kicker" data-icon="star" data-label="Модуль 3 · §9 · ключевой урок"></div>
+  <h1 class="lesson-title">Угол между прямой и плоскостью. ТТП</h1>
+  <p class="lesson-sub">Здесь — две самые «экзаменационные» вещи курса: как измерять угол наклона прямой к
+     плоскости и теорема о трёх перпендикулярах, без которой не строится ни один двугранный угол.</p>
+
+  <h2><span class="block-tag">А</span>Угол между прямой и плоскостью</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Определение</div>
+    Если прямая пересекает плоскость и не перпендикулярна ей, то <b>углом между прямой и плоскостью</b>
+    называют угол между этой прямой и её <b>проекцией</b> на плоскость. Это <b>наименьший</b> из углов
+    между данной прямой и прямыми плоскости.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Крайние случаи</div>
+    Если прямая перпендикулярна плоскости — угол $90^\circ$. Если параллельна ей или лежит в ней —
+    угол $0^\circ$.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как найти угол — рецепт</div>
+    (1) Опустите из точки прямой перпендикуляр на плоскость → получите проекцию.
+    (2) Угол между наклонной и её проекцией и есть искомый.
+    (3) Считайте его в прямоугольном треугольнике «перпендикуляр–проекция–наклонная»:
+    $\sin\varphi=\dfrac{\text{перпендикуляр}}{\text{наклонная}}$, $\tan\varphi=\dfrac{\text{перпендикуляр}}{\text{проекция}}$.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Угол диагонали грани куба с основанием</header>
+    <div class="example-body">
+      <p>Найдём угол между диагональю грани $AB_1$ куба и плоскостью основания $ABCD$.</p>
+      <div class="solution-step">Проекция точки $B_1$ на основание — точка $B$ (ведь $B_1B\perp$ основанию).
+        Значит, проекция наклонной $AB_1$ на основание — это $AB$.</div>
+      <div class="solution-step">Искомый угол — $\angle B_1AB$. В прямоугольном треугольнике $AB B_1$
+        катеты $AB=a$ и $BB_1=a$ равны, поэтому $\tan\angle B_1AB=\dfrac{BB_1}{AB}=1$.</div>
+      <div class="answer-pill">Угол равен $45^\circ$</div>
+    </div>
+  </div>
+  <div id="viz-angle"></div>
+
+  <h2><span class="block-tag">Б</span>Теорема о трёх перпендикулярах</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">ТТП (Теорема 9)</div>
+    Если прямая, лежащая в плоскости, перпендикулярна <b>проекции</b> наклонной, то она перпендикулярна
+    и <b>самой наклонной</b>. И обратно: если прямая плоскости перпендикулярна наклонной, то она
+    перпендикулярна и её проекции.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Зачем нужна ТТП</div>
+    Три перпендикуляра в названии — это перпендикуляр к плоскости, проекция и наклонная. ТТП позволяет
+    «переносить» перпендикулярность между наклонной и её проекцией. Главное применение — <b>строить
+    линейный угол двугранного угла</b> (следующий урок) и находить <b>расстояния от точки до прямой</b>.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Строим перпендикуляр к ребру (заготовка для двугранного угла)</header>
+    <div class="example-body">
+      <p>Вершина $S$ правильной четырёхугольной пирамиды $SABCD$ проектируется в центр $O$ основания
+         (то есть $SO\perp$ основанию). $M$ — середина стороны $AB$. Докажем, что $SM\perp AB$.</p>
+      <div class="solution-step">$O$ — центр квадрата, $M$ — середина стороны $AB$, поэтому $OM\perp AB$
+        (в квадрате отрезок из центра к середине стороны перпендикулярен стороне).</div>
+      <div class="solution-step">$OM$ — проекция наклонной $SM$ на основание (ведь $SO$ — перпендикуляр,
+        $O$ — проекция $S$).</div>
+      <div class="solution-step">$OM\perp AB$ ⟹ по ТТП $SM\perp AB$.</div>
+      <div class="answer-pill">$SM\perp AB$ (значит $\angle SMO$ — линейный угол двугранного угла при ребре $AB$)</div>
+    </div>
+  </div>
+  <div id="viz-ttp"></div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 3. Расстояние от точки до прямой через ТТП</header>
+    <div class="example-body">
+      <p>Из точки $A$ восставлен перпендикуляр $AD=36$ к плоскости треугольника $ABC$. Как найти
+         расстояние от $D$ до прямой $BC$?</p>
+      <div class="solution-step">В плоскости $ABC$ проведём высоту $AH\perp BC$ ($H$ на $BC$).</div>
+      <div class="solution-step">$AH$ — проекция наклонной $DH$; так как $AH\perp BC$, то по ТТП
+        $DH\perp BC$. Значит, $DH$ — искомое расстояние.</div>
+      <div class="solution-step">Дальше $DH=\sqrt{AD^2+AH^2}$ — считаем $AH$ (например, через площадь
+        треугольника) и подставляем.</div>
+      <p class="muted">Схема «высота в основании → ТТП → наклонная ⟂ прямой» — универсальный способ
+        находить расстояния до прямых и строить двугранные углы.</p>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m3-l3">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m3-l3');
+
+  /* Угол диагонали грани с основанием */
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      planes:[ {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.12)', color:'#10a5c4'} ],
+      segments:[
+        {a:'A', b:'B1', color:'#6a5cff', width:3},          // наклонная
+        {a:'A', b:'B',  color:'#14a06b', width:3},           // проекция
+        {a:'B1', b:'B', color:'#d6559b', dashed:true, width:2, right:'A'} // перпендикуляр (⟂ при B)
+      ]
+    };
+    Figure3D.panel('#viz-angle', { title:'∠B₁AB = 45° — угол диагонали грани с основанием', spec: spec });
+  })();
+
+  /* ТТП на пирамиде: SO ⟂ база, OM ⟂ AB ⟹ SM ⟂ AB */
+  (function(){
+    var spec = Figure3D.Solids.pyramid(4, 1.2, 1.7);
+    var A=spec.vertices.A, B=spec.vertices.B;
+    spec.vertices.O = [0,-0.85,0];
+    spec.vertices.M = [(A[0]+B[0])/2, -0.85, (A[2]+B[2])/2];
+    spec.hideLabels = ['O'];
+    spec.highlights = {
+      segments:[
+        {a:'S', b:'O', color:'#d6559b', width:3, right:'M'},   // перпендикуляр (высота)
+        {a:'O', b:'M', color:'#14a06b', dashed:true, width:2.5, right:'A'}, // проекция ⟂ AB
+        {a:'S', b:'M', color:'#6a5cff', width:3}               // наклонная ⟂ AB (по ТТП)
+      ],
+      points:['O','M']
+    };
+    Figure3D.panel('#viz-ttp', { title:'ТТП: OM ⟂ AB ⟹ SM ⟂ AB  (∠SMO — линейный угол)', spec: spec });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'numeric', tag:'Угол', answer:45, tol:0.01,
+      prompt:'Угол (в градусах) между диагональю грани куба и плоскостью основания?',
+      explain:'Проекция диагонали грани $AB_1$ — это ребро $AB$; в треугольнике $ABB_1$ катеты равны ($a$ и $a$), значит угол $45^\\circ$.' },
+    { type:'numeric', tag:'Угол через sin', answer:30, tol:0.01,
+      prompt:'Наклонная к плоскости равна $10$, перпендикуляр (расстояние до плоскости) равен $5$. Найдите угол (в градусах) между наклонной и плоскостью.',
+      explain:'$\\sin\\varphi=\\dfrac{\\text{перпендикуляр}}{\\text{наклонная}}=\\dfrac{5}{10}=\\dfrac12$, значит $\\varphi=30^\\circ$.' },
+    { type:'choice', tag:'ТТП',
+      prompt:'Прямая $l$ плоскости $\\alpha$ перпендикулярна <b>проекции</b> наклонной. Что следует по ТТП?',
+      options:[
+        {html:'$l$ перпендикулярна самой наклонной', correct:true},
+        {html:'$l$ параллельна наклонной'},
+        {html:'$l$ перпендикулярна плоскости $\\alpha$'},
+        {html:'ничего' } ],
+      explain:'ТТП: если прямая плоскости ⟂ проекции наклонной, то она ⟂ и самой наклонной.' },
+    { type:'numeric', tag:'ТТП + расстояние', answer:15, tol:0.01,
+      prompt:'$AD\\perp$ плоскости $ABC$, $AD=9$. В плоскости высота $AH=12$ ($AH\\perp BC$). Найдите расстояние $DH$ от $D$ до прямой $BC$.',
+      explain:'По ТТП $DH\\perp BC$, поэтому $DH=\\sqrt{AD^2+AH^2}=\\sqrt{9^2+12^2}=\\sqrt{225}=15$.' }
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Параллельность плоскостей · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 2 → Параллельность плоскостей</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 2 · §6"></div>
+  <h1 class="lesson-title">Параллельность плоскостей</h1>
+  <p class="lesson-sub">Две плоскости либо пересекаются по прямой, либо параллельны. Разберём признак
+     параллельности и три свойства, которые постоянно нужны в задачах.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Параллельные плоскости</div>
+    Две плоскости называются <b>параллельными</b>, если они не имеют общих точек ($\alpha\parallel\beta$).
+    Иначе они пересекаются — по прямой (аксиома 3).
+  </div>
+
+  <h2><span class="block-tag">А</span>Признак параллельности плоскостей</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признак (Теорема 9)</div>
+    Плоскость, проходящая через две пересекающиеся прямые, параллельные другой плоскости, параллельна
+    этой плоскости.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Следствие — рабочая формулировка</div>
+    Если <b>две пересекающиеся</b> прямые одной плоскости соответственно параллельны двум пересекающимся
+    прямым другой плоскости, то эти плоскости параллельны.
+  </div>
+  <div class="box warn">
+    <div class="box-title" data-icon="warn">Почему «две пересекающиеся», а не «две любые»</div>
+    Одной пары параллельных прямых <b>мало</b>: плоскости могут пересекаться, даже если в них есть по
+    параллельной прямой. Нужны <b>две пересекающиеся</b> прямые — они «фиксируют» наклон плоскости.
+  </div>
+
+  <p>Верхняя и нижняя грани куба параллельны: $AB\parallel A_1B_1$ и $AD\parallel A_1D_1$ — две
+     пересекающиеся прямые одной грани параллельны двум пересекающимся прямым другой.</p>
+  <div id="viz-planes"></div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Противоположные грани параллелепипеда</header>
+    <div class="example-body">
+      <p>Докажем, что грани $ABCD$ и $A_1B_1C_1D_1$ параллелепипеда параллельны.</p>
+      <div class="solution-step">$ABB_1A_1$ и $ADD_1A_1$ — параллелограммы, поэтому $AB\parallel A_1B_1$
+        и $AD\parallel A_1D_1$.</div>
+      <div class="solution-step">$AB$ и $AD$ — две пересекающиеся прямые грани $ABCD$; они параллельны
+        пересекающимся прямым $A_1B_1$ и $A_1D_1$ грани $A_1B_1C_1D_1$.</div>
+      <div class="solution-step">По следствию признака — плоскости граней параллельны.</div>
+      <div class="answer-pill">$(ABC)\parallel(A_1B_1C_1)$</div>
+    </div>
+  </div>
+
+  <h2><span class="block-tag">Б</span>Три свойства параллельных плоскостей</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 10</div>
+    Линии пересечения двух параллельных плоскостей третьей плоскостью <b>параллельны</b>.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 11</div>
+    Через точку вне плоскости проходит <b>единственная</b> плоскость, параллельная данной.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 12</div>
+    Отрезки параллельных прямых, заключённые между двумя параллельными плоскостями, <b>равны</b>.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Следствие для пирамиды</div>
+    Сечение пирамиды плоскостью, параллельной основанию, — многоугольник, <b>подобный</b> основанию.
+    Это пригодится в 11 классе для усечённой пирамиды и конуса.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Сечение — параллелограмм (теорема 10 в работе)</header>
+    <div class="example-body">
+      <p>Параллелепипед рассекли плоскостью $MNOP$, где $M$, $N$, $O$ — середины рёбер $DD_1$, $AA_1$,
+         $A_1B_1$. Докажем, что сечение — параллелограмм.</p>
+      <div class="solution-step">Грани $DD_1C_1C$ и $AA_1B_1B$ параллельны. Плоскость $MNOP$ пересекает
+        их по $MP$ и $NO$. По теореме 10 эти линии параллельны: $NO\parallel MP$.</div>
+      <div class="solution-step">Аналогично из параллельности другой пары граней: $MN\parallel OP$.</div>
+      <div class="solution-step">У четырёхугольника обе пары противоположных сторон параллельны ⟹
+        это параллелограмм.</div>
+      <div class="answer-pill">$MNOP$ — параллелограмм</div>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="box note" style="border-left-color:var(--violet);background:var(--violet-soft)">
+    <div class="box-title" data-icon="target" style="color:var(--violet-d)">Контрольная точка К2 — Параллельность</div>
+    Перед переходом к Модулю 3 убедитесь, что умеете: (1) различать пересекающиеся/параллельные/
+    скрещивающиеся прямые; (2) находить угол между скрещивающимися прямыми переносом; (3) применять
+    признаки параллельности прямой и плоскости, двух плоскостей. Порог — <b>70%</b> верных ответов
+    в задачах этого модуля.
+  </div>
+
+  <div class="complete-bar" data-lesson="m2-l3">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m2-l3');
+
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      planes:[
+        {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.14)', color:'#10a5c4'},
+        {pts:['A1','B1','C1','D1'], fill:'rgba(106,92,255,0.14)', color:'#6a5cff'}
+      ]
+    };
+    Figure3D.panel('#viz-planes', {
+      title:'Параллельные грани ABCD ∥ A₁B₁C₁D₁',
+      spec: spec,
+      toggles:[
+        { label:'Пересекающиеся прямые AB, AD', apply:function(fig,on){
+            var base = { planes:[
+              {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.14)', color:'#10a5c4'},
+              {pts:['A1','B1','C1','D1'], fill:'rgba(106,92,255,0.14)', color:'#6a5cff'}] };
+            if(on){ base.edges=[['A','B'],['A','D'],['A1','B1'],['A1','D1']]; }
+            fig.highlight(base); } }
+      ]
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Признак',
+      prompt:'Какого условия <b>достаточно</b> для параллельности плоскостей $\\alpha$ и $\\beta$?',
+      options:[
+        {html:'Две пересекающиеся прямые $\\alpha$ параллельны двум пересекающимся прямым $\\beta$', correct:true},
+        {html:'Одна прямая $\\alpha$ параллельна одной прямой $\\beta$'},
+        {html:'В $\\alpha$ есть прямая, параллельная $\\beta$'},
+        {html:'$\\alpha$ и $\\beta$ не имеют общих прямых'} ],
+      explain:'Нужны именно <b>две пересекающиеся</b> прямые, соответственно параллельные двум пересекающимся прямым другой плоскости.' },
+    { type:'choice', tag:'Теорема 10',
+      prompt:'Третья плоскость пересекла две параллельные плоскости. Линии пересечения…',
+      options:[ {html:'Параллельны', correct:true}, {html:'Скрещиваются'}, {html:'Пересекаются'}, {html:'Перпендикулярны'} ],
+      explain:'Теорема 10: линии пересечения двух параллельных плоскостей третьей плоскостью параллельны.' },
+    { type:'numeric', tag:'Теорема 12', answer:5, tol:0.001,
+      prompt:'Между двумя параллельными плоскостями проведены два параллельных отрезка. Один равен $5$. Чему равен другой?',
+      explain:'Теорема 12: отрезки параллельных прямых между параллельными плоскостями равны, значит второй тоже $5$.' },
+    { type:'choice', tag:'Сечение пирамиды',
+      prompt:'Пирамиду рассекли плоскостью, параллельной основанию. Полученный многоугольник…',
+      options:[ {html:'Подобен основанию', correct:true}, {html:'Равен основанию'}, {html:'Всегда квадрат'}, {html:'Всегда треугольник'} ],
+      explain:'Сечение пирамиды плоскостью, параллельной основанию, подобно основанию (коэффициент — по высоте).' }
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прямые в пространстве · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 2 → Прямые в пространстве</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 2 · §4"></div>
+  <h1 class="lesson-title">Взаимное расположение прямых</h1>
+  <p class="lesson-sub">В пространстве у двух прямых на один случай больше, чем на плоскости. Разберём
+     все три и научимся находить угол между ними — даже когда они «не встречаются».</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Три случая для двух прямых</div>
+    <ul style="margin:0">
+      <li><b>Пересекающиеся</b> — имеют ровно одну общую точку (лежат в одной плоскости);</li>
+      <li><b>Параллельные</b> — лежат в одной плоскости и не имеют общих точек ($a\parallel b$);</li>
+      <li><b>Скрещивающиеся</b> — <b>не лежат в одной плоскости</b> (и потому не имеют общих точек).</li>
+    </ul>
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Новинка пространства — скрещивающиеся прямые</div>
+    На плоскости «не пересекаются» означало «параллельны». В пространстве появляется третий вариант:
+    прямые могут <b>не пересекаться и не быть параллельными</b> — как две дороги, одна над другой на
+    эстакаде. Поверните модель: рёбра $AB$ и $CC_1$ куба скрещиваются.
+  </div>
+
+  <p>Переключайте пары рёбер и смотрите, к какому типу они относятся.</p>
+  <div id="viz-lines"></div>
+
+  <h2><span class="block-tag">А</span>Свойства параллельных прямых</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 1</div>
+    Через точку, не лежащую на данной прямой, проходит единственная прямая, параллельная данной.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 3 (транзитивность)</div>
+    Если две прямые параллельны третьей, то они параллельны между собой.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признак скрещивающихся прямых (Теорема 5)</div>
+    Если одна из двух прямых лежит в плоскости, а другая пересекает эту плоскость в точке, не лежащей
+    на первой прямой, то эти прямые скрещиваются.
+  </div>
+
+  <h2><span class="block-tag">Б</span>Угол между прямыми</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Угол между скрещивающимися прямыми</div>
+    Углом между скрещивающимися прямыми называют угол между <b>пересекающимися</b> прямыми, которые
+    соответственно <b>параллельны</b> данным. (Этот угол не зависит от того, где проводить параллельные —
+    теорема 6.) Если угол равен $90^\circ$, прямые называют <b>перпендикулярными</b>.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Приём: параллельный перенос</div>
+    Чтобы найти угол между скрещивающимися прямыми $a$ и $b$, «перенесите» одну из них параллельно так,
+    чтобы она пересекла вторую. Затем ищите обычный угол в получившемся треугольнике (тут и пригодятся
+    Пифагор и теорема косинусов из Модуля 0).
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор. Угол между диагоналями граней куба</header>
+    <div class="example-body">
+      <p>В кубе $ABCDA_1B_1C_1D_1$ найдём угол между скрещивающимися прямыми $AB_1$ и $BC_1$ (это
+         диагонали двух соседних граней).</p>
+      <div class="solution-step"><b>Переносим.</b> Заметим, что $AB_1\parallel DC_1$ (обе — диагонали
+        параллельных граней, направлены одинаково). Значит, угол между $AB_1$ и $BC_1$ равен углу между
+        $DC_1$ и $BC_1$, а они <b>пересекаются</b> в точке $C_1$.</div>
+      <div class="solution-step"><b>Рассматриваем треугольник $BC_1D$.</b> Все три его стороны —
+        диагонали граней (или основания) куба, поэтому равны: $BC_1=DC_1=BD=a\sqrt2$.</div>
+      <div class="solution-step"><b>Равносторонний!</b> Треугольник со всеми равными сторонами —
+        равносторонний, значит все его углы по $60^\circ$.</div>
+      <div class="answer-pill">Угол между $AB_1$ и $BC_1$ равен $60^\circ$</div>
+    </div>
+  </div>
+  <div id="viz-angle"></div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m2-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m2-l1');
+
+  /* Куб с переключением типов пар рёбер */
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    var CASES = {
+      inter: { edges:[['A','B'],['A','D']], label:'Пересекающиеся: AB и AD (общая точка A)' },
+      par:   { edges:[['A','B'],['D','C']], label:'Параллельные: AB и DC' },
+      skew:  { edges:[['A','B'],['C','C1']], label:'Скрещивающиеся: AB и CC₁' }
+    };
+    var fig = Figure3D.panel('#viz-lines', { title:'Три типа расположения прямых', spec: spec });
+    fig.highlight({ edges: CASES.inter.edges });
+    var head = document.querySelector('#viz-lines .viz-head');
+    var cap = document.createElement('span'); cap.className='viz-title'; cap.style.marginLeft='6px';
+    cap.style.color='#d6559b'; cap.textContent = CASES.inter.label;
+    var wrap = document.createElement('span'); wrap.style.display='inline-flex'; wrap.style.gap='6px';
+    [['inter','Пересекающиеся'],['par','Параллельные'],['skew','Скрещивающиеся']].forEach(function(o,i){
+      var c=document.createElement('button'); c.className='chip'+(i===0?' on':''); c.textContent=o[1];
+      c.addEventListener('click', function(){
+        wrap.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+        c.classList.add('on');
+        fig.highlight({ edges: CASES[o[0]].edges }); cap.textContent = CASES[o[0]].label;
+      });
+      wrap.appendChild(c);
+    });
+    head.appendChild(wrap);
+    head.appendChild(cap);
+  })();
+
+  /* Модель к разбору: AB1, BC1 и вспомогательный треугольник BDC1 */
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      segments:[
+        {a:'A', b:'B1', color:'#6a5cff', width:3},
+        {a:'B', b:'C1', color:'#d6559b', width:3},
+        {a:'D', b:'C1', color:'#14a06b', dashed:true, width:2.5},
+        {a:'B', b:'D',  color:'#14a06b', dashed:true, width:2.5}
+      ]
+    };
+    Figure3D.panel('#viz-angle', {
+      title:'AB₁ и BC₁ · равносторонний треугольник BDC₁',
+      spec: spec
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Тип прямых',
+      prompt:'Рёбра $AA_1$ и $BC$ куба $ABCDA_1B_1C_1D_1$ являются…',
+      options:[ {html:'Скрещивающимися', correct:true}, {html:'Параллельными'}, {html:'Пересекающимися'}, {html:'Совпадающими'} ],
+      explain:'$AA_1$ вертикально, $BC$ лежит в основании и не проходит через $A$. Общей плоскости нет — прямые скрещиваются.' },
+    { type:'numeric', tag:'Угол', answer:90, tol:0.001,
+      prompt:'Чему равен угол (в градусах) между скрещивающимися рёбрами $AB$ и $CC_1$ куба?',
+      explain:'$CC_1\\parallel AA_1$, а $AA_1\\perp AB$. Значит, угол между $AB$ и $CC_1$ равен $90^\\circ$ — эти рёбра перпендикулярны (хоть и скрещиваются).' },
+    { type:'numeric', tag:'Диагонали граней', answer:60, tol:0.001,
+      prompt:'Угол (в градусах) между диагоналями $AB_1$ и $BC_1$ соседних граней куба?',
+      explain:'Перенос $AB_1\\parallel DC_1$; треугольник $BDC_1$ равносторонний (все стороны — диагонали граней $a\\sqrt2$) → угол $60^\\circ$.' },
+    { type:'choice', tag:'Транзитивность',
+      prompt:'Прямые $a\\parallel c$ и $b\\parallel c$. Что можно сказать о прямых $a$ и $b$?',
+      options:[ {html:'$a\\parallel b$', correct:true}, {html:'$a$ и $b$ скрещиваются'}, {html:'$a\\perp b$'}, {html:'Ничего определённого'} ],
+      explain:'По теореме 3 (транзитивность): две прямые, параллельные третьей, параллельны между собой.' }
+  ]);
+</script>
+</body>
+</html>

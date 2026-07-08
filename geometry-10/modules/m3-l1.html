@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прямая ⟂ плоскость · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 3 → Прямая ⟂ плоскость</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 3 · §7"></div>
+  <h1 class="lesson-title">Перпендикулярность прямой и плоскости</h1>
+  <p class="lesson-sub">Самый нагруженный инструмент курса. Один признак — и вы доказываете
+     перпендикулярность, из которой дальше получаются высоты, расстояния и углы.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Определение</div>
+    Прямая называется <b>перпендикулярной плоскости</b>, если она перпендикулярна <b>каждой</b> прямой,
+    лежащей в этой плоскости. Обозначение: $a\perp\alpha$.
+  </div>
+  <div class="box warn">
+    <div class="box-title" data-icon="warn">Проверять «каждую» прямую невозможно</div>
+    В плоскости бесконечно много прямых — проверить перпендикулярность к каждой нельзя. К счастью,
+    есть признак, который сводит проверку к <b>двум</b> прямым.
+  </div>
+
+  <h2><span class="block-tag">А</span>Признак перпендикулярности</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признак (Теорема 2)</div>
+    Если прямая перпендикулярна <b>двум пересекающимся</b> прямым плоскости, то она перпендикулярна
+    всей плоскости.
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Как применять</div>
+    Чтобы доказать $a\perp\alpha$, найдите в плоскости $\alpha$ <b>две пересекающиеся</b> прямые, каждой
+    из которых $a$ перпендикулярна. Слово «пересекающиеся» обязательно: двух параллельных мало.
+  </div>
+
+  <p>Ребро $AA_1$ куба перпендикулярно плоскости основания $ABCD$: оно перпендикулярно двум
+     пересекающимся рёбрам $AB$ и $AD$ этой плоскости.</p>
+  <div id="viz-perp"></div>
+
+  <h2><span class="block-tag">Б</span>Свойства и единственность</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 1</div>
+    Если две прямые перпендикулярны одной плоскости, то они <b>параллельны</b> между собой.
+    <span class="muted">(Все «вертикали» к одному «полу» параллельны.)</span>
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теоремы 3 и 4 (единственность)</div>
+    Через каждую точку пространства проходит <b>единственная прямая</b>, перпендикулярная данной
+    плоскости, и <b>единственная плоскость</b>, перпендикулярная данной прямой.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор. Диагональ основания ⟂ диагональной плоскости</header>
+    <div class="example-body">
+      <p>В кубе $ABCDA_1B_1C_1D_1$ докажем, что диагональ основания $AC$ перпендикулярна плоскости
+         $BB_1D_1D$.</p>
+      <div class="solution-step"><b>Первая прямая.</b> В квадрате $ABCD$ диагонали перпендикулярны:
+        $AC\perp BD$. Прямая $BD$ лежит в плоскости $BB_1D_1D$.</div>
+      <div class="solution-step"><b>Вторая прямая.</b> Ребро $BB_1$ перпендикулярно основанию $ABCD$,
+        значит $BB_1\perp AC$. Прямая $BB_1$ тоже лежит в плоскости $BB_1D_1D$.</div>
+      <div class="solution-step"><b>Признак.</b> $AC$ перпендикулярна двум пересекающимся прямым $BD$ и
+        $BB_1$ плоскости $BB_1D_1D$ ⟹ $AC\perp(BB_1D_1D)$.</div>
+      <div class="answer-pill">$AC\perp(BB_1D_1D)$</div>
+    </div>
+  </div>
+  <div id="viz-diag"></div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m3-l1">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m3-l1');
+
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      planes:[ {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.13)', color:'#10a5c4'} ],
+      segments:[ {a:'A1', b:'A', color:'#d6559b', width:3, right:'B'}, {a:'A1', b:'A', color:'#d6559b', width:3, right:'D'} ]
+    };
+    Figure3D.panel('#viz-perp', {
+      title:'AA₁ ⟂ плоскости ABCD (⟂ AB и ⟂ AD)',
+      spec: spec
+    });
+  })();
+
+  (function(){
+    var spec = Figure3D.Solids.cube(1.8);
+    spec.highlights = {
+      planes:[ {pts:['B','D','D1','B1'], fill:'rgba(106,92,255,0.16)', color:'#6a5cff'} ],
+      segments:[ {a:'A', b:'C', color:'#d6559b', width:3},
+                 {a:'B', b:'D', color:'#14a06b', dashed:true, width:2},
+                 {a:'B', b:'B1', color:'#14a06b', dashed:true, width:2} ]
+    };
+    Figure3D.panel('#viz-diag', {
+      title:'AC ⟂ (BB₁D₁D): AC ⟂ BD и AC ⟂ BB₁',
+      spec: spec
+    });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Признак',
+      prompt:'Что нужно установить, чтобы доказать $a\\perp\\alpha$ по признаку?',
+      options:[
+        {html:'$a$ перпендикулярна двум <b>пересекающимся</b> прямым плоскости $\\alpha$', correct:true},
+        {html:'$a$ перпендикулярна одной прямой плоскости $\\alpha$'},
+        {html:'$a$ перпендикулярна двум параллельным прямым плоскости $\\alpha$'},
+        {html:'$a$ параллельна какой-то прямой плоскости $\\alpha$'} ],
+      explain:'Признак (теорема 2): перпендикулярность к двум <b>пересекающимся</b> прямым плоскости влечёт перпендикулярность ко всей плоскости. Двух параллельных недостаточно.' },
+    { type:'choice', tag:'Теорема 1',
+      prompt:'Прямые $a$ и $b$ обе перпендикулярны плоскости $\\alpha$. Тогда…',
+      options:[ {html:'$a\\parallel b$', correct:true}, {html:'$a\\perp b$'}, {html:'$a$ и $b$ скрещиваются'}, {html:'ничего определённого'} ],
+      explain:'Теорема 1: две прямые, перпендикулярные одной плоскости, параллельны между собой.' },
+    { type:'choice', tag:'Куб',
+      prompt:'Каким прямым плоскости $ABCD$ перпендикулярно ребро $CC_1$ куба?',
+      options:[ {html:'Всем прямым этой плоскости', correct:true}, {html:'Только $CB$ и $CD$'}, {html:'Только диагонали $AC$'}, {html:'Ни одной'} ],
+      explain:'$CC_1\\perp(ABC)$, а перпендикуляр к плоскости перпендикулярен <b>каждой</b> прямой этой плоскости — по определению.' },
+    { type:'numeric', tag:'Высота', answer:90, tol:0.001,
+      prompt:'Ребро $SO$ — высота правильной пирамиды (перпендикуляр к основанию). Чему равен угол (в градусах) между $SO$ и любой прямой основания, проходящей через $O$?',
+      explain:'Высота перпендикулярна плоскости основания, значит перпендикулярна каждой прямой основания: угол $90^\\circ$.' }
+  ]);
+</script>
+</body>
+</html>

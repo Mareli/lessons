@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Перпендикулярность плоскостей · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 3 → Перпендикулярность плоскостей</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 3 · §10"></div>
+  <h1 class="lesson-title">Двугранный угол. Перпендикулярность плоскостей</h1>
+  <p class="lesson-sub">Двугранный угол — это «угол между плоскостями». Научимся его измерять (через линейный
+     угол) и доказывать перпендикулярность плоскостей.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Двугранный угол</div>
+    Две полуплоскости с общей границей делят пространство; фигуру из этих полуплоскостей и части
+    пространства между ними называют <b>двугранным углом</b>. Полуплоскости — его <b>грани</b>, общая
+    прямая — <b>ребро</b>. Модель: полураскрытая книга, двускатная крыша, стена с открытой дверью.
+  </div>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Линейный угол — мера двугранного</div>
+    Выберем на ребре точку и в <b>каждой</b> грани проведём из неё луч, <b>перпендикулярный ребру</b>.
+    Угол между этими лучами — <b>линейный угол</b> двугранного угла. Его плоскость перпендикулярна ребру.
+  </div>
+  <div id="viz-dih"></div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Теорема 10</div>
+    Все линейные углы одного двугранного угла <b>равны</b>. Поэтому величиной двугранного угла считают
+    величину его линейного угла (он не зависит от выбора точки на ребре).
+  </div>
+
+  <h2><span class="block-tag">А</span>Как найти двугранный угол — алгоритм</h2>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Три шага</div>
+    <ol style="margin:0">
+      <li>Найдите <b>ребро</b> двугранного угла (линию пересечения плоскостей).</li>
+      <li>Постройте <b>линейный угол</b>: из точки ребра — по перпендикуляру к ребру в каждой грани
+          (часто помогает <b>ТТП</b> из прошлого урока).</li>
+      <li>Посчитайте линейный угол в подходящем <b>прямоугольном треугольнике</b>.</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Двугранный угол при основании пирамиды</header>
+    <div class="example-body">
+      <p>В правильной четырёхугольной пирамиде $SABCD$ сторона основания равна $6$, высота $SO=3$.
+         Найдём двугранный угол при основании (между боковой гранью и основанием).</p>
+      <div class="solution-step"><b>Ребро</b> — сторона основания $AB$. $M$ — её середина.</div>
+      <div class="solution-step"><b>Линейный угол.</b> $OM\perp AB$ (из центра к середине стороны), и по
+        ТТП $SM\perp AB$. Значит, $\angle SMO$ — линейный угол искомого двугранного угла.</div>
+      <div class="solution-step"><b>Считаем.</b> $OM=\dfrac{6}{2}=3$ (половина стороны), $SO=3$.
+        В прямоугольном треугольнике $SOM$: $\tan\angle SMO=\dfrac{SO}{OM}=\dfrac{3}{3}=1$.</div>
+      <div class="answer-pill">Двугранный угол при основании равен $45^\circ$</div>
+    </div>
+  </div>
+  <div id="viz-pyr"></div>
+
+  <h2><span class="block-tag">Б</span>Перпендикулярные плоскости</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Определение</div>
+    Плоскости, при пересечении которых образуется <b>прямой</b> двугранный угол ($90^\circ$), называются
+    <b>перпендикулярными</b>: $\alpha\perp\beta$.
+  </div>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">Признак перпендикулярности плоскостей (Теорема 11)</div>
+    Если одна из двух плоскостей проходит через прямую, перпендикулярную другой плоскости, то эти
+    плоскости перпендикулярны.
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Перпендикулярность плоскостей по признаку</header>
+    <div class="example-body">
+      <p>Докажем, что в кубе плоскость диагонального сечения $ACC_1A_1$ перпендикулярна плоскости
+         основания $ABCD$.</p>
+      <div class="solution-step">Ребро $AA_1$ перпендикулярно основанию $ABCD$ ($AA_1\perp(ABC)$).</div>
+      <div class="solution-step">Прямая $AA_1$ лежит в плоскости $ACC_1A_1$.</div>
+      <div class="solution-step">По признаку (теорема 11): плоскость $ACC_1A_1$, проходящая через прямую
+        $AA_1\perp(ABC)$, перпендикулярна плоскости $ABCD$.</div>
+      <div class="answer-pill">$(ACC_1A_1)\perp(ABC)$</div>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="box note" style="border-left-color:var(--violet);background:var(--violet-soft)">
+    <div class="box-title" data-icon="target" style="color:var(--violet-d)">Контрольная точка К3 — Перпендикулярность</div>
+    Это самый важный модуль курса. К переходу дальше вы должны свободно: (1) применять признак
+    перпендикулярности прямой и плоскости; (2) находить расстояния (точка–плоскость, скрещивающиеся
+    прямые); (3) применять <b>ТТП</b>; (4) строить и вычислять <b>двугранный угол</b> через линейный.
+    Порог по задачам модуля — <b>75%</b>.
+  </div>
+
+  <div class="complete-bar" data-lesson="m3-l4">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m3-l4');
+
+  /* Абстрактная модель двугранного угла с линейным углом */
+  (function(){
+    var spec = {
+      vertices: {
+        A:[0,-1.15,-1.3], B:[0,1.15,-1.3],
+        C:[1.5,-1.15,0.35], D:[1.5,1.15,0.35],
+        E:[-1.05,-1.15,1.0], F:[-1.05,1.15,1.0],
+        P:[0,0,-1.3], Q:[1.5,0,0.35], R:[-1.05,0,1.0]
+      },
+      edges:[['A','B'],['A','C'],['B','D'],['C','D'],['A','E'],['B','F'],['E','F']],
+      faces:[['A','B','D','C'],['A','B','F','E']],
+      hideLabels:['P','Q','R','C','D','E','F'],
+      highlights:{
+        segments:[
+          {a:'Q', b:'P', color:'#d6559b', width:3, right:'B'},
+          {a:'R', b:'P', color:'#6a5cff', width:3, right:'B'}
+        ],
+        points:['P']
+      },
+      yaw:0.9, pitch:-0.15
+    };
+    Figure3D.panel('#viz-dih', { title:'Двугранный угол и его линейный угол (лучи ⟂ ребру AB)', spec: spec });
+  })();
+
+  /* Двугранный угол при основании пирамиды */
+  (function(){
+    var spec = Figure3D.Solids.pyramid(4, 1.2, 1.7);
+    var A=spec.vertices.A, B=spec.vertices.B;
+    spec.vertices.O = [0,-0.85,0];
+    spec.vertices.M = [(A[0]+B[0])/2, -0.85, (A[2]+B[2])/2];
+    spec.hideLabels = ['O'];
+    spec.highlights = {
+      planes:[ {pts:['A','B','C','D'], fill:'rgba(16,165,196,0.10)', color:'#10a5c4'} ],
+      segments:[
+        {a:'S', b:'O', color:'#8791a6', dashed:true, width:2, right:'M'},
+        {a:'O', b:'M', color:'#14a06b', width:2.5, right:'A'},
+        {a:'S', b:'M', color:'#d6559b', width:3}
+      ],
+      points:['O','M']
+    };
+    Figure3D.panel('#viz-pyr', { title:'∠SMO — линейный угол двугранного угла при основании', spec: spec });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'choice', tag:'Линейный угол',
+      prompt:'Как построить линейный угол двугранного угла?',
+      options:[
+        {html:'Из точки ребра провести в каждой грани луч, перпендикулярный ребру', correct:true},
+        {html:'Соединить две любые точки граней'},
+        {html:'Провести диагонали граней'},
+        {html:'Опустить перпендикуляр из одной грани на другую'} ],
+      explain:'Линейный угол: из точки на ребре — по лучу ⟂ ребру в каждой грани; угол между лучами и есть линейный.' },
+    { type:'numeric', tag:'Двугранный угол', answer:60, tol:0.01,
+      prompt:'В правильной 4-угольной пирамиде сторона основания $4$, а $OM=2$, $SO=2\\sqrt3$. Найдите двугранный угол при основании (в градусах).',
+      explain:'$\\tan\\angle SMO=\\dfrac{SO}{OM}=\\dfrac{2\\sqrt3}{2}=\\sqrt3$, значит угол $60^\\circ$.' },
+    { type:'choice', tag:'Признак ⟂',
+      prompt:'Плоскость $\\beta$ проходит через прямую $a\\perp\\alpha$. Что верно?',
+      options:[ {html:'$\\alpha\\perp\\beta$', correct:true}, {html:'$\\alpha\\parallel\\beta$'}, {html:'$a\\parallel\\alpha$'}, {html:'ничего определённого'} ],
+      explain:'Признак (теорема 11): если плоскость проходит через прямую, перпендикулярную другой плоскости, эти плоскости перпендикулярны.' },
+    { type:'numeric', tag:'Двугранный угол', answer:45, tol:0.01,
+      prompt:'Двугранный угол задан линейным: катеты прямоугольного треугольника линейного угла равны $7$ и $7$. Чему равен двугранный угол (в градусах)?',
+      explain:'Равные катеты ⟹ $\\tan=1$ ⟹ угол $45^\\circ$.' }
+  ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="page page-wide">
+
+  <div id="map"></div>
+
+</div>
+
+<script src="assets/app.js"></script>
+<script src="assets/course.js"></script>
+<script>
+  (function renderMap(){
+    var map = document.getElementById('map');
+    var total = 0, done = 0;
+    COURSE.forEach(function(mod){
+      var sec = document.createElement('section'); sec.className='module';
+      sec.innerHTML =
+        '<div class="module-head">' +
+          '<span class="mnum">Модуль '+mod.m+'</span>' +
+          '<h2>'+mod.title+'</h2>' +
+          '<span class="msub">'+mod.sub+' · '+mod.para+'</span>' +
+        '</div>';
+      var grid = document.createElement('div'); grid.className='lesson-grid';
+      mod.lessons.forEach(function(l){
+        total++;
+        var isDone = Progress.isDone(l.id);
+        if(isDone) done++;
+        var a = document.createElement('a');
+        a.className = 'lcard' + (isDone?' done':'');
+        a.href = 'modules/' + l.file;
+        a.innerHTML =
+          '<div class="lc-top">' +
+            '<span class="lc-para">'+mod.para+'</span>' +
+            '<span class="lc-check">'+(isDone?ICON.check:'')+'</span>' +
+          '</div>' +
+          '<h3>'+l.title+'</h3>' +
+          '<p>'+l.desc+'</p>';
+        grid.appendChild(a);
+      });
+      sec.appendChild(grid);
+      map.appendChild(sec);
+    });
+  })();
+</script>
+</body>
+</html>

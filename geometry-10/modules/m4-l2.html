@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Векторы в пространстве · Геометрия 10 — Интенсив</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<div data-topbar></div>
+<div class="lesson-progress"><i></i></div>
+
+<div class="page">
+  <div class="crumbs"><a href="../index.html">Карта курса</a> → Модуль 4 → Векторы</div>
+  <div class="lesson-kicker" data-icon="book" data-label="Модуль 4 · §12"></div>
+  <h1 class="lesson-title">Векторы в пространстве</h1>
+  <p class="lesson-sub">Вектор — это «стрелка» с длиной и направлением. В координатах он превращается в
+     тройку чисел, а геометрия — в арифметику.</p>
+
+  <div class="box def">
+    <div class="box-title" data-icon="def">Вектор и его координаты</div>
+    <b>Вектор</b> — направленный отрезок. Координаты вектора $\vec{AB}$ — это разности координат конца и
+    начала:
+    $$\vec{AB}=(x_B-x_A;\ y_B-y_A;\ z_B-z_A).$$
+    <b>Длина (модуль)</b> вектора $\vec a=(x;y;z)$:
+    $$|\vec a|=\sqrt{x^2+y^2+z^2}.$$
+    Два вектора <b>равны</b>, если равны их соответствующие координаты (одинаковая длина и направление).
+  </div>
+  <div id="viz-vec"></div>
+
+  <h2><span class="block-tag">А</span>Действия над векторами</h2>
+  <div class="box thm">
+    <div class="box-title" data-icon="thm">В координатах — покоординатно</div>
+    Для $\vec a=(x_1;y_1;z_1)$, $\vec b=(x_2;y_2;z_2)$ и числа $k$:
+    <ul style="margin:8px 0 0">
+      <li>сумма: $\vec a+\vec b=(x_1+x_2;\ y_1+y_2;\ z_1+z_2)$;</li>
+      <li>разность: $\vec a-\vec b=(x_1-x_2;\ y_1-y_2;\ z_1-z_2)$;</li>
+      <li>умножение на число: $k\vec a=(kx_1;\ ky_1;\ kz_1)$.</li>
+    </ul>
+  </div>
+  <div class="box note">
+    <div class="box-title" data-icon="bulb">Базис $\vec i,\vec j,\vec k$</div>
+    Единичные векторы осей $\vec i=(1;0;0)$, $\vec j=(0;1;0)$, $\vec k=(0;0;1)$ образуют базис: любой
+    вектор раскладывается как $\vec a=x\vec i+y\vec j+z\vec k$.
+  </div>
+
+  <h2><span class="block-tag">Б</span>Коллинеарность и компланарность</h2>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Коллинеарные векторы</div>
+    Векторы <b>коллинеарны</b> (параллельны одной прямой), если один получается из другого умножением на
+    число: $\vec a=k\vec b$. В координатах — <b>пропорциональность</b>:
+    $\dfrac{x_1}{x_2}=\dfrac{y_1}{y_2}=\dfrac{z_1}{z_2}.$
+  </div>
+  <div class="box def">
+    <div class="box-title" data-icon="def">Компланарные векторы</div>
+    Три вектора <b>компланарны</b>, если их можно отложить в одной плоскости. Признак: вектор $\vec c$
+    компланарен $\vec a$ и $\vec b$ (неколлинеарным), если раскладывается по ним:
+    $\vec c=x\vec a+y\vec b.$
+  </div>
+
+  <div class="example">
+    <header data-icon="bulb">Разбор 1. Координаты и длина вектора</header>
+    <div class="example-body">
+      <p>Даны $A(1;\,-2;\,3)$ и $B(4;\,2;\,15)$. Найдём $\vec{AB}$ и его длину.</p>
+      <div class="solution-step">$\vec{AB}=(4-1;\ 2-(-2);\ 15-3)=(3;\ 4;\ 12).$</div>
+      <div class="solution-step">$|\vec{AB}|=\sqrt{3^2+4^2+12^2}=\sqrt{169}=13.$</div>
+      <div class="answer-pill">$\vec{AB}=(3;4;12)$, длина $13$</div>
+    </div>
+  </div>
+  <div class="example">
+    <header data-icon="bulb">Разбор 2. Проверка коллинеарности</header>
+    <div class="example-body">
+      <p>Коллинеарны ли $\vec a=(2;\,-3;\,4)$ и $\vec b=(-4;\,6;\,-8)$?</p>
+      <div class="solution-step">Проверим пропорциональность: $\dfrac{-4}{2}=-2$, $\dfrac{6}{-3}=-2$,
+        $\dfrac{-8}{4}=-2$. Все отношения равны $-2$.</div>
+      <div class="solution-step">Значит $\vec b=-2\vec a$ — векторы коллинеарны.</div>
+      <div class="answer-pill">Да, $\vec b=-2\vec a$</div>
+    </div>
+  </div>
+
+  <h2>Проверьте себя</h2>
+  <div id="quiz-host"></div>
+
+  <div class="complete-bar" data-lesson="m4-l2">
+    <span class="txt"></span>
+    <div style="flex:1"></div>
+    <button></button>
+  </div>
+
+  <nav data-lesson-nav></nav>
+</div>
+
+<script src="../assets/app.js"></script>
+<script src="../assets/vendor/tex-svg-full.js" async></script>
+<script src="../assets/course.js"></script>
+<script src="../assets/figures.js"></script>
+<script src="../assets/quiz.js"></script>
+<script>
+  renderTopbar({});
+  CourseNav.render('m4-l2');
+
+  (function(){
+    var L=1.7;
+    var a=[1.3,0.4,0.5], b=[0.3,1.2,0.9];
+    var sum=[a[0]+b[0], a[1]+b[1], a[2]+b[2]];
+    var spec = {
+      vertices: { 'O':[0,0,0], 'x':[L,0,0], 'y':[0,0,L], 'z':[0,L,0],
+        'a':a, 'b':b, 's':sum },
+      edges: [], faces: [],
+      highlights:{
+        segments:[
+          {a:'O',b:'x',color:'#c5cad6',width:1.4},
+          {a:'O',b:'y',color:'#c5cad6',width:1.4},
+          {a:'O',b:'z',color:'#c5cad6',width:1.4},
+          {a:'O',b:'a',color:'#6a5cff',width:3},
+          {a:'O',b:'b',color:'#10a5c4',width:3},
+          {a:'O',b:'s',color:'#14a06b',width:3},
+          {a:'a',b:'s',color:'#14a06b',dashed:true,width:1.5},
+          {a:'b',b:'s',color:'#14a06b',dashed:true,width:1.5}
+        ],
+        points:['O']
+      },
+      hideLabels:['x','y','z'],
+      yaw:0.6, pitch:-0.3
+    };
+    Figure3D.panel('#viz-vec', { title:'Векторы a, b и их сумма a + b (правило параллелограмма)', spec: spec });
+  })();
+
+  Quiz.set('#quiz-host', [
+    { type:'text', tag:'Координаты', accept:['(2;5;3)','2;5;3','(2; 5; 3)','2,5,3'],
+      prompt:'Даны $A(1;0;-1)$ и $B(3;5;2)$. Найдите координаты $\\vec{AB}$ в виде $(x;y;z)$.',
+      explain:'$\\vec{AB}=(3-1;\\,5-0;\\,2-(-1))=(2;5;3)$.' },
+    { type:'numeric', tag:'Длина', answer:5, tol:0.01,
+      prompt:'Найдите длину вектора $\\vec a=(0;3;4)$.',
+      explain:'$|\\vec a|=\\sqrt{0^2+3^2+4^2}=\\sqrt{25}=5$.' },
+    { type:'choice', tag:'Коллинеарность',
+      prompt:'Какие векторы коллинеарны вектору $\\vec a=(1;-2;3)$?',
+      options:[ {html:'$(2;-4;6)$', correct:true}, {html:'$(2;-4;5)$'}, {html:'$(1;2;3)$'}, {html:'$(3;-2;1)$'} ],
+      explain:'$(2;-4;6)=2\\cdot(1;-2;3)$ — координаты пропорциональны с коэффициентом $2$. Остальные — нет.' },
+    { type:'text', tag:'Сумма', accept:['(3;1;4)','3;1;4','(3; 1; 4)','3,1,4'],
+      prompt:'Найдите $\\vec a+\\vec b$, если $\\vec a=(1;-2;1)$, $\\vec b=(2;3;3)$. В виде $(x;y;z)$.',
+      explain:'Складываем покоординатно: $(1+2;\\,-2+3;\\,1+3)=(3;1;4)$.' }
+  ]);
+</script>
+</body>
+</html>
